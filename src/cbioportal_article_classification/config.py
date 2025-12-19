@@ -40,7 +40,9 @@ S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
 # Version History:
 #   v1: Initial schema (no text_source tracking)
 #   v2: Added text_source field (pdf/abstract/none)
-CLASSIFICATION_SCHEMA_VERSION = 2
+#   v3: Improved data_source classification (not released)
+#   v4: Added detailed usage tracking (usage_mode, genes_queried, features_used, analysis_location)
+CLASSIFICATION_SCHEMA_VERSION = 4
 
 # Classification categories
 CLASSIFICATION_CATEGORIES = {
@@ -95,6 +97,30 @@ CLASSIFICATION_CATEGORIES = {
         "Custom/Private data",
         "Multiple sources",
         "Not specified"
+    ],
+    "cbioportal_usage_mode": [
+        "Data download/export",
+        "Web-based analysis",
+        "Web-based visualization",
+        "API access",
+        "Citation only"
+    ],
+    "cbioportal_features_used": [
+        "OncoPrint",
+        "Mutation Mapper",
+        "Survival analysis",
+        "Expression analysis",
+        "Enrichment analysis",
+        "Group comparison",
+        "Download data",
+        "Query interface",
+        "Not specified"
+    ],
+    "analysis_location": [
+        "cBioPortal platform",
+        "External (downloaded data)",
+        "Mixed",
+        "Unclear"
     ]
 }
 
@@ -112,6 +138,8 @@ FETCH_DELAY_SECONDS = 0.34  # ~3 requests/second (NCBI rate limit without API ke
 # PDF download settings
 PDF_SOURCE_PRIORITY = ["pmc", "biorxiv", "unpaywall", "doi"]  # Order to try PDF sources
 PDF_DOWNLOAD_TIMEOUT = 30  # Timeout for PDF downloads in seconds
+PDF_MAX_WORKERS = 10  # Number of parallel PDF download workers
+PDF_PMC_DELAY = 0.34  # Delay only for PMC downloads (NCBI rate limit)
 
 # Classification settings
 CLASSIFICATION_MAX_WORKERS = 10  # Number of parallel classification workers

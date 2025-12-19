@@ -5,10 +5,12 @@ from pathlib import Path
 from datetime import datetime
 from typing import Dict, List, Set, Optional
 import logging
+import threading
 
 import requests
 from Bio import Entrez
 from tqdm import tqdm
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from .config import (
     CBIOPORTAL_PMIDS,
@@ -21,6 +23,8 @@ from .config import (
     UNPAYWALL_EMAIL,
     PDF_SOURCE_PRIORITY,
     PDF_DOWNLOAD_TIMEOUT,
+    PDF_MAX_WORKERS,
+    PDF_PMC_DELAY,
 )
 
 logging.basicConfig(level=logging.INFO)
@@ -283,6 +287,7 @@ class PDFDownloader:
         })
         self.stats = {"pmc": 0, "biorxiv": 0, "unpaywall": 0, "doi": 0, "failed": 0}
         self.citation_fetcher = citation_fetcher  # Reference to save metadata
+        self.stats_lock = threading.Lock()  # Thread-safe stats updates
 
     def _sync_existing_pdfs(self, citations_data: Dict) -> int:
         """Check for existing PDFs on disk and sync metadata.
@@ -343,7 +348,6 @@ class PDFDownloader:
             pmc_id = pmc_links[0]["Id"]
 
             # Fetch PDF from PMC
-            time.sleep(0.1)  # Be respectful
             pdf_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmc_id}/pdf/"
 
             response = self.session.get(pdf_url, timeout=PDF_DOWNLOAD_TIMEOUT, allow_redirects=True)
@@ -351,7 +355,10 @@ class PDFDownloader:
             if response.status_code == 200 and "application/pdf" in response.headers.get("Content-Type", ""):
                 output_path.write_bytes(response.content)
                 logger.debug(f"Downloaded from PMC: {paper_data['title'][:50]}")
-                self.stats["pmc"] += 1
+                with self.stats_lock:
+                    self.stats["pmc"] += 1
+                # Rate limit for PMC downloads only
+                time.sleep(PDF_PMC_DELAY)
                 return True
 
         except Exception as e:
@@ -388,7 +395,8 @@ class PDFDownloader:
             if response.status_code == 200 and "application/pdf" in response.headers.get("Content-Type", ""):
                 output_path.write_bytes(response.content)
                 logger.debug(f"Downloaded from {server}: {paper_data['title'][:50]}")
-                self.stats["biorxiv"] += 1
+                with self.stats_lock:
+                    self.stats["biorxiv"] += 1
                 return True
 
         except Exception as e:
@@ -437,7 +445,8 @@ class PDFDownloader:
             if pdf_response.status_code == 200 and "application/pdf" in pdf_response.headers.get("Content-Type", ""):
                 output_path.write_bytes(pdf_response.content)
                 logger.debug(f"Downloaded via Unpaywall: {paper_data['title'][:50]}")
-                self.stats["unpaywall"] += 1
+                with self.stats_lock:
+                    self.stats["unpaywall"] += 1
                 return True
 
         except Exception as e:
@@ -472,7 +481,8 @@ class PDFDownloader:
                 if response.status_code == 200 and "application/pdf" in response.headers.get("Content-Type", ""):
                     output_path.write_bytes(response.content)
                     logger.debug(f"Downloaded from DOI/URL: {paper_data['title'][:50]}")
-                    self.stats["doi"] += 1
+                    with self.stats_lock:
+                        self.stats["doi"] += 1
                     return True
 
             except Exception as e:
@@ -505,9 +515,38 @@ class PDFDownloader:
                     return True
 
         # All sources failed
-        self.stats["failed"] += 1
+        with self.stats_lock:
+            self.stats["failed"] += 1
         logger.debug(f"All sources failed for: {paper_data['title'][:50]}")
         return False
+
+    def _download_single_paper(self, citation: Dict) -> Dict:
+        """Download PDF for a single paper (helper for parallel processing).
+
+        Args:
+            citation: Citation dictionary with paper metadata
+
+        Returns:
+            Result dictionary with success status and updated citation data
+        """
+        pdf_filename = f"{citation['paper_id']}.pdf"
+        pdf_path = PDF_DIR / pdf_filename
+
+        # Mark as attempted
+        citation["download_attempted"] = True
+        citation["download_attempt_date"] = datetime.now().isoformat()
+
+        success = self.download_pdf(citation, pdf_path)
+
+        if success:
+            citation["pdf_downloaded"] = True
+            citation["pdf_path"] = str(pdf_path)
+
+        return {
+            "citation": citation,
+            "success": success,
+            "paper_id": citation["paper_id"]
+        }
 
     def download_all_pdfs(
         self,
@@ -515,7 +554,7 @@ class PDFDownloader:
         max_downloads: Optional[int] = None,
         checkpoint_frequency: int = 10
     ) -> int:
-        """Download PDFs for all citations that don't have them yet.
+        """Download PDFs for all citations that don't have them yet (parallel).
 
         Args:
             citations_data: Citations metadata dictionary
@@ -528,11 +567,10 @@ class PDFDownloader:
         # First, sync existing PDFs on disk
         self._sync_existing_pdfs(citations_data)
 
-        downloaded = 0
-        attempted = 0
-
+        # Collect papers to download
+        papers_to_download = []
         for pmid, pmid_data in citations_data["papers"].items():
-            for citation in tqdm(pmid_data["citations"], desc=f"Downloading PDFs for PMID {pmid}"):
+            for citation in pmid_data["citations"]:
                 # Skip if already downloaded
                 if citation.get("pdf_downloaded"):
                     continue
@@ -541,38 +579,45 @@ class PDFDownloader:
                 if citation.get("download_attempted") and not citation.get("pdf_downloaded"):
                     continue
 
-                if max_downloads and downloaded >= max_downloads:
-                    logger.info(f"Reached download limit of {max_downloads}")
-                    if self.citation_fetcher:
-                        self.citation_fetcher._save_metadata()
-                    self._print_stats()
-                    return downloaded
+                papers_to_download.append(citation)
 
-                pdf_filename = f"{citation['paper_id']}.pdf"
-                pdf_path = PDF_DIR / pdf_filename
+                # Stop collecting if we hit max_downloads limit
+                if max_downloads and len(papers_to_download) >= max_downloads:
+                    break
 
-                # Mark as attempted
-                citation["download_attempted"] = True
-                citation["download_attempt_date"] = datetime.now().isoformat()
-                attempted += 1
+            if max_downloads and len(papers_to_download) >= max_downloads:
+                break
 
-                if self.download_pdf(citation, pdf_path):
-                    citation["pdf_downloaded"] = True
-                    citation["pdf_path"] = str(pdf_path)
-                    downloaded += 1
+        if not papers_to_download:
+            logger.info("No new PDFs to download")
+            return 0
 
-                    # Periodic checkpoint
-                    if checkpoint_frequency and downloaded % checkpoint_frequency == 0:
-                        if self.citation_fetcher:
-                            self.citation_fetcher._save_metadata()
-                            logger.info(f"Checkpoint: Saved metadata after {downloaded} downloads")
+        logger.info(f"Downloading {len(papers_to_download)} PDFs using {PDF_MAX_WORKERS} workers...")
 
-                time.sleep(FETCH_DELAY_SECONDS)
+        downloaded = 0
 
-            # Save after each PMID batch
-            if self.citation_fetcher and attempted > 0:
-                self.citation_fetcher._save_metadata()
-                logger.info(f"Saved metadata after completing PMID {pmid}")
+        # Download PDFs in parallel
+        with ThreadPoolExecutor(max_workers=PDF_MAX_WORKERS) as executor:
+            future_to_paper = {
+                executor.submit(self._download_single_paper, paper): paper
+                for paper in papers_to_download
+            }
+
+            for future in tqdm(as_completed(future_to_paper), total=len(papers_to_download), desc="Downloading PDFs"):
+                try:
+                    result = future.result()
+
+                    if result["success"]:
+                        downloaded += 1
+
+                        # Periodic checkpoint
+                        if checkpoint_frequency and downloaded % checkpoint_frequency == 0:
+                            if self.citation_fetcher:
+                                self.citation_fetcher._save_metadata()
+                                logger.info(f"Checkpoint: Saved metadata after {downloaded} downloads")
+
+                except Exception as e:
+                    logger.error(f"Error downloading PDF: {e}")
 
         # Final save
         if self.citation_fetcher:

@@ -14,6 +14,7 @@ from .config import (
     PLOTS_DIR,
     REPORTS_DIR,
     CLASSIFICATION_CATEGORIES,
+    CBIOPORTAL_PMIDS,
 )
 
 logging.basicConfig(level=logging.INFO)
@@ -31,6 +32,7 @@ class UsageAnalyzer:
         """Initialize analyzer with classification data."""
         self.classifications_file = METADATA_DIR / "classifications.json"
         self.classifications_csv = METADATA_DIR / "classifications.csv"
+        self.citations_file = METADATA_DIR / "citations.json"
         self.df = self._load_classifications()
 
     def _load_classifications(self) -> pd.DataFrame:
@@ -129,6 +131,76 @@ class UsageAnalyzer:
 
         text_source_counts = self.df['text_source'].value_counts()
         return pd.DataFrame({'Text Source': text_source_counts.index, 'Count': text_source_counts.values})
+
+    def analyze_usage_modes(self) -> pd.DataFrame:
+        """Analyze how cBioPortal is being used (v4 schema).
+
+        Returns:
+            DataFrame with usage mode counts
+        """
+        if self.df.empty or 'cbioportal_usage_mode' not in self.df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.df.copy()
+        df_temp['cbioportal_usage_mode'] = df_temp['cbioportal_usage_mode'].apply(
+            lambda x: eval(x) if isinstance(x, str) else x
+        )
+
+        usage_counts = df_temp.explode('cbioportal_usage_mode')['cbioportal_usage_mode'].value_counts()
+        return pd.DataFrame({'Usage Mode': usage_counts.index, 'Count': usage_counts.values})
+
+    def analyze_features_used(self) -> pd.DataFrame:
+        """Analyze which cBioPortal features are being used (v4 schema).
+
+        Returns:
+            DataFrame with feature usage counts
+        """
+        if self.df.empty or 'cbioportal_features_used' not in self.df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.df.copy()
+        df_temp['cbioportal_features_used'] = df_temp['cbioportal_features_used'].apply(
+            lambda x: eval(x) if isinstance(x, str) else x
+        )
+
+        feature_counts = df_temp.explode('cbioportal_features_used')['cbioportal_features_used'].value_counts()
+        return pd.DataFrame({'Feature': feature_counts.index, 'Count': feature_counts.values})
+
+    def analyze_genes_queried(self, top_n: int = 20) -> pd.DataFrame:
+        """Analyze most commonly queried genes (v4 schema).
+
+        Args:
+            top_n: Number of top genes to return
+
+        Returns:
+            DataFrame with gene query counts
+        """
+        if self.df.empty or 'specific_genes_queried' not in self.df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.df.copy()
+        df_temp['specific_genes_queried'] = df_temp['specific_genes_queried'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        gene_counts = df_temp.explode('specific_genes_queried')['specific_genes_queried'].value_counts()
+        # Filter out empty strings and None
+        gene_counts = gene_counts[gene_counts.index.notna()]
+        gene_counts = gene_counts[gene_counts.index != '']
+
+        return pd.DataFrame({'Gene': gene_counts.head(top_n).index, 'Count': gene_counts.head(top_n).values})
+
+    def analyze_analysis_location(self) -> pd.DataFrame:
+        """Analyze where analysis was performed (v4 schema).
+
+        Returns:
+            DataFrame with analysis location counts
+        """
+        if self.df.empty or 'analysis_location' not in self.df.columns:
+            return pd.DataFrame()
+
+        location_counts = self.df['analysis_location'].value_counts()
+        return pd.DataFrame({'Location': location_counts.index, 'Count': location_counts.values})
 
     def analyze_temporal_trends(self) -> pd.DataFrame:
         """Analyze usage trends over time.
@@ -340,6 +412,25 @@ class UsageAnalyzer:
         report_lines.append(f"- **Most Common Cancer Type**: {stats.get('most_common_cancer_type', 'N/A')}")
         report_lines.append(f"- **Most Common Data Source**: {stats.get('most_common_data_source', 'N/A')}\n")
 
+        # Add Data Collection & Limitations section
+        report_lines.append("## Data Collection & Limitations\n")
+        report_lines.append("This analysis is based on papers that cite the three main cBioPortal publications:\n")
+        for pmid in CBIOPORTAL_PMIDS:
+            report_lines.append(f"- PMID {pmid}")
+        report_lines.append("")
+
+        # Load citation counts
+        if self.citations_file.exists():
+            with open(self.citations_file, 'r') as f:
+                citations_data = json.load(f)
+            total_citations = sum(len(p['citations']) for p in citations_data.get('papers', {}).values())
+            report_lines.append(f"**Total citations in database**: {total_citations:,} papers\n")
+
+        report_lines.append("**Important limitation**: The PubMed eutils API returns fewer citations than shown on the PubMed website. ")
+        report_lines.append("For example, PMID 37668528 shows 750 citations on PubMed's website but the API only returns 407 citations. ")
+        report_lines.append("This is a known limitation of the eutils citation indexing system. ")
+        report_lines.append("Our analysis is based on the subset of citations available through the API.\n")
+
         # Add Visualizations section if plots exist
         if plot_filename or research_plot_filename:
             report_lines.append("## Visualizations\n")
@@ -378,6 +469,35 @@ class UsageAnalyzer:
             report_lines.append("## Data Sources Used\n")
             for idx, row in data_source_df.head(10).iterrows():
                 report_lines.append(f"{idx+1}. {row['Data Source']}: {row['Count']} papers")
+            report_lines.append("")
+
+        # cBioPortal Usage Patterns (v4 schema fields)
+        usage_modes_df = self.analyze_usage_modes()
+        if not usage_modes_df.empty:
+            report_lines.append("## How cBioPortal is Being Used\n")
+            for idx, row in usage_modes_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['Usage Mode']}: {row['Count']} papers")
+            report_lines.append("")
+
+        features_df = self.analyze_features_used()
+        if not features_df.empty:
+            report_lines.append("## cBioPortal Features Used\n")
+            for idx, row in features_df.head(10).iterrows():
+                report_lines.append(f"{idx+1}. {row['Feature']}: {row['Count']} papers")
+            report_lines.append("")
+
+        location_df = self.analyze_analysis_location()
+        if not location_df.empty:
+            report_lines.append("## Where Analysis Was Performed\n")
+            for idx, row in location_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['Location']}: {row['Count']} papers")
+            report_lines.append("")
+
+        genes_df = self.analyze_genes_queried(top_n=20)
+        if not genes_df.empty:
+            report_lines.append("## Most Frequently Queried Genes\n")
+            for idx, row in genes_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['Gene']}: {row['Count']} papers")
             report_lines.append("")
 
         # Recent Papers

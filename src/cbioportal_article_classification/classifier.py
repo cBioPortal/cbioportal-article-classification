@@ -54,6 +54,18 @@ class PaperClassification(BaseModel):
     specific_datasets: List[str] = Field(
         description="Specific dataset names mentioned (e.g., TCGA-BRCA, GENIE-MSK)"
     )
+    cbioportal_usage_mode: List[str] = Field(
+        description="How cBioPortal was used: data download, web analysis, visualization, API, or citation only"
+    )
+    specific_genes_queried: List[str] = Field(
+        description="Specific genes mentioned as queried or analyzed (e.g., TP53, KRAS, EGFR). Empty list if none specified."
+    )
+    cbioportal_features_used: List[str] = Field(
+        description="Specific cBioPortal features/tools used (OncoPrint, Mutation Mapper, etc.)"
+    )
+    analysis_location: str = Field(
+        description="Where analysis was performed: cBioPortal platform, External, Mixed, or Unclear"
+    )
     confidence: str = Field(
         description="Confidence level in the classification: high, medium, or low"
     )
@@ -150,11 +162,41 @@ Please classify this paper according to the following categories. For each categ
 
 Instructions:
 1. Read the paper content carefully
-2. For each category, select the option that best describes the paper
-3. You may select multiple options where appropriate (e.g., multiple analysis types)
-4. Provide a brief summary (2-3 sentences) of how cBioPortal was used in this study
-5. Extract any specific cBioPortal datasets mentioned (e.g., TCGA-BRCA, MSK-IMPACT)
-6. Set confidence to "high" if clear usage is described, "medium" if mentioned but details unclear, "low" if only cited in references"""
+2. For each category, select the option(s) that best describe the paper
+3. Provide a brief summary (2-3 sentences) of how cBioPortal was used in this study
+4. Extract specific information about cBioPortal usage:
+
+**cBioPortal Usage Mode** (select all that apply):
+- "Data download/export" if they downloaded data for external analysis
+- "Web-based analysis" if they used cBioPortal's analysis features on the website
+- "Web-based visualization" if they used visualization tools (OncoPrint, plots)
+- "API access" if they accessed data programmatically via API
+- "Citation only" if usage is unclear or only cited in references
+
+**Specific Genes Queried**: Extract gene symbols explicitly mentioned as being queried or analyzed through cBioPortal (e.g., TP53, KRAS, EGFR, BRCA1). Use standard gene symbols in uppercase. Leave empty if no specific genes mentioned.
+
+**cBioPortal Features Used** (select all that apply):
+- "OncoPrint" if they mention using OncoPrint for mutation/CNA visualization
+- "Mutation Mapper" if they mention lollipop plots or mutation mapper
+- "Survival analysis" if they used Kaplan-Meier plots or survival tools
+- "Expression analysis" if they queried mRNA/protein expression
+- "Enrichment analysis" if they used pathway/GO enrichment features
+- "Group comparison" if they compared patient cohorts
+- "Download data" if they downloaded bulk data
+- "Query interface" if they used the web query interface
+- "Not specified" if unclear
+
+**Analysis Location**:
+- "cBioPortal platform" if analysis was performed on cBioPortal
+- "External (downloaded data)" if they downloaded data and analyzed elsewhere
+- "Mixed" if they did both
+- "Unclear" if not specified
+
+**Specific Datasets**: Extract exact dataset names (e.g., TCGA-BRCA, MSK-IMPACT, GENIE-MSK)
+
+**Confidence**: Set to "high" if clear usage is described with specific details, "medium" if mentioned but details unclear, "low" if only cited in references
+
+Remember: Be specific and conservative. Only include information that is explicitly stated in the paper."""
 
         return prompt
 
