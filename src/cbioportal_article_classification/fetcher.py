@@ -437,6 +437,25 @@ class PDFDownloader:
 
         return synced
 
+    def _download_from_pmc_id(self, pmc_id: str, paper_data: Dict, output_path: Path) -> bool:
+        """Download a PMC PDF given an ID (without PMC prefix) via Europe PMC."""
+        if not pmc_id:
+            return False
+
+        # Use Europe PMC API (avoids US PMC proof-of-work challenge)
+        pdf_url = f"https://europepmc.org/backend/ptpmcrender.fcgi?accid=PMC{pmc_id}&blobtype=pdf"
+        response = self.session.get(pdf_url, timeout=PDF_DOWNLOAD_TIMEOUT, allow_redirects=True)
+
+        if response.status_code == 200 and "application/pdf" in response.headers.get("Content-Type", ""):
+            output_path.write_bytes(response.content)
+            logger.debug(f"Downloaded from Europe PMC: {paper_data['title'][:50]}")
+            with self.stats_lock:
+                self.stats["pmc"] += 1
+            time.sleep(PDF_PMC_DELAY)
+            return True
+
+        return False
+
     def _try_pmc_pdf(self, paper_data: Dict, output_path: Path) -> bool:
         """Try to download PDF from PubMed Central.
 
@@ -451,38 +470,30 @@ class PDFDownloader:
         if not pmid:
             return False
 
+        pmc_candidates = []
+        existing_pmc = str(paper_data.get("pmc_id", "") or "").strip()
+        if existing_pmc:
+            pmc_candidates.append(existing_pmc.replace("PMC", ""))
+
         try:
-            # Check if article is available in PMC
-            handle = Entrez.elink(dbfrom="pubmed", db="pmc", id=pmid)
-            record = Entrez.read(handle)
-            handle.close()
+            if not pmc_candidates:
+                handle = Entrez.elink(dbfrom="pubmed", db="pmc", id=pmid)
+                record = Entrez.read(handle)
+                handle.close()
 
-            if not record or not record[0].get("LinkSetDb"):
-                return False
-
-            # Get PMC ID
-            pmc_links = record[0]["LinkSetDb"][0]["Link"]
-            if not pmc_links:
-                return False
-
-            pmc_id = pmc_links[0]["Id"]
-
-            # Fetch PDF from PMC
-            pdf_url = f"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC{pmc_id}/pdf/"
-
-            response = self.session.get(pdf_url, timeout=PDF_DOWNLOAD_TIMEOUT, allow_redirects=True)
-
-            if response.status_code == 200 and "application/pdf" in response.headers.get("Content-Type", ""):
-                output_path.write_bytes(response.content)
-                logger.debug(f"Downloaded from PMC: {paper_data['title'][:50]}")
-                with self.stats_lock:
-                    self.stats["pmc"] += 1
-                # Rate limit for PMC downloads only
-                time.sleep(PDF_PMC_DELAY)
-                return True
+                if record and record[0].get("LinkSetDb"):
+                    pmc_links = record[0]["LinkSetDb"][0]["Link"]
+                    if pmc_links:
+                        fetched_id = pmc_links[0]["Id"]
+                        pmc_candidates.append(str(fetched_id))
+                        paper_data["pmc_id"] = f"PMC{fetched_id}"
 
         except Exception as e:
-            logger.debug(f"PMC download failed: {e}")
+            logger.debug(f"PMC lookup failed: {e}")
+
+        for pmc_id in pmc_candidates:
+            if self._download_from_pmc_id(pmc_id, paper_data, output_path):
+                return True
 
         return False
 
@@ -672,7 +683,8 @@ class PDFDownloader:
         self,
         citations_data: Dict,
         max_downloads: Optional[int] = None,
-        checkpoint_frequency: int = 10
+        checkpoint_frequency: int = 10,
+        force_paper_ids: Optional[Set[str]] = None,
     ) -> int:
         """Download PDFs for all citations that don't have them yet (parallel).
 
@@ -687,26 +699,71 @@ class PDFDownloader:
         # First, sync existing PDFs on disk
         self._sync_existing_pdfs(citations_data)
 
+        force_paper_ids = set(force_paper_ids or [])
+        if force_paper_ids:
+            logger.info(
+                "Forcing PDF re-download for %d paper(s): %s",
+                len(force_paper_ids),
+                ", ".join(sorted(force_paper_ids)),
+            )
+
+        remaining_forced = set(force_paper_ids)
+
         # Collect papers to download
         papers_to_download = []
         for pmid, pmid_data in citations_data["papers"].items():
             for citation in pmid_data["citations"]:
+                paper_id = citation.get("paper_id")
+                force_download = paper_id in force_paper_ids if paper_id else False
+
+                if force_download:
+                    # Reset flags so the download logic will retry
+                    citation["pdf_downloaded"] = False
+                    citation["pdf_path"] = None
+                    citation["download_attempted"] = False
+                    remaining_forced.discard(paper_id)
+
                 # Skip if already downloaded
-                if citation.get("pdf_downloaded"):
+                if citation.get("pdf_downloaded") and not force_download:
                     continue
 
                 # Skip if previously attempted and failed (unless force retry)
-                if citation.get("download_attempted") and not citation.get("pdf_downloaded"):
+                if (
+                    citation.get("download_attempted")
+                    and not citation.get("pdf_downloaded")
+                    and not force_download
+                ):
                     continue
 
-                papers_to_download.append(citation)
+                if (
+                    not max_downloads
+                    or len(papers_to_download) < max_downloads
+                    or force_download
+                ):
+                    papers_to_download.append(citation)
+                else:
+                    continue
 
                 # Stop collecting if we hit max_downloads limit
-                if max_downloads and len(papers_to_download) >= max_downloads:
+                if (
+                    max_downloads
+                    and len(papers_to_download) >= max_downloads
+                    and not remaining_forced
+                ):
                     break
 
-            if max_downloads and len(papers_to_download) >= max_downloads:
+            if (
+                max_downloads
+                and len(papers_to_download) >= max_downloads
+                and not remaining_forced
+            ):
                 break
+
+        if remaining_forced:
+            logger.warning(
+                "Force-download requested for unknown or filtered paper IDs: %s",
+                ", ".join(sorted(remaining_forced)),
+            )
 
         if not papers_to_download:
             logger.info("No new PDFs to download")

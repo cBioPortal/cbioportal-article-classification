@@ -58,7 +58,17 @@ BEDROCK_MODEL_ID=anthropic.claude-3-sonnet-20240229-v1:0
 cbioportal-classify status
 
 # Fetch citations and download PDFs
-cbioportal-classify fetch --download-pdfs --max-downloads 50
+cbioportal-classify fetch --max-downloads 50
+
+# Fetch/download mode examples
+cbioportal-classify fetch --mode citations --force
+cbioportal-classify fetch --mode pdfs --force-pmid 41386847
+
+# Fetch citations only
+cbioportal-classify fetch-citations --force
+
+# Download PDFs only using existing metadata
+cbioportal-classify fetch-pdfs --max-downloads 20
 
 # Classify papers using LLM
 cbioportal-classify classify --max-papers 20
@@ -75,8 +85,10 @@ cbioportal-classify run-all
 | Command | Description |
 |---------|-------------|
 | `status` | Show database state (citations, PDFs, classifications) |
-| `fetch` | Fetch new citations from PubMed |
-| `fetch --download-pdfs` | Also download PDFs for full-text analysis |
+| `fetch` | Fetch citations and PDFs (default `mode=all`) |
+| `fetch --mode citations` | Refresh citation metadata only |
+| `fetch --mode pdfs` | Download PDFs using existing metadata |
+| `fetch --mode pdfs --force-pmid <PMID>` | Retry downloading PDFs for specific PubMed IDs |
 | `classify` | Classify papers using Claude via AWS Bedrock |
 | `classify --reclassify` | Force re-classification of existing papers |
 | `analyze` | Generate visualizations and markdown report |

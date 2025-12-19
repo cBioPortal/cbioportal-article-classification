@@ -29,22 +29,64 @@ def cli():
 
 @cli.command()
 @click.option('--force', is_flag=True, help='Force re-fetch of all citations')
-@click.option('--download-pdfs', is_flag=True, help='Download PDFs after fetching')
 @click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
-def fetch(force, download_pdfs, max_downloads):
-    """Fetch citations from Google Scholar."""
-    logger.info("Starting citation fetch process...")
+@click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+@click.option(
+    '--mode',
+    type=click.Choice(['all', 'citations', 'pdfs'], case_sensitive=False),
+    default='all',
+    help='Choose whether to fetch citations, PDFs, or both',
+)
+def fetch(force, max_downloads, force_pmid, mode):
+    """Fetch citations and/or PDFs based on mode."""
+    mode = mode.lower()
 
-    fetcher = CitationFetcher()
-    citations_data = fetcher.fetch_all_citations(force_refresh=force)
+    if mode in ('all', 'citations'):
+        logger.info("Starting citation fetch process...")
+        fetcher = CitationFetcher()
+        citations_data = fetcher.fetch_all_citations(force_refresh=force)
+        logger.info(f"Total citations: {citations_data['total_citations']}")
+    else:
+        fetcher = CitationFetcher()
+        citations_data = fetcher.citations_data
 
-    logger.info(f"Total citations: {citations_data['total_citations']}")
+    if mode in ('all', 'pdfs'):
+        citations_file = METADATA_DIR / "citations.json"
+        if not citations_file.exists():
+            click.echo(click.style("Error: No citations data found. Run 'fetch --mode citations' first.", fg='red'))
+            return
 
-    if download_pdfs:
         logger.info("Downloading PDFs...")
         downloader = PDFDownloader(citation_fetcher=fetcher)
-        downloaded = downloader.download_all_pdfs(citations_data, max_downloads=max_downloads)
+        downloaded = downloader.download_all_pdfs(
+            citations_data,
+            max_downloads=max_downloads,
+            force_paper_ids=set(force_pmid) if force_pmid else None
+        )
         logger.info(f"Downloaded {downloaded} PDFs")
+
+
+@cli.command(name='download-pdfs')
+@click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
+@click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+def download_pdfs(max_downloads, force_pmid):
+    """Download PDFs using existing citation metadata."""
+    citations_file = METADATA_DIR / "citations.json"
+    if not citations_file.exists():
+        click.echo(click.style("Error: No citations data found. Run 'fetch' first to build metadata.", fg='red'))
+        return
+
+    fetcher = CitationFetcher()
+    citations_data = fetcher.citations_data
+
+    downloader = PDFDownloader(citation_fetcher=fetcher)
+    downloaded = downloader.download_all_pdfs(
+        citations_data,
+        max_downloads=max_downloads,
+        force_paper_ids=set(force_pmid) if force_pmid else None
+    )
+
+    logger.info(f"Downloaded {downloaded} PDFs")
 
 
 @cli.command()
@@ -105,7 +147,8 @@ def analyze(skip_plots):
 @click.option('--download-pdfs', is_flag=True, help='Download PDFs during fetch')
 @click.option('--max-downloads', type=int, help='Maximum PDFs to download')
 @click.option('--max-papers', type=int, help='Maximum papers to classify')
-def run_all(download_pdfs, max_downloads, max_papers):
+@click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+def run_all(download_pdfs, max_downloads, max_papers, force_pmid):
     """Run the complete pipeline: fetch, classify, analyze."""
     click.echo(click.style("Running complete pipeline...", fg='blue', bold=True))
 
@@ -115,7 +158,13 @@ def run_all(download_pdfs, max_downloads, max_papers):
     runner = CliRunner()
 
     ctx = click.get_current_context()
-    ctx.invoke(fetch, force=False, download_pdfs=download_pdfs, max_downloads=max_downloads)
+    ctx.invoke(
+        fetch,
+        force=False,
+        download_pdfs=download_pdfs,
+        max_downloads=max_downloads,
+        force_pmid=force_pmid,
+    )
 
     # Step 2: Classify
     click.echo("\n" + click.style("Step 2/3: Classifying papers", fg='cyan'))
