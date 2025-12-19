@@ -145,18 +145,20 @@ Instructions:
 
         return prompt
 
-    def classify_paper(self, paper_data: Dict, paper_text: Optional[str] = None) -> Dict:
+    def classify_paper(self, paper_data: Dict, paper_text: Optional[str] = None, text_source: str = "abstract") -> Dict:
         """Classify a single paper using Claude via Bedrock with instructor.
 
         Args:
             paper_data: Paper metadata dictionary
             paper_text: Optional pre-extracted text. If None, uses abstract from metadata
+            text_source: Source of the text ("pdf", "abstract", or "none")
 
         Returns:
             Classification results dictionary
         """
         if not paper_text:
             paper_text = paper_data.get("abstract", "")
+            text_source = "abstract" if paper_text else "none"
 
         if not paper_text:
             logger.warning(f"No text available for paper: {paper_data.get('title', 'Unknown')}")
@@ -181,6 +183,7 @@ Instructions:
             classification["paper_id"] = paper_data.get("paper_id")
             classification["title"] = paper_data.get("title")
             classification["year"] = paper_data.get("year")
+            classification["text_source"] = text_source
             classification["classified_date"] = datetime.now().isoformat()
 
             return classification
@@ -231,19 +234,25 @@ Instructions:
                 logger.info(f"Reached classification limit of {max_papers}")
                 break
 
-            # Get paper text
+            # Get paper text and determine source
             paper_text = None
+            text_source = "none"
+
             if paper.get("pdf_downloaded") and paper.get("pdf_path"):
                 pdf_path = Path(paper["pdf_path"])
                 if pdf_path.exists():
                     paper_text = self.extract_text_from_pdf(pdf_path)
+                    if paper_text:
+                        text_source = "pdf"
 
             # If no PDF, use abstract
             if not paper_text:
                 paper_text = paper.get("abstract", "")
+                if paper_text:
+                    text_source = "abstract"
 
             # Classify
-            classification = self.classify_paper(paper, paper_text)
+            classification = self.classify_paper(paper, paper_text, text_source=text_source)
 
             if "error" not in classification:
                 self.classifications[paper_id] = classification

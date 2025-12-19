@@ -42,12 +42,9 @@ def fetch(force, download_pdfs, max_downloads):
 
     if download_pdfs:
         logger.info("Downloading PDFs...")
-        downloader = PDFDownloader()
+        downloader = PDFDownloader(citation_fetcher=fetcher)
         downloaded = downloader.download_all_pdfs(citations_data, max_downloads=max_downloads)
         logger.info(f"Downloaded {downloaded} PDFs")
-
-        # Save updated metadata with PDF info
-        fetcher._save_metadata()
 
 
 @cli.command()

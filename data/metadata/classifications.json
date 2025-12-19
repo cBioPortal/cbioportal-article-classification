@@ -1,0 +1,3882 @@
+{
+  "41386847": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research",
+      "Meta-analysis"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study utilized cBioPortal to access and analyze TCGA-LUAD cohort data to identify prognostic biomarkers in lung adenocarcinoma. The platform was used to examine FAM83A amplification patterns and validate the prognostic significance of meta-differentially expressed genes. Additionally, cBioPortal facilitated the analysis of copy number alterations and their correlation with immune cell infiltration in LUAD samples from smokers and non-smokers.",
+    "specific_datasets": [
+      "TCGA-LUAD"
+    ],
+    "confidence": "high",
+    "paper_id": "41386847",
+    "title": "Investigating the role of oncogenic FAM83A as a prognostic biomarker in lung adenocarcinoma: Insights from smoker and non-smoker cohorts.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:36:05.270663"
+  },
+  "41375035": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "TCGA",
+      "MSK-IMPACT",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "The study identified KRAS-mutant RCC patients from two major cohorts: the MSK-IMPACT and TCGA-KIRP datasets, which are commonly accessed through cBioPortal. The researchers used these datasets to characterize the clinical, pathologic, and molecular features of KRAS-mutated renal cell carcinoma, including mutation profiles and copy number alterations. cBioPortal likely served as the primary platform for querying and retrieving genomic data from these cohorts.",
+    "specific_datasets": [
+      "MSK-IMPACT",
+      "TCGA-KIRP"
+    ],
+    "confidence": "high",
+    "paper_id": "41375035",
+    "title": "Clinical and Molecular Characterization of KRAS-Mutated Renal Cell Carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:36:57.309671"
+  },
+  "41369330": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal is not explicitly described. The paper focuses on investigating differentiation therapy using vitamin D analog (PRI5202) and Fludarabine in AML cells, particularly those with activating mutations in FGFR and JAK pathways. cBioPortal may have been used to identify or validate mutation patterns in these pathways, but the exact usage is not detailed in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41369330",
+    "title": "Synergy in Immunostimulatory and Pro-Differentiation Effects of Vitamin D Analog and Fludarabine in Acute Myeloid Leukemias.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:37:03.053458"
+  },
+  "41362722": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Pathway analysis",
+      "Drug response/resistance"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper examining TOPK's role in tumorigenesis and cancer development. Based on the abstract and introduction provided, there is no explicit description of how cBioPortal was used in this study. The paper appears to cite cBioPortal as a reference source for cancer genomics data that may have been used to support discussions of TOPK expression patterns and its role across various cancers, but specific usage details are not provided in the available text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41362722",
+    "title": "The Roles of TOPK in Tumorigenesis and Development: Structure, Mechanisms, Pathways, and Therapeutic Implications.",
+    "year": "2026",
+    "classified_date": "2025-12-19T01:39:10.740118"
+  },
+  "41360987": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Drug response/resistance",
+      "Biomarker discovery",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper discussing N6-methyladenosine (m6A) RNA modification in cancer. Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in the text. The paper appears to cite cBioPortal as a reference resource but does not describe specific analyses performed using the platform.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41360987",
+    "title": "N<sup>6</sup>-Methyladenosine: an RNA modification as a central regulator of cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:16.177445"
+  },
+  "41341921": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Copy number analysis",
+      "Pathway analysis",
+      "Multi-omics integration",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was likely used as one of the publicly available databases to access multi-omics cancer data for the comprehensive pan-cancer analysis of EIF3M. The platform would have facilitated the analysis of gene expression patterns, copy number alterations (gene amplification), methylation data, and survival outcomes across multiple cancer types. Given the integrative multi-omics approach described, cBioPortal served as a key resource for obtaining and analyzing TCGA and other cancer genomics datasets.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "41341921",
+    "title": "EIF3M as a pan-cancer biomarker: prognostic significance and immune infiltration association.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:23.179545"
+  },
+  "41301734": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the paper does not explicitly mention cBioPortal usage. The study utilized transcriptomic data from GSE147352, GSE165595, TCGA, and CGGA databases to perform differential expression analysis and survival analysis. While TCGA data was used (which is available through cBioPortal), there is no direct mention of cBioPortal as the data access platform in the provided text.",
+    "specific_datasets": [
+      "TCGA-GBM"
+    ],
+    "confidence": "low",
+    "paper_id": "41301734",
+    "title": "A Prognostic Neuromodulation-Related Gene Signature Identifies Immunomodulation and Tumour-Associated Hallmarks in Glioblastoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:28.879498"
+  },
+  "41301029": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "GENIE"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to access and analyze the AACR Project GENIE v18.0-public database to identify 359 tumor samples from 346 patients with angiosarcoma. The platform was utilized to assess somatic mutations, copy number alterations, gene co-occurrence patterns, and mutual exclusivity relationships across the angiosarcoma cohort.",
+    "specific_datasets": [
+      "AACR Project GENIE v18.0-public"
+    ],
+    "confidence": "high",
+    "paper_id": "41301029",
+    "title": "Genomic and Demographic Characteristics of Angiosarcoma as Described in the AACR Project GENIE Registry.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:33.816176"
+  },
+  "41291067": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was likely used to identify and analyze the frequency of EGFR amplification in breast cancer patients and to determine the co-occurrence of PI3K pathway mutations in EGFR-amplified tumors. The platform was used to perform survival analysis comparing overall survival between EGFR amplified and unamplified breast cancer patients. The study identified that EGFR amplification occurs in 1-5% of breast cancer patients and that up to 71% of EGFR amplified tumors harbor activating PI3K pathway mutations.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "41291067",
+    "title": "EGFR amplification and PI3K pathway mutations identify a subset of breast cancers that synergistically respond to EGFR and PI3K inhibition.",
+    "year": "2026",
+    "classified_date": "2025-12-19T01:39:39.788870"
+  },
+  "41251920": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "MSK-IMPACT",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "The study utilized genomic sequencing data from the MSK-IMPACT clinical sequencing platform to analyze mutations in thyroid cancer brain metastasis samples. Genomic analysis of matched primary and brain metastasis samples was performed to identify mutation patterns, revealing universal conservation of BRAF and NRAS mutations between primary tumors and brain metastases. The cBioPortal platform likely facilitated access to and analysis of the MSK-IMPACT genomic data for this cohort.",
+    "specific_datasets": [
+      "MSK-IMPACT"
+    ],
+    "confidence": "medium",
+    "paper_id": "41251920",
+    "title": "Clinical and genomic characterization of brain metastasis in thyroid cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:45.587087"
+  },
+  "41236806": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of cBioPortal usage in this study. This is an in vitro experimental study using CRISPR-Cas9 knockout cell lines to evaluate drug combinations in BRCA-mutated prostate cancer models. The paper may cite cBioPortal in the references for background information on BRCA mutations in prostate cancer, but no direct use of the platform for data analysis or retrieval is described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41236806",
+    "title": "Combined DNA-PK and PARP Inhibition as a Therapeutic Strategy in BRCA-Mutated Prostate Cancer: An in Vitro Pilot Study.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:51.357534"
+  },
+  "41235343": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to perform comprehensive pan-cancer genomic profiling of GCKR, including mutation frequency analysis, variant type characterization, and expression pattern mapping across multiple cancer types. The platform enabled the identification of recurrent GCKR alterations with highest frequencies in sarcoma (SARC) and uterine corpus endometrial carcinoma (UCEC), and missense mutations in breast cancer (BRCA). Additionally, cBioPortal facilitated the integration of multiomics data including genomic alterations, gene expression, and clinical outcomes across cancer types including KIRP, LUAD, and gastric cancer.",
+    "specific_datasets": [
+      "TCGA-SARC",
+      "TCGA-UCEC",
+      "TCGA-BRCA",
+      "TCGA-KIRP",
+      "TCGA-LUAD"
+    ],
+    "confidence": "high",
+    "paper_id": "41235343",
+    "title": "Glucokinase Regulatory Protein (GCKR) Links Metabolic Reprogramming With Immune Exclusion: Insights From a Pan-Cancer Analysis and Gastric Cancer Validation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:39:58.333446"
+  },
+  "41229797": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, cBioPortal was likely used to access and analyze TCGA-LUAD genomic and clinical data for the integrative multi-omics analysis. The platform would have facilitated the retrieval of gene expression data, clinical outcomes, and potentially other molecular data types needed to identify ANLN as a prognostic marker and establish the fatty acid metabolism-related gene signature. However, specific details about cBioPortal usage are not explicitly mentioned in the provided abstract and introduction.",
+    "specific_datasets": [
+      "TCGA-LUAD"
+    ],
+    "confidence": "low",
+    "paper_id": "41229797",
+    "title": "Integrative analysis of fatty acid metabolism and identification of <i>ANLN</i> as a novel prognostic marker in lung adenocarcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:04.920845"
+  },
+  "41228349": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The study utilized cBioPortal to access and analyze genomic and clinical data from 1218 breast cancer tumors from The Cancer Genome Atlas (TCGA). The platform was used to examine SPDEF mRNA expression patterns across different breast cancer subtypes, demographic groups, and to correlate expression with survival outcomes. Additionally, cBioPortal likely facilitated the analysis of promoter methylation patterns, DNMT expression, and co-expression analysis with various gene panels related to luminal differentiation, basal identity, EMT, proliferation, DNA repair, and immune signaling.",
+    "specific_datasets": [
+      "TCGA-BRCA"
+    ],
+    "confidence": "high",
+    "paper_id": "41228349",
+    "title": "Assessing the Tumor Suppressive Impact and Regulatory Mechanisms of SPDEF Expression in Breast Cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:10.664199"
+  },
+  "41225146": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Breast cancer",
+      "Pancreatic cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research",
+      "Methods/Software"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no clear indication that cBioPortal was directly used in this study. The paper focuses on analyzing nucleosome enrichment patterns in cell-free DNA using ATAC-seq data and machine learning (XGBoost) for cancer detection. The study appears to primarily use custom cfDNA sequencing data and open chromatin data rather than cBioPortal resources.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41225146",
+    "title": "Open chromatin-guided interpretable machine learning reveals cancer-specific chromatin features in cell-free DNA.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:16.843514"
+  },
+  "41201200": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study integrated data from TCGA to analyze CHRNA3, CHRNA5, and CHRNA7 expression in head and neck cancer (HNC) and oral squamous cell carcinoma (OSCC). The authors used bioinformatic analyses of TCGA data alongside other databases (DepMap, Puram 2017) to assess gene expression patterns, correlations with EMT markers, prognostic implications, and associations with drug sensitivity. While cBioPortal is not explicitly mentioned by name in the abstract, TCGA data access for cancer genomics studies of this nature typically utilizes cBioPortal as a primary analysis platform.",
+    "specific_datasets": [
+      "TCGA-HNSC"
+    ],
+    "confidence": "medium",
+    "paper_id": "41201200",
+    "title": "The Biological and Prognostic Implications of the Nicotinic Acetylcholine Receptor \u03b13, \u03b15, and \u03b17 Subunits in Oral Squamous Cell Carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:23.790867"
+  },
+  "41188599": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this paper analyzes existing bulk and single-cell transcriptomic data from human breast cancers to identify age-associated differences in cell states. The authors developed a novel ASPEN (Age-Specific Program ENrichment) analysis pipeline to reveal age-related changes in estrogen receptor-positive and triple-negative breast cancers. While cBioPortal is cited, the specific usage details are not provided in the abstract, suggesting it may have been used as a source for bulk transcriptomic data or for validation purposes.",
+    "specific_datasets": [
+      "Not specified in abstract"
+    ],
+    "confidence": "medium",
+    "paper_id": "41188599",
+    "title": "Cell populations in human breast cancers are molecularly and biologically distinct with age.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:29.550437"
+  },
+  "41185627": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Melanoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper describes using publicly available single-cell RNA-sequencing data from melanoma patients and validation with bulk RNA-seq data, but does not specifically reference cBioPortal as a data source or analysis platform. The citation of cBioPortal may be in the references as a general resource rather than as a primary tool used in the analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41185627",
+    "title": "Uncovering Cellular Interactome Drivers of Immune Checkpoint Inhibitor Response in Advanced Melanoma Patients.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:35.327037"
+  },
+  "41174249": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Tumor evolution"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal was likely used to identify and validate the occurrence of FGFR1 mutations in familial and sporadic cases of low-grade glioneuronal tumors. The platform may have been utilized to analyze mutation patterns and frequencies of FGFR1 alterations (particularly the hotspot mutations N546K, K656E, and the R661P variant) across brain tumor datasets. However, the specific details of cBioPortal usage are not explicitly described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "41174249",
+    "title": "Concurrence of FGFR1 mutations modulates oncogenesis in glioneuronal tumors.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:41.533117"
+  },
+  "41168197": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal in this study is not explicitly described. The paper focuses on whole genome sequencing analysis of germline predisposition in 92 glioblastoma patients using paired tumor-normal WGS data. cBioPortal may have been cited as a reference resource or for comparative analysis, but the primary analysis appears to be based on the authors' own WGS dataset rather than data retrieved from cBioPortal.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41168197",
+    "title": "Whole genome sequencing-based analysis of genetic predisposition to adult glioblastoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:47.372208"
+  },
+  "41153058": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study utilized cBioPortal to access and analyze multi-omics data from The Cancer Genome Atlas (TCGA) breast cancer cohorts to identify genes associated with low T cell infiltration. The authors likely used cBioPortal to examine THSD4 gene expression patterns across breast cancer subtypes, particularly hormone receptor-positive tumors, and to correlate expression with immune infiltration and clinical outcomes. This analysis was combined with data from the I-SPY2 clinical trial to identify THSD4 as a mediator of T cell exclusion and anti-PD-1 resistance.",
+    "specific_datasets": [
+      "TCGA breast cancer",
+      "TCGA-BRCA"
+    ],
+    "confidence": "medium",
+    "paper_id": "41153058",
+    "title": "THSD4 is a novel mediator of T cell exclusion and anti-PD-1 resistance in hormone receptor-positive breast cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:53.780129"
+  },
+  "41145757": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to analyze the relationship between AARS1/2 expression and clinical features as well as mutational landscape across 33 cancer types. The platform was specifically utilized alongside the GSCA database to examine mutation spectra and correlate genetic alterations with clinical outcomes in pan-cancer analysis, with particular focus on urologic neoplasms including bladder urothelial carcinoma (BLCA).",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "41145757",
+    "title": "Multi-omics analysis revealed heterogeneity of AARS1 and AARS2 in pan-cancer and identified AARS1 as a potential prognostic biomarker for urologic neoplasms.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:40:59.351565"
+  },
+  "41125532": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Immunotherapy",
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, the authors used publicly available human cutaneous squamous cell carcinoma (cSCC) datasets to assess the frequency of shared mutations between patients. While cBioPortal is cited, the specific details of how it was used are not explicitly described in the provided abstract and introduction. The analysis appears to have been used to establish the rationale that shared neoantigens are rare in cSCC, supporting the need for personalized neoantigen vaccines.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "41125532",
+    "title": "Structural changes from wild-type define tumor-rejecting neoantigens.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:41:05.470560"
+  },
+  "41108004": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on network toxicology, Mendelian Randomization analysis, and molecular docking to investigate BPA's effects on ovarian cancer. While the paper cites cBioPortal, the specific usage details are not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41108004",
+    "title": "Investigating the potential causal link between BPA and ovarian carcinogenesis: a network toxicology and mendelian randomization study on the CTRC/PRDX1/SKP1 pathway.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:15.586447"
+  },
+  "41105760": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "METABRIC"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to perform bioinformatic analysis of breast cancer datasets, specifically examining gene expression patterns and survival outcomes related to radiation resistance and metastasis in triple-negative breast cancer. The authors likely queried TCGA and METABRIC breast cancer cohorts through cBioPortal to validate their experimental findings regarding ITGB3, HNRNPL, and associated RNA metabolism pathways.",
+    "specific_datasets": [
+      "TCGA-BRCA",
+      "METABRIC"
+    ],
+    "confidence": "medium",
+    "paper_id": "41105760",
+    "title": "Resistance to radiation enhances metastasis by altering RNA metabolism.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:21.021837"
+  },
+  "41102416": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Lung cancer",
+      "Breast cancer",
+      "Colorectal cancer",
+      "Prostate cancer",
+      "Melanoma",
+      "Glioma/Brain cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Meta-analysis"
+    ],
+    "data_source": [
+      "GENIE",
+      "MSK-IMPACT",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "This study performed a meta-analysis of two large targeted panel sequencing cohorts (275,605 samples across 14 cancer types) to identify differences in somatic alterations across genetic ancestries. The authors analyzed mutation patterns including TERT promoter mutations, clinically actionable alterations (ERBB2, MET), and driver alterations, comparing frequencies across patients of African, East Asian, and European ancestry. cBioPortal was likely used to access and analyze the GENIE and MSK-IMPACT datasets, which are major data sources hosted on the platform.",
+    "specific_datasets": [
+      "GENIE",
+      "MSK-IMPACT"
+    ],
+    "confidence": "medium",
+    "paper_id": "41102416",
+    "title": "Meta-analysis reveals differences in somatic alterations by genetic ancestry across common cancers.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:27.420822"
+  },
+  "41089657": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Multi-omics integration",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Methods/Tools development",
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal is cited as a reference but specific usage details are not described in these sections. The paper focuses on developing GETgene-AI framework that integrates mutational frequency data (G List), differential expression data (E List), and known drug targets (T List), which are data types available through cBioPortal, but the exact role of cBioPortal in data acquisition is not explicitly stated in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41089657",
+    "title": "GETgene-AI: a framework for prioritizing actionable cancer drug targets.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:33.588434"
+  },
+  "41089282": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to access and validate findings against The Cancer Genome Atlas (TCGA) datasets for papillary thyroid carcinoma. The authors likely utilized cBioPortal to analyze mutation patterns, mutual exclusivity relationships between BRAF and RET/NRAS mutations, and to validate their single-center findings (72 PTC cases) against larger TCGA cohorts. This validation approach helped establish the generalizability of their mutation-guided prognostic framework.",
+    "specific_datasets": [
+      "TCGA thyroid cancer",
+      "TCGA-THCA"
+    ],
+    "confidence": "medium",
+    "paper_id": "41089282",
+    "title": "Mutation interactions of BRAF and TP53 define novel prognostic stratification and therapeutic implications in papillary thyroid carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:40.558611"
+  },
+  "41088330": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Precision medicine",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on experimental validation of ME2 knockdown in TNBC models using in vitro cell lines, xenograft models, metabolomics, and transcriptomics approaches, along with crystal structure determination. cBioPortal may have been cited in the references for background information or validation purposes, but specific usage is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41088330",
+    "title": "Interplay between malic enzyme 2, de novo serine synthesis, and the malate-aspartate shuttle drives metabolic adaptation in triple-negative breast cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:46.631887"
+  },
+  "41073135": {
+    "analysis_type": [
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Immunotherapy",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of cBioPortal usage in this study. The research focuses on immunohistochemical assessment of CLDN6 expression in tissue samples and experimental CAR T-cell therapy models. cBioPortal may have been cited in the references but its specific use in data analysis or validation is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41073135",
+    "title": "Claudin 6 is a suitable target for CAR T-cell therapy in atypical teratoid/rhabdoid brain tumors and other pediatric solid tumors.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:52.027579"
+  },
+  "41072789": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Drug response/resistance",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a comprehensive review article on PRMT5 inhibitors and therapeutic strategies. Based on the abstract and introduction provided, there is no explicit description of cBioPortal usage in the study. The paper appears to cite cBioPortal as a reference resource rather than actively using it for data analysis or visualization.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41072789",
+    "title": "Cracking PRMT5: Mechanistic insights, clinical advances, and AI-driven strategies.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:42:57.456750"
+  },
+  "41068948": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal is not explicitly detailed. However, given the study's focus on hepatocellular carcinoma with integrated bulk and single-cell RNA-Seq analyses, survival analysis, and correlation with genomic instability and patient prognosis, cBioPortal was likely used to access TCGA-HCC datasets for validation of gene expression patterns, survival outcomes, and potentially genomic alterations associated with the identified lncRNAs and splicing factors.",
+    "specific_datasets": [
+      "TCGA-LIHC"
+    ],
+    "confidence": "medium",
+    "paper_id": "41068948",
+    "title": "A novel lncRNA-mediated signaling axis governs cancer stemness and splicing reprogramming in hepatocellular carcinoma with therapeutic potential.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:43:03.691116"
+  },
+  "41062697": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Tumor evolution",
+      "Methods/Tools development",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal appears to be cited as a reference but specific usage details are not described in these sections. The study primarily uses custom ultradeep duplex DNA sequencing data from normal bladder samples rather than cBioPortal datasets. cBioPortal may have been used for comparative analysis or validation purposes, but this cannot be confirmed from the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41062697",
+    "title": "Sex and smoking bias in the selection of somatic mutations in human bladder.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:43:09.857171"
+  },
+  "41062612": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was likely used to access and analyze mutation data for KMT2C and KMT2D in breast cancer patient samples, particularly from TCGA datasets. The platform was used to identify mutation frequencies (10-20% collectively) and to correlate mutation status with transcriptome data and clinical subtypes. The integration of mutation data with gene expression, ChIP-seq, and chromatin accessibility data suggests cBioPortal served as a primary source for genomic and clinical annotations of breast cancer samples.",
+    "specific_datasets": [
+      "TCGA breast cancer"
+    ],
+    "confidence": "medium",
+    "paper_id": "41062612",
+    "title": "Contrasting roles of KMT2C and KMT2D in breast cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:10.599101"
+  },
+  "41051525": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "MSK-IMPACT",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to query the MSK-IMPACT platform data to determine the somatic mutation frequency of STK11 in breast cancer patients. The authors found that STK11 mutations occur in 1.9% of 3116 breast cancer cases in the MSK-IMPACT dataset, which provided the rationale for investigating the role of STK11 suppression in breast cancer tumor-immune interactions.",
+    "specific_datasets": [
+      "MSK-IMPACT"
+    ],
+    "confidence": "high",
+    "paper_id": "41051525",
+    "title": "Suppression of STK11 induces expansion of polymorphonuclear myeloid-derived suppressive cells and activation of immune signaling in breast cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:15.724584"
+  },
+  "41046136": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Pathway analysis",
+      "Multi-omics integration",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Methods/Tools development",
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper describes MPAC, a computational framework for multi-omic pathway analysis, and demonstrates it using TCGA head and neck squamous cell carcinoma data (DNA copy number and RNA-seq). While the paper cites cBioPortal, the specific usage details are not described in the provided text.",
+    "specific_datasets": [
+      "TCGA-HNSC"
+    ],
+    "confidence": "low",
+    "paper_id": "41046136",
+    "title": "MPAC: a computational framework for inferring pathway activities from multi-omic data.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:22.169396"
+  },
+  "41044153": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to investigate genetic alterations in WNT family genes in breast cancer, including analysis of mutation patterns and copy number alterations (amplifications). The platform was also used to examine the correlation between WNT gene alterations and immune infiltration as well as immunotherapy-related biomarkers. Additionally, cBioPortal data contributed to the multi-omics analysis alongside DNA methylation data from SMART database and drug sensitivity data from GSCA database.",
+    "specific_datasets": [
+      "TCGA-BRCA"
+    ],
+    "confidence": "high",
+    "paper_id": "41044153",
+    "title": "Comprehensive bioinformatics analysis reveals prognostic significance and immunological roles of WNT gene family in breast cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:28.022135"
+  },
+  "41029863": {
+    "analysis_type": [
+      "Multi-omics integration",
+      "Gene expression analysis",
+      "Mutation analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Database/Resource",
+      "Methods/Tools development",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of cBioPortal usage in this study. TumorXDB appears to be an independent database platform that integrates xWAS/xQTL data from various sources. While the paper cites cBioPortal, the specific usage details are not described in the provided text, suggesting it may be cited as a related resource or for comparison purposes rather than as a primary data source or analysis tool.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41029863",
+    "title": "TumorXDB: an integrated multi-omics xWAS/xQTL platform for cross-ethnic pan-cancer analysis.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:34.316302"
+  },
+  "41029822": {
+    "analysis_type": [
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on developing PREFFECT, a computational tool for analyzing FFPE RNA-seq data, and evaluates it on fRNA-seq datasets. cBioPortal may only be cited in the references without direct usage in the methodology or analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41029822",
+    "title": "Generative and integrative modeling for transcriptomics with formalin fixed paraffin embedded material.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:40.001041"
+  },
+  "41023204": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Prostate cancer",
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Tumor evolution",
+      "Review/Commentary"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper on lineage plasticity and histological transformation in cancer. While cBioPortal is cited, the abstract and introduction do not provide specific details about how cBioPortal data was used in the review. The paper likely references cBioPortal as a source for genomic data related to tumor transformation events, particularly in prostate and lung cancers, but specific usage details are not evident from the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41023204",
+    "title": "Lineage plasticity and histological transformation: tumor histology as a spectrum.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:45.933112"
+  },
+  "41020834": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy",
+      "Drug response/resistance"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The paper integrated multi-omics data from TCGA and other databases to investigate PSMB9's role across cancers. While cBioPortal is cited as a cancer genomics portal, the abstract does not provide explicit details about specific analyses performed using cBioPortal. The study likely used cBioPortal to access and analyze TCGA data for gene expression, clinical correlations, and immune landscape characterization across multiple cancer types.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "41020834",
+    "title": "PSMB9 Orchestrates Tumor Immune Landscape and Serves as a Potent Biomarker for Prognosis and T Cell-Based Immunotherapy Response.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:52.001948"
+  },
+  "41017066": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Melanoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Tumor evolution",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper describes a proteogenomic analysis of melanoma metastases using custom autopsy samples with RNA-sequencing and mass spectrometry-based proteomics. While the paper cites cBioPortal, the actual usage details are not described in the provided text, suggesting it may have been cited for reference or comparison purposes rather than as a primary data source or analysis tool.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41017066",
+    "title": "Distant metastases of melanoma exhibit varying extent of intrapatient proteogenomic heterogeneity.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:49:58.051803"
+  },
+  "41016526": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Other"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This paper does not appear to directly use cBioPortal for its primary research. The study focuses on developmental biology using zebrafish models to investigate Sfrp1a's role in hematopoietic stem and progenitor cell development. The citation to cBioPortal is likely a reference to support the statement about SFRP1 variants in hematopoietic cancers mentioned in the abstract, rather than indicating actual data analysis using the platform.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41016526",
+    "title": "Secreted frizzled-related protein 1a regulates hematopoietic development in a dose-dependent manner.",
+    "year": "2026",
+    "classified_date": "2025-12-19T01:50:04.202588"
+  },
+  "41011149": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The research primarily utilized high-throughput sequencing (HTS2) to generate gene expression profiles from prostate cancer cells treated with MGFD, combined with network pharmacology and bioinformatics approaches. cBioPortal may have been cited as a reference or used for validation purposes, but specific usage details are not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41011149",
+    "title": "Large-Scale Transcriptome Profiling and Network Pharmacology Analysis Reveal the Multi-Target Inhibitory Mechanism of Modified Guizhi Fuling Decoction in Prostate Cancer Cells.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:09.922731"
+  },
+  "41009727": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used in this study to access and analyze transcriptomic data for epithelial ovarian cancer (EOC), particularly to identify CDK1 as a central hub gene through protein-protein interaction network analysis. The platform enabled the researchers to correlate CDK1 overexpression with survival outcomes and assess its involvement in oncogenic pathways. cBioPortal served as a key data source for the integrative computational pipeline combining transcriptomic profiling with machine learning and molecular simulations.",
+    "specific_datasets": [
+      "TCGA-OV"
+    ],
+    "confidence": "medium",
+    "paper_id": "41009727",
+    "title": "Integrated Analysis, Machine Learning, Molecular Docking and Dynamics of CDK1 Inhibitors in Epithelial Ovarian Cancer: A Multifaceted Approach Towards Targeted Therapy.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:15.786330"
+  },
+  "41009348": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used as one of multiple public databases to perform differential gene expression and mutational analyses in colorectal cancer. The platform was specifically utilized to assess the prevalence and clinical significance of BRAF, MEK, and PI3K alterations in CRC patients. This analysis helped establish the rationale for targeting these pathways with Antrocin as a multi-target therapeutic agent.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "41009348",
+    "title": "Integrated In Silico and Experimental Validation of Antrocin as a Plant-Derived Multi-Target Therapeutic for BRAF/MEK/PI3K-Driven Colorectal Cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:21.405518"
+  },
+  "41007704": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "GENIE"
+    ],
+    "cbioportal_usage_summary": "This study utilized the AACR GENIE Biopharma Collaborative (BPC) NSCLC 2.0 dataset, which is accessible through cBioPortal, to conduct a retrospective analysis of KRAS and SMARCA4 mutations in non-small cell lung cancer patients. The researchers identified patients with these mutations and co-mutations, and performed survival analyses using Cox proportional hazards models to assess prognostic implications. The GENIE BPC dataset provided real-world clinical and genomic data that enabled the evaluation of mutation classes and their impact on overall survival outcomes.",
+    "specific_datasets": [
+      "AACR GENIE BPC NSCLC 2.0"
+    ],
+    "confidence": "high",
+    "paper_id": "41007704",
+    "title": "Prognostic Impact of <i>KRAS</i> and <i>SMARCA4</i> Mutations and Co-Mutations on Survival in Non-Small Cell Lung Cancer: Insights from the AACR GENIE BPC Dataset.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:27.109389"
+  },
+  "41006257": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research",
+      "Methods/Software"
+    ],
+    "data_source": [
+      "MSK-IMPACT",
+      "GENIE",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to access and analyze real-world genomic data from patients with non-small cell lung cancer to validate AI-predicted cancer driver mutations. The researchers evaluated variants of unknown significance (VUSs) by testing their association with overall survival and mutual exclusivity with known oncogenic alterations using data from two patient cohorts (N=7965 and 977). cBioPortal served as the primary platform for accessing MSK-IMPACT and potentially GENIE datasets to perform survival analysis and pathway-level mutation analysis.",
+    "specific_datasets": [
+      "MSK-IMPACT",
+      "GENIE"
+    ],
+    "confidence": "high",
+    "paper_id": "41006257",
+    "title": "AI cancer driver mutation predictions are valid in real-world data.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:33.166425"
+  },
+  "41003874": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The study investigated APP (amyloid precursor protein) mRNA and protein expression in glioblastoma using data likely accessed through cBioPortal. Gene set enrichment analysis was performed to identify pathways associated with APP expression, revealing enrichment of synaptic and neuron projection gene sets, as well as negative enrichment of immune-related processes. cBioPortal was likely used to access GBM gene expression data for correlation and pathway analyses.",
+    "specific_datasets": [
+      "TCGA-GBM"
+    ],
+    "confidence": "medium",
+    "paper_id": "41003874",
+    "title": "Amyloid precursor protein accumulation in glioblastoma is associated with altered synaptic dynamics and immune suppression.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:39.204569"
+  },
+  "41000977": {
+    "analysis_type": [
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on experimental laboratory work using cell lines (MDA-MB-231 and Hs578T), siRNA knockdown, and adhesion assays to investigate IGF1R and integrin function in breast cancer. If cBioPortal was cited, it was likely used for background information or validation purposes, but specific usage is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41000977",
+    "title": "Insulin-Like Growth Factor 1 Receptor Regulates Breast Cancer Cell Adhesion through Beta-1 Integrin.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:44.527227"
+  },
+  "41000613": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal is not explicitly described. The paper focuses on experimental investigation of ARID1A and ARID1B functions in B cell development and transformation using mouse models and in vitro studies. cBioPortal may have been used to examine mutation frequencies of ARID1A and ARID1B in B cell malignancies or to validate findings, but this is not detailed in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "41000613",
+    "title": "ARID1A and ARID1B preserve B cell identity, prevent myeloid transformation and reveal therapeutic vulnerabilities.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:50.145794"
+  },
+  "40998903": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Lung cancer",
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to analyze the distribution of genetic alterations in C15ORF48 across various cancers. The study identified specific mutations including S29F, T38I, and K61N, as well as pathogenic hotspots such as G25D, S28K, and T38W in the C15ORF48 gene. This analysis was part of a comprehensive pan-cancer investigation to understand the role of C15ORF48 as a potential biomarker and therapeutic target.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "40998903",
+    "title": "C15ORF48 serves as a potential biomarker and therapeutic target in pan-cancer with implications for lung cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:50:55.621957"
+  },
+  "40994935": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The paper likely used cBioPortal to access and analyze TCGA data for clear cell renal cell carcinoma (ccRCC), examining MGLL gene expression patterns, clinical correlations, and survival outcomes. The study integrated multiple databases including GEO datasets for validation, and performed comprehensive analyses of gene co-expression, immune infiltration patterns, and prognostic associations. While cBioPortal is cited, the abstract does not provide explicit details about specific cBioPortal functionalities used.",
+    "specific_datasets": [
+      "TCGA",
+      "GSE40435",
+      "GSE66270",
+      "GSE213324"
+    ],
+    "confidence": "medium",
+    "paper_id": "40994935",
+    "title": "Comprehensive analysis of MGLL as a novel diagnostic and prognostic biomarker for clear cell renal cell carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:02.123536"
+  },
+  "40988915": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study used a public gene database (likely cBioPortal) to develop the \"shedding pAxl score\" and investigate correlations with EMT-related genes. The researchers analyzed gene expression data to validate their immunohistochemistry findings and establish associations between pAxl shedding and epithelial-mesenchymal transition signatures. The shedding pAxl score showed strong correlation with established EMT signature scores using this public database.",
+    "specific_datasets": [
+      "Not specified"
+    ],
+    "confidence": "medium",
+    "paper_id": "40988915",
+    "title": "Shedding Phosphorylated Axl Receptor in Lung Adenocarcinoma: Dual-Domain Immunohistochemistry Approach.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:07.794594"
+  },
+  "40977519": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Copy number analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study performed an in silico analysis using cell line collections to assess correlations between BRCA1/2 mutations and PARP inhibitor sensitivity. The authors examined genomic alterations (mutations, copy number), PARP1 expression levels, and genome alteration patterns in cell lines to identify factors associated with drug response. cBioPortal was likely used to access and analyze these multi-dimensional genomic and expression data from cancer cell line databases.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "40977519",
+    "title": "Unmatched Cell Line Collections Are Not Optimal for Identification of PARP Inhibitor Response and Drug Synergies.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:13.535233"
+  },
+  "40977288": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the paper appears to use cBioPortal to access TCGA glioblastoma data for validation purposes. The study likely queried FAK (PTK2) expression levels and potentially correlated them with patient survival outcomes in glioblastoma datasets. cBioPortal would have been used to support the clinical relevance of their experimental findings from the mouse stem cell model.",
+    "specific_datasets": [
+      "TCGA-GBM"
+    ],
+    "confidence": "medium",
+    "paper_id": "40977288",
+    "title": "FAK modulates glioblastoma stem cell energetics via regulation of glycolysis and glutamine oxidation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:19.389897"
+  },
+  "40976930": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Melanoma"
+    ],
+    "research_area": [
+      "Review/Commentary"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper that provides an overview of PTEN's role in melanoma suppression. Based on the abstract and introduction provided, there is no direct description of cBioPortal usage in the paper itself. The paper likely cites cBioPortal as a reference resource for cancer genomics data related to PTEN alterations in melanoma, but specific usage details are not evident from the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40976930",
+    "title": "The Roles of PTEN in Melanoma Suppression.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:24.400803"
+  },
+  "40970974": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Tumor evolution",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of how cBioPortal was used in this study. The paper describes a paired next-generation sequencing study of appendiceal goblet cell adenocarcinomas and coincident lesions using in-house clinical samples. cBioPortal may have been cited as a reference or used for comparative analysis, but specific usage details are not provided in the available text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40970974",
+    "title": "A paired sequencing study of goblet cell adenocarcinomas with coincident sessile serrated lesions and low-grade appendiceal mucinous neoplasms.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:29.698955"
+  },
+  "40955658": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was likely used to analyze clinical cohorts for correlations between CDK12/13 expression levels and patient survival outcomes as well as response to immune checkpoint blockade therapy. The platform was probably utilized to access genomic and clinical data across multiple cancer types to validate the immunogenic phenotype associated with CDK12 inactivation. Given the pan-cancer analysis and survival correlations mentioned, cBioPortal served as a key resource for mining publicly available cancer genomics datasets including TCGA.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40955658",
+    "title": "CDK12/13 inactivation triggers STING-mediated antitumor immunity in preclinical models.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:37.009266"
+  },
+  "40950237": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery",
+      "Methods/Tools development",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Methods/Software"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The authors integrated clinical datasets to uncover proliferation and resistance-associated genes with prognostic potential. cBioPortal was likely used to access TCGA and other clinical genomics data to validate the drug resistance genes identified through their BOGO screening platform and to assess their clinical relevance across cancer types. The integration of clinical data helped identify genes with prognostic significance related to drug response.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40950237",
+    "title": "BOGO: A Proteome-Wide Gene Overexpression Platform for Discovering Rational Cancer Combination Therapies.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:43.157798"
+  },
+  "40944348": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific use of cBioPortal is not explicitly described. The study focuses on analyzing BCOR mutations in conventional and dedifferentiated chondrosarcoma cases, comparing 12 BCOR-mutated cases against 15 BCOR-wildtype controls. While cBioPortal is cited, the paper appears to primarily use institutional/custom patient samples for their clinicopathological analysis rather than directly analyzing cBioPortal datasets.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40944348",
+    "title": "BCOR-Mutated Conventional and Dedifferentiated Chondrosarcoma: A Clinicopathologic Study.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:49.048175"
+  },
+  "40919994": {
+    "analysis_type": [
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Immunotherapy",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on preclinical evaluation of FOLR1-targeted CAR T-cell therapy against osteosarcoma using in vitro and in vivo models. While the authors characterize FOLR1 expression in patient specimens, cell lines, and xenografts, the specific data sources and analysis platforms are not detailed in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40919994",
+    "title": "Preclinical Evaluation of Folate Receptor-\u03b1 Chimeric Antigen Receptor T Cells Exhibits Highly Efficient Antitumor Activity against Osteosarcoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:51:54.591220"
+  },
+  "40909996": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Lung cancer",
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to extract tumor mutational burden (TMB) and fraction genome altered (FGA) data for 6,488 patients across 18 solid tumor types from The Cancer Genome Atlas (TCGA). These biomarkers were then analyzed in relation to anesthetic/analgesic drug target receptor gene expression and correlated with clinical outcomes in lung and colon adenocarcinoma cohorts to develop a precision approach to immunomodulation.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "40909996",
+    "title": "Towards a precision approach to anesthetic/analgesic immunomodulation in cancer.",
+    "year": "2024",
+    "classified_date": "2025-12-19T01:52:00.714411"
+  },
+  "40904607": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to access TCGA RNA-seq data for invasive lobular carcinoma (ILC) patients. The authors applied lasso-logistic regression to 41 aminoacyl-tRNA synthetase (ARS) genes using patient vital status as the outcome, and performed survival analysis to identify SARS1 and CARS2 as prognostic biomarkers. cBioPortal served as the primary data source for obtaining gene expression and clinical outcome data.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40904607",
+    "title": "Identification of SARS1 as a Prognostic Biomarker in Invasive Lobular Carcinoma Using Lasso-Logistic Regression.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:06.702486"
+  },
+  "40894652": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, the study analyzed circadian clock gene expression patterns and MYC pathway activation in lung adenocarcinoma tumors, likely using TCGA data accessed through cBioPortal. The researchers used Clock Correlation Distance (CCD) to assess circadian rhythm disruption and examined correlations with MYC expression, pathway activation, and EMT/TGF-\u03b2 signaling programs. cBioPortal was likely used to access and analyze gene expression data from human lung adenocarcinoma samples to identify determinants of circadian disruption.",
+    "specific_datasets": [
+      "TCGA-LUAD"
+    ],
+    "confidence": "medium",
+    "paper_id": "40894652",
+    "title": "MYC and Epithelial to Mesenchymal Transition (EMT) Independently Predict Circadian Rhythm Disruption in Lung Adenocarcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:12.579065"
+  },
+  "40875132": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Precision medicine",
+      "Review/Commentary",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, this appears to be a review paper discussing CRISPR-knockout library screening methods for identifying genetic dependencies in epithelial ovarian cancer (EOC). The specific usage of cBioPortal is not detailed in the provided text, though it is cited. cBioPortal was likely referenced as a resource for accessing cancer genomics data to contextualize CRISPR screening findings or to identify cancer-associated mutations relevant to synthetic lethality studies.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40875132",
+    "title": "Revealing genetic drivers of ovarian cancer and chemoresistance: insights from whole-genome CRISPR-knockout library screens.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:19.699942"
+  },
+  "40874905": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, cBioPortal was likely used to perform survival analysis correlating the expression of FOXA1-interacting proteins with relapse-free survival in ER-positive breast cancer patients. The study identified 42 novel FOXA1 partners, including NR2C2, that were significantly associated with poor relapse-free survival, suggesting cBioPortal was used to access clinical outcome data linked to gene expression profiles. However, the specific details of cBioPortal usage are not explicitly described in the provided abstract.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "40874905",
+    "title": "Mapping the FOXA1 Interactome in ER+ Breast Cancer Cells Using Proximity Labeling Reveals Novel Interactions with the Orphan Nuclear Receptor NR2C2.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:26.169090"
+  },
+  "40869426": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal being used in this study. The paper describes using GEO database for raw data extraction, STRING and Gephi for hub gene identification, miRPathDB for pathway analysis, miRWalk for miRNA-gene interactions, and miRDB for miRNA confirmation. cBioPortal may have been cited in the references but does not appear to be a primary data source or analysis tool in this research.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40869426",
+    "title": "Functional Role of miR-138-5p and miR-200b-3p in Testicular Germ Cell Tumors: Molecular Insights into Seminoma and Teratoma Pathogenesis.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:31.823922"
+  },
+  "40868045": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The study analyzed 421 prostate cancer patients from The Cancer Genome Atlas (TCGA) who underwent radical prostatectomy. The researchers used the data to identify differentially expressed genes between patients with and without perineural invasion (PNI), and evaluated the prognostic significance of these genes using survival analysis. While cBioPortal is cited, the abstract does not explicitly describe how cBioPortal was accessed or used to retrieve the TCGA data.",
+    "specific_datasets": [
+      "TCGA prostate cancer"
+    ],
+    "confidence": "medium",
+    "paper_id": "40868045",
+    "title": "Transcriptomic Profile of Perineural Invasion in Prostate Cancer Identifies Prognostic Gene Signatures.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:37.897978"
+  },
+  "40849581": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Review/Commentary"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper about Bcl-2 modifying factor (Bmf), a BH3-only protein in the Bcl-2 family. Based on the abstract and introduction provided, there is no clear indication that cBioPortal was actively used for data analysis in this study. The paper appears to be a comprehensive review of Bmf's functions, regulation, and significance in normal and pathological contexts, and cBioPortal is likely only cited as a reference or resource rather than being used for original data analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40849581",
+    "title": "Bcl-2 modifying factor (Bmf): \"a mysterious stranger\" in the Bcl-2 family proteins.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:43.418208"
+  },
+  "40849558": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer",
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to analyze tumor genetic variations in GOT1 across colorectal cancer samples, including mutation burden, copy number alterations, and microsatellite instability status. The platform facilitated the investigation of genomic alterations associated with GOT1 expression in both CRC-specific and pan-cancer contexts. This analysis helped characterize the molecular landscape of GOT1 in relation to tumor genetics and potential therapeutic implications.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "40849558",
+    "title": "Exploring the multifaceted roles of glutamate oxaloacetate transaminase 1 as a biomarker and therapeutic target in colorectal cancer and pan-cancer analyses.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:49.873098"
+  },
+  "40846695": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction, cBioPortal was likely used to analyze ERBB3 expression levels and correlate them with clinical outcomes in gastric cancer patients. The study investigated the relationship between ERBB3 expression and ferroptosis pathway components (SLC7A11, GPX4) in gastric cancer, which typically involves querying publicly available datasets through cBioPortal. The platform was probably used to validate the clinical relevance of ERBB3 as a regulator of ferroptosis sensitivity in gastric cancer.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40846695",
+    "title": "ERBB3 influences the ferroptosis pathway via modulation of lipid peroxidation and GSH synthesis in gastric cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:52:56.717145"
+  },
+  "40839124": {
+    "analysis_type": [
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Review/Commentary"
+    ],
+    "study_type": [
+      "Meta-analysis",
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no clear indication that cBioPortal was directly used in this study. This is a systematic review and meta-analysis examining the prognostic role of IL-8 in renal cell carcinoma by synthesizing data from previously published studies. The paper may cite cBioPortal in the references, but the abstract does not describe any direct usage of the platform for data retrieval or analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40839124",
+    "title": "Interleukin-8 as a potential prognostic biomarker in renal cell carcinoma: a systematic review and meta-analysis.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:03.266732"
+  },
+  "40832239": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Methods/Tools development",
+      "Database/Resource"
+    ],
+    "study_type": [
+      "Methods/Software"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "MutationAssessor version 4 (r4) has been integrated into cBioPortal for Cancer Genomics to provide functional impact scores for somatic mutations. The tool now provides functional impact assessments for approximately 4 million somatic amino-acid changing mutations across more than 320,000 human tumor samples available through cBioPortal. This integration makes the MutationAssessor functional impact predictions widely accessible to cancer researchers using the cBioPortal platform.",
+    "specific_datasets": [],
+    "confidence": "high",
+    "paper_id": "40832239",
+    "title": "MutationAssessor in cBioPortal.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:09.351493"
+  },
+  "40806592": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Methods/Tools development",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The study focuses on analyzing missense variants of uncertain significance (VUSs) in TP53 from the gnomAD database using in silico tools (PhosphositePlus, Kinase Library, and Dynamut2) to assess protein stability and phosphorylation effects. cBioPortal may have been cited in the references for general context about TP53 mutations in cancer, but no specific usage is described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40806592",
+    "title": "GnomAD Missense Variants of Uncertain Significance: Implications for p53 Stability and Phosphorylation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:15.725950"
+  },
+  "40806338": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Tumor evolution",
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to access and analyze colorectal cancer genomic data, specifically examining POL\u03b5 (POLE) mutations and their co-occurrence patterns with mutations in other genes. The researchers partitioned POLE mutations into driver, passenger, and wild-type categories and assessed mutation patterns across these groups to understand the relationship between POLE driver mutations and mutations in other cancer-related genes. An artificial intelligence algorithm was applied to determine co-occurring mutations in colorectal cancers harboring POLE mutations.",
+    "specific_datasets": [
+      "TCGA colorectal cancer"
+    ],
+    "confidence": "medium",
+    "paper_id": "40806338",
+    "title": "Comprehensive Analysis of Human Colorectal Cancers Harboring Polymerase Epsilon Mutations.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:22.514272"
+  },
+  "40804718": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor",
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this study utilized multiple ccRCC cohorts to develop a Bidirectional Liquid-Liquid Phase Separation-associated Index (B-LLPSI) for predicting patient prognosis and therapeutic response. The study appears to have used cBioPortal to access multi-omics data including gene expression and clinical data from TCGA and potentially other cohorts to perform survival analysis and validate the B-LLPSI signature across multiple cancer types. The specific details of cBioPortal usage are not explicitly described in the provided abstract and introduction.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40804718",
+    "title": "Multi-omics analysis of bidirectional liquid-liquid phase separation signatures reveals immunotherapy response and prognosis in renal cell carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:28.939497"
+  },
+  "40799741": {
+    "analysis_type": [
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Methods/Software"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no clear indication that cBioPortal was actually used in this study. ShinyEvents is described as an independent web-based framework for longitudinal clinical data analysis and real-world survival estimation. The paper appears to cite cBioPortal in references but does not describe using cBioPortal data or functionality in the methodology.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40799741",
+    "title": "ShinyEvents: harmonizing longitudinal data for real world survival estimation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:35.070963"
+  },
+  "40796942": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "The paper analyzed TCGA high-grade serous ovarian carcinoma (HGSOC) data to investigate the relationship between RB1 mRNA expression and homologous recombination (HR) status. The study used 272 HGSOC cases from TCGA to perform survival analysis and molecular characterization, stratifying patients by RB1 expression levels and HR status. While cBioPortal is cited as a source for cancer genomics data, the specific details of how the platform was accessed or queried are not explicitly described in the abstract.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40796942",
+    "title": "RB1 expression and HR proficiency define a poor prognosis subtype of high grade serous ovarian cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:42.177082"
+  },
+  "40792276": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study evaluated RNA expression of ECM proteins (FN1, COL5A1, COL1A1, TNF6AIP6, FLG) in the TCGA-BLCA cystectomy cohort (n=397) accessed through cBioPortal. The researchers also analyzed the prognostic significance of these genes in relation to TP53 mutations, suggesting they queried mutation data alongside gene expression data from the TCGA bladder cancer dataset via cBioPortal.",
+    "specific_datasets": [
+      "TCGA-BLCA"
+    ],
+    "confidence": "high",
+    "paper_id": "40792276",
+    "title": "Radiation-induced extracellular matrix remodelling drives prognosis and predicts radiotherapy response in muscle-invasive bladder cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:48.308309"
+  },
+  "40789164": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to perform bioinformatic analyses of the PIWI pathway in colon cancer, including SWAN (Shifted Weighted Annotation Network) analysis to identify allelic losses and copy number alterations. The platform was used to analyze PIWIL2 expression levels across different tumor stages, nodal metastasis status, and cancer subtypes, and to correlate these with patient survival outcomes in colon cancer datasets.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "40789164",
+    "title": "PIWIL2 downregulation in colon cancer promotes transposon activity and pro-tumorigenic phenotypes.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:53:54.509875"
+  },
+  "40779492": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal appears to have been used to identify or validate the presence of KRAS mutations in osteosarcoma patient samples, supporting the rationale that KRAS mutations are detectable in a small subset of osteosarcoma patients. The study then used this information to investigate the efficacy of the pan-KRAS inhibitor daraxonrasib in KRAS mutant versus wild-type osteosarcoma cell lines through experimental validation.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40779492",
+    "title": "Daraxonrasib, a pan-RAS inhibitor, selectively inhibits osteosarcomas with activated KRAS by halting AKT signaling and matrix metalloprotease activity.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:00.228400"
+  },
+  "40775431": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to conduct a comprehensive pan-cancer analysis of ITGAV across multiple cancer types. The platform was utilized to analyze ITGAV expression patterns, genetic alterations (mutations and copy number variations), epigenetic modifications (DNA methylation), clinical-pathological correlations, prognostic value, and relationships with tumor immune microenvironment features. The analysis particularly focused on gastric cancer (GC) with additional validation through tissue microarrays and in vitro experiments.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "40775431",
+    "title": "Pan-cancer landscape of ITGAV and its potential role in gastric cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:06.785848"
+  },
+  "40774224": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on experimental work examining DFMO effects on protein translation in neuroblastoma cell lines and mouse models. While the authors mention examining MYCN and ODC1 copy number in relation to DFMO sensitivity, the specific source of this genomic data is not stated in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40774224",
+    "title": "High-dose DFMO alters protein translation in neuroblastoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:12.876217"
+  },
+  "40746562": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to analyze public datasets for PCP4 gene expression patterns, copy number alterations (including PCP4 gene loss/deletion), and the relationship between PCP4 expression and clinicopathological characteristics in prostate cancer patients. The analysis also examined the co-occurrence of TMPRSS2-ERG fusion with PCP4 deletion and correlated PCP4 expression with patient prognosis, particularly in castration-resistant prostate cancer (CRPC) development.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40746562",
+    "title": "PCP4 inhibits the progression of prostate cancer through Ca<sup>2+</sup>/CAMKK2/AMPK/AR pathway.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:19.235928"
+  },
+  "40725190": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, cBioPortal was likely used to compare the mutational profiles of Korean BCC patients with Caucasian cohort data and to annotate Korean-specific mutations using OncoKB (which is integrated with cBioPortal). The study compared ethnic-specific variants and validated oncogenic gain-of-function/loss-of-function variants against cBioPortal's curated databases. However, the specific details of cBioPortal usage are not explicitly described in the provided abstract.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "40725190",
+    "title": "Ethnic-Specific and UV-Independent Mutational Signatures of Basal Cell Carcinoma in Koreans.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:25.685655"
+  },
+  "40723918": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis",
+      "Copy number analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer",
+      "Colorectal cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a comprehensive review paper on PHF20L1 as an epigenetic regulator in cancer. While the paper cites cBioPortal, the abstract and introduction do not provide specific details about how cBioPortal data was used. The review likely references cBioPortal data to support discussions of PHF20L1 expression, mutations, or clinical correlations across various cancer types including breast, ovarian, colorectal cancers, and retinoblastomas.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40723918",
+    "title": "PHF20L1: An Epigenetic Regulator in Cancer and Beyond.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:31.913109"
+  },
+  "40722679": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on single-cell RNA sequencing (scRNA-seq) analysis of LUAD patient cohorts, with clustering, trajectory analysis, and cell-cell communication network analysis. cBioPortal may have been cited in the references for context or comparison purposes, but its specific use in the methodology is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40722679",
+    "title": "Single-Cell Transcriptomic Analysis Unveils Key Regulators and Signaling Pathways in Lung Adenocarcinoma Progression.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:38.110304"
+  },
+  "40721560": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of how cBioPortal was used in this study. The paper focuses on experimental work investigating HDAC6's regulation of fumarate hydratase (FH) activity in triple-negative breast cancer cells using techniques like mass spectrometry, super-resolution microscopy, and metabolic labeling. cBioPortal may have been cited in the references for background information or data validation, but specific usage is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40721560",
+    "title": "Inhibition of HDAC6 alters fumarate hydratase activity and mitochondrial structure.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:45.248650"
+  },
+  "40721297": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this study investigates PHF6 and PHIP mutations in acute myeloid leukemia (AML). cBioPortal was likely used to analyze the frequency and clinical significance of PHF6 and PHIP mutations across AML patient cohorts, particularly noting that PHIP is the most common selective mutation in Black patients with AML. The portal may have been used to examine mutation patterns, survival outcomes associated with PHF6 mutations, and to identify these genes as recurrently mutated in AML.",
+    "specific_datasets": [
+      "TCGA-LAML"
+    ],
+    "confidence": "medium",
+    "paper_id": "40721297",
+    "title": "Leukemia mutated proteins PHF6 and PHIP form a chromatin complex that represses acute myeloid leukemia stemness.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:51.606814"
+  },
+  "40704654": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on a high-throughput drug screening approach to identify synergistic drug combinations targeting Bcl-xL and Mcl-1 in AR-V7-expressing CRPC models using cell lines and patient-derived organoids. cBioPortal may have been cited in the references for background information or context, but specific usage details are not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40704654",
+    "title": "Direct Co-Targeting of Bcl-xL and Mcl-1 Exhibits Synergistic Effects in AR-V7-Expressing CRPC Models.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:54:57.678452"
+  },
+  "40691352": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Methods/Tools development",
+      "Review/Commentary",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper about multiplexed assays of variant effect (MAVEs) for clinical variant interpretation. Based on the abstract and introduction provided, there is no explicit description of how cBioPortal was used in this study. The paper likely cites cBioPortal as a reference resource for cancer genomics data or variant annotation, but specific usage details are not evident from the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40691352",
+    "title": "Multiplexed assays of variant effect for clinical variant interpretation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:03.273999"
+  },
+  "40681687": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this study utilized multi-omics data to analyze lung adenocarcinoma (LUAD), developing a risk score model (SPRS) for prognosis prediction. While cBioPortal is cited, the abstract does not explicitly detail how cBioPortal was used, though it likely served as a source for accessing TCGA-LUAD and other genomic datasets given the multi-omics nature of the study. The study integrated various data types to analyze proliferating cells, immune microenvironment, and treatment response.",
+    "specific_datasets": [
+      "TCGA-LUAD"
+    ],
+    "confidence": "medium",
+    "paper_id": "40681687",
+    "title": "Integrative multi-omics and machine learning reveal critical functions of proliferating cells in prognosis and personalized treatment of lung adenocarcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:10.629971"
+  },
+  "40667321": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Tumor evolution",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction, the paper analyzes somatic mutations across esophageal tissue development and tumorigenesis using sequence data from 2171 samples. While cBioPortal is cited, the specific usage is not detailed in the provided text. The study likely used cBioPortal to access esophageal squamous-cell carcinoma mutation data for their evolutionary modeling analysis of driver mutations including NOTCH1, NOTCH2, FAT1, TP53, and RB1.",
+    "specific_datasets": [
+      "TCGA-ESCA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40667321",
+    "title": "Early <i>NOTCH1</i> mutation is positively selected but epistatically suppresses evolution of later esophageal squamous-cell carcinoma drivers.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:17.018939"
+  },
+  "40658067": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the paper focuses on experimental investigation of PGE2-induced neuronal excitation in glioblastoma drug resistance and development of a novel therapeutic compound. While cBioPortal is cited, the abstract does not provide specific details about how cBioPortal was used. It is likely that cBioPortal was used to analyze gene expression patterns and survival data from TCGA glioblastoma datasets to validate findings or identify correlations between PGE2 pathway components and clinical outcomes.",
+    "specific_datasets": [
+      "TCGA-GBM"
+    ],
+    "confidence": "low",
+    "paper_id": "40658067",
+    "title": "Contribution of Prostaglandin E2-Induced Neuronal Excitation to Drug Resistance in Glioblastoma Countered by a Novel Blood-Brain Barrier Crossing Celecoxib Derivative.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:23.560512"
+  },
+  "40655141": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The cBioPortal database was used to explore potential MZF1 mutations across different cancer types. This analysis was part of a comprehensive pan-cancer study examining the oncogenic potential and prognostic value of MZF1. The mutation analysis complemented other analyses including gene expression, survival, and immune microenvironment characterization.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40655141",
+    "title": "<i>Myeloid Zinc Finger 1</i>: insights into its oncogenic potential, prognostic value, and impact on immune microenvironment across cancers.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:29.276969"
+  },
+  "40649942": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "cBioPortal was used to retrieve and analyze primary clinical data from the TCGA database for patients with translocation renal cell carcinoma (tRCC), papillary renal cell carcinoma (pRCC), and clear cell renal cell carcinoma (ccRCC). The platform facilitated differential gene expression analysis, survival analysis, and the assessment of curcumin's impact on transcriptomic profiles across these RCC subtypes. The analysis included evaluation of sensitive genes' impact on survival in KIRC and KIRP datasets.",
+    "specific_datasets": [
+      "TCGA-KIRC",
+      "TCGA-KIRP"
+    ],
+    "confidence": "high",
+    "paper_id": "40649942",
+    "title": "Comparative Transcriptomics Study of Curcumin and Conventional Therapies in Translocation, Clear Cell, and Papillary Renal Cell Carcinoma Subtypes.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:35.474913"
+  },
+  "40647542": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The research focuses on experimental validation of the ARAF p.S214C mutation using engineered cell lines and animal models, followed by transcriptomics and proteomics analyses. While the paper cites cBioPortal, the specific usage details are not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40647542",
+    "title": "Oncogenic Activity and Sorafenib Sensitivity of <i>ARAF</i> p.S214C Mutation in Lung Cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:41.168079"
+  },
+  "40647516": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer",
+      "Lung cancer",
+      "Prostate cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal is not explicitly described. The study appears to focus on analyzing next generation sequencing data from 282 spine metastases using their own institutional sequencing platform and machine learning algorithms. While cBioPortal is cited, the exact role it played in the analysis (e.g., for validation, comparison, or data visualization) is not clear from the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40647516",
+    "title": "Integration of Next Generation Sequencing Data to Inform Survival Prediction of Patients with Spine Metastasis.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:47.465399"
+  },
+  "40647442": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "The paper cites cBioPortal as a cancer genomics data portal, but the abstract and introduction do not explicitly describe how cBioPortal was used in the analysis. The study primarily analyzed TCGA mRNA and miRNA data using other tools like TIMER2.0, enrichr, multiMiR, CIBERSORT, and ImmuCellAI for various analyses. cBioPortal may have been used for data access or preliminary exploration, but specific usage details are not provided in the available text.",
+    "specific_datasets": [
+      "TCGA-PAAD"
+    ],
+    "confidence": "low",
+    "paper_id": "40647442",
+    "title": "The Role of ENHO in Pancreatic Adenocarcinoma: A Bioinformatics Approach.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:55:54.157468"
+  },
+  "40646641": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Precision medicine",
+      "Drug response/resistance"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study integrated data from the TCGA-LIHC cohort to identify translatable lncRNAs associated with hepatocellular carcinoma (HCC). The authors used TCGA data to analyze ASH1L-AS1 expression patterns, correlate them with disease progression, poor prognosis, immunosuppressive tumor microenvironment, and estrogen signaling. This analysis helped establish the clinical relevance of ASH1L-AS1 and its encoded microprotein APPLE in HCC pathogenesis.",
+    "specific_datasets": [
+      "TCGA-LIHC"
+    ],
+    "confidence": "medium",
+    "paper_id": "40646641",
+    "title": "Non-canonical activation of MAPK signaling by the lncRNA ASH1L-AS1-encoded microprotein APPLE through inhibition of PP1/PP2A-mediated ERK1/2 dephosphorylation in hepatocellular carcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:00.444431"
+  },
+  "40634697": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Melanoma"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Precision medicine",
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this study used machine learning to predict progression-free survival (PFS) in BRAF V600-mutated melanoma patients treated with MAPK inhibitors. The study incorporated baseline genomic data including mutation rates along with clinical features to improve prediction models. While cBioPortal is cited, the abstract does not explicitly describe how cBioPortal was used, though it likely served as a source for genomic data or validation datasets given the study's focus on melanoma genomic features.",
+    "specific_datasets": [],
+    "confidence": "medium",
+    "paper_id": "40634697",
+    "title": "Improved prediction of MAPKi response duration in melanoma patients using genomic data and machine learning.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:07.002036"
+  },
+  "40634509": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on multiomic analysis of ETV6::RUNX1 leukemia samples to identify genomic features predictive of therapy response, but the specific data sources and analysis platforms used are not detailed in the provided text. cBioPortal may have been cited as a reference tool or for comparative purposes, but direct usage is not evident from the available information.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40634509",
+    "title": "Genomic determinants of therapy response in ETV6::RUNX1 leukemia.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:13.168744"
+  },
+  "40629868": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer",
+      "Colorectal cancer",
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal usage is not explicitly described in these sections. The paper focuses on developing covalent inhibitors targeting K-Ras(G13C) mutations and testing them in cancer cell lines. cBioPortal may have been cited for reference purposes or used to identify the prevalence of G13C mutations in different cancer types, but specific usage details are not provided in the available text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40629868",
+    "title": "Distal Covalent Targeting Suppresses Signaling of Oncogenic K-Ras(G13C) in Cancer Cells.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:19.567576"
+  },
+  "40628262": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Precision medicine",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this paper focuses on functional drug screening and kinome-based signaling assessment to identify therapeutic vulnerabilities in ovarian cancer. While cBioPortal is cited, the abstract does not provide explicit details about how cBioPortal was used. It is likely that cBioPortal was used to access genomic data (potentially TCGA ovarian cancer data) to characterize the diverse oncogenic alterations mentioned or to validate findings, but specific usage details are not clear from the abstract alone.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40628262",
+    "title": "Unlocking the therapeutic potential of rigosertib as a selective therapy for ovarian cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:26.963393"
+  },
+  "40627234": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific use of cBioPortal is not explicitly described. The study mentions \"comparative analysis with public datasets\" to evaluate the identified variants of uncertain significance, and cBioPortal may have been used as one of these public reference databases for comparing variant frequencies and pathogenicity assessments. However, without access to the methods section, the exact role of cBioPortal remains unclear.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40627234",
+    "title": "High burden of variants of uncertain significance in early-onset colorectal cancer among indigenous African patients: a call for global research equity in cancer genetics.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:34.067884"
+  },
+  "40626673": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and title alone, there is no explicit mention of cBioPortal usage in this study. The paper focuses on immunohistochemistry analysis of KDM6A expression in a tissue microarray of over 2,500 bladder tumors and sequencing of 78 cancers. The study appears to use primarily custom/private data from their own tissue samples rather than public databases accessed through cBioPortal.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40626673",
+    "title": "KDM6A expression loss is frequent in low grade non-invasive urothelial carcinomas of the urinary bladder.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:40.526397"
+  },
+  "40624356": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Lung cancer",
+      "Other solid tumor",
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the specific usage of cBioPortal is not explicitly detailed. However, given that this is a cancer genomics study examining RNPC3 and minor spliceosome components across multiple cancer types (liver, lung, gastric), cBioPortal was likely used to query mutation frequencies, expression patterns, or survival associations of RNPC3 and related genes across TCGA cancer datasets. The pan-cancer nature of the findings suggests potential use of cBioPortal for cross-cancer comparisons.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40624356",
+    "title": "Inhibition of the minor spliceosome restricts the growth of a broad spectrum of cancers.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:47.773628"
+  },
+  "40615439": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Melanoma"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Database/Resource",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Meta-analysis"
+    ],
+    "data_source": [
+      "Multiple sources",
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, this paper describes the creation of MelanoDB, a curated dataset integrating clinical and molecular data from nine patient cohorts with advanced melanoma treated with MAPK inhibitors. While cBioPortal is cited, the specific usage is not detailed in the provided text. The paper appears to be creating a new resource/database rather than primarily using cBioPortal for analysis, though cBioPortal may have been referenced for comparison or methodology.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40615439",
+    "title": "MelanoDB: A dataset of clinical and molecular features of patients with advanced melanoma treated with MAPK inhibitors.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:56:54.257747"
+  },
+  "40615396": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Breast cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the paper focuses on biochemical validation of NSUN6-mediated m5C modification in mRNA and its role in breast cancer cell migration. While cBioPortal is cited, the specific usage is not detailed in the provided text. It was likely used to analyze NSUN6 expression or mutation patterns in breast cancer datasets from TCGA or other sources to support the clinical relevance of their findings.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "low",
+    "paper_id": "40615396",
+    "title": "A cohort of mRNAs undergo high-stoichiometry NSUN6-mediated site-specific m<sup>5</sup>C modification.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:00.366498"
+  },
+  "40613212": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper that summarizes existing literature on epigenetic regulation of small GTPases in glioma. The paper does not appear to directly use cBioPortal for original analysis, but rather reviews and synthesizes findings from previous studies that may have utilized various databases including cBioPortal. The focus is on how abnormal epigenetic modifications affect small GTPase expression in glioma, noting that structural gene changes are rare but epigenetic dysregulation is common.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40613212",
+    "title": "The role of abnormal epigenetic regulation of small GTPases in glioma (Review).",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:07.183106"
+  },
+  "40610594": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract, this study primarily used the Guardant360 database (a commercial ctDNA profiling platform) with ~17,000 samples for their main analysis. cBioPortal appears to be cited for reference or validation purposes, likely to compare their PIK3CA mutation frequencies and exon distribution findings with previously published literature data available through cBioPortal. The study does not appear to use cBioPortal as a primary data source for their analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40610594",
+    "title": "Comprehensive analysis of PIK3CA mutations in advanced colorectal cancer using circulating tumor DNA profiling.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:13.625591"
+  },
+  "40598036": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper describes a retrospective analysis of 159 colon resection cases where DNA mutations were analyzed by next-generation sequencing (NGS), comparing micropapillary carcinomas (MPCs) with non-MPCs. The study appears to have used institutional/custom data from colon resection cases rather than cBioPortal data, though cBioPortal may have been cited in the references for context or comparison purposes.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40598036",
+    "title": "Comparison of somatic mutations and clinicopathologic features of micropapillary and non-micropapillary colorectal carcinomas.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:19.513116"
+  },
+  "40594069": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Lung cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study utilized cBioPortal to conduct a comprehensive pan-cancer analysis of ASCC1/2/3 genes across 10,967 tumor samples from 30 distinct cancer types. cBioPortal was used to identify genetic alterations (mutations, copy number changes) in ASCC family members, with findings showing alterations in 754 cases (7% of patients), and ASCC3 being the most frequently altered at 4%. The platform likely facilitated the analysis of gene expression patterns and correlation with immune cell infiltration across multiple cancer types.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "high",
+    "paper_id": "40594069",
+    "title": "Pan-cancer analysis reveals ASCC family promotes the cancer progression of lung adenocarcinoma.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:25.817093"
+  },
+  "40593803": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The authors used cBioPortal to analyze the correlation between FOXK1 expression and E2F target gene expression in patient tumors. They likely queried gene expression data from multiple cancer types to demonstrate that high FOXK1 expression correlates with E2F pathway activation across different tumor types. This analysis provided clinical validation for their mechanistic findings showing FOXK1's role in promoting E2F-driven transcription and oncogenesis.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40593803",
+    "title": "O-GlcNAcylation of FOXK1 co-opts BAP1 to orchestrate the E2F pathway and promotes oncogenesis.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:32.572357"
+  },
+  "40591997": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Glioma/Brain cancer"
+    ],
+    "research_area": [
+      "Pathway analysis",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of how cBioPortal was used in this study. The research appears to be primarily laboratory-based using mouse astrocytoma cell lines (CT2A, KR158, DBT, DBT-Erp-29) to investigate Connexin43's role in promoting hybrid epithelial/mesenchymal phenotype in glioblastoma. cBioPortal may have been cited in the references for background information or validation purposes, but specific usage is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40591997",
+    "title": "Connexin43 functions as a non-canonical phenotypic stability factor in promoting hybrid Epithelial/Mesenchymal phenotype in glioblastoma cells.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:38.763866"
+  },
+  "40587607": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Drug response/resistance",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of cBioPortal usage in this study. This paper focuses on the chemical development and characterization of novel \u03b1-diazoacetamide compounds that covalently target K-Ras(G12D) through denitrogenative alkylation. The study appears to be primarily a chemical biology/drug discovery paper testing compounds in KRAS(G12D)-driven cancer cell lines, without clear indication of cBioPortal data analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40587607",
+    "title": "Denitrogenative Alkylation of K-Ras(G12D) Inhibits Oncogenic Signaling in Cancer Cells.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:45.186592"
+  },
+  "40572720": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The authors conducted their own retrospective analysis of 159 colon resection cases using next-generation sequencing (NGS) to analyze DNA mutations. cBioPortal may have been cited as a reference or for comparison purposes, but the actual data analysis appears to have been performed on the authors' own institutional cohort rather than using cBioPortal data or tools.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40572720",
+    "title": "Do Colorectal Serrated and Non-Serrated Adenocarcinomas Differ in Somatic Mutations and Clinicopathologic Features?",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:51.217182"
+  },
+  "40554764": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Other"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This paper does not appear to use cBioPortal data or tools. The study is focused on Drosophila eye development and uses a forward-genetic screen approach to identify miR-137 as a regulator of Myc during development. The research is entirely based on Drosophila model organisms and does not involve human cancer genomics data or cBioPortal resources.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40554764",
+    "title": "miR-137 targets Myc to regulate growth during eye development.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:57:56.420088"
+  },
+  "40554389": {
+    "analysis_type": [
+      "Copy number analysis",
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The research primarily utilized tissue microarray analysis with immunohistochemistry and fluorescence in situ hybridization on a large cohort of 17,747 prostate cancer samples. While the paper cites cBioPortal, the actual usage details are not described in the provided text, suggesting it may have been referenced for background information or validation purposes only.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40554389",
+    "title": "Prognostic role of high MTAP expression is reversed by the ERG status in prostate cancer treated by radical prostatectomy.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:02.732743"
+  },
+  "40552140": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Leukemia/Lymphoma"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study used cBioPortal to analyze SLFN11 expression levels in AML patient samples and correlate them with clinical outcomes. The authors examined the relationship between SLFN11 expression and overall survival in AML patients using data accessed through cBioPortal. This analysis helped establish SLFN11 as a prognostic marker and predictor of chemotherapy sensitivity in AML.",
+    "specific_datasets": [
+      "TCGA-LAML"
+    ],
+    "confidence": "medium",
+    "paper_id": "40552140",
+    "title": "Targeting SLFN11-regulated pathways restores chemotherapy sensitivity in AML.",
+    "year": "2024",
+    "classified_date": "2025-12-19T01:58:08.593662"
+  },
+  "40544194": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The paper mentions using bioinformatics databases including Kaplan-Meier plotter and TIMER2.0 to assess RSU1 expression and prognosis in colorectal cancer. While cBioPortal is cited, the abstract does not explicitly detail how cBioPortal was specifically used, though it was likely used alongside other databases for expression and survival analysis of RSU1 in CRC. The study primarily relied on multiple bioinformatics resources for initial data mining before conducting in vitro validation experiments.",
+    "specific_datasets": [
+      "Not specified"
+    ],
+    "confidence": "low",
+    "paper_id": "40544194",
+    "title": "RSU1 Mediates Caco-2 Colorectal Cancer Cells Proliferation and Migration via PI3K/AKT Signaling Pathway.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:14.837689"
+  },
+  "40542203": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Pathway analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Drug response/resistance",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "The study investigated CIC::DUX4 translocation-positive sarcomas (CDS), a rare and chemotherapy-resistant tumor type. cBioPortal was likely used to analyze genomic and transcriptomic data to identify upregulation of POLE and DNA repair pathways specific to CDS. The platform helped characterize the molecular features that may explain the high proliferation rate and treatment resistance of these tumors.",
+    "specific_datasets": [
+      "Not specified in abstract"
+    ],
+    "confidence": "medium",
+    "paper_id": "40542203",
+    "title": "Upregulation of POLE and proficient DNA repair are features of CIC::DUX4 sarcomas.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:20.223063"
+  },
+  "40537809": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Colorectal cancer"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Drug response/resistance",
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper that cites cBioPortal as a reference source. The paper discusses p53/TP53 mutations in colorectal cancer (detected in ~74% of cases) and therapeutic strategies targeting p53. While cBioPortal is cited, the abstract and introduction do not provide specific details about how cBioPortal data was directly analyzed or utilized in this review.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40537809",
+    "title": "p53 in colorectal cancer: from a master player to a privileged therapy target.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:25.866323"
+  },
+  "40535802": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Gene expression analysis",
+      "Survival analysis",
+      "Multi-omics integration"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "This study used cBioPortal to access publicly available cancer genomics data for pan-cancer analysis of DBF4B. The platform was likely used to analyze DBF4B differential expression across multiple cancer types, examine associations with gene mutations, molecular and immune subtypes, immune infiltration, methylation patterns, and drug sensitivity. Particular focus was placed on liver hepatocellular carcinoma (LIHC) where DBF4B expression was correlated with clinical features and survival outcomes including overall survival, disease-specific survival, and progression-free interval.",
+    "specific_datasets": [
+      "TCGA-LIHC"
+    ],
+    "confidence": "medium",
+    "paper_id": "40535802",
+    "title": "Pan-cancer analysis identifies DBF4B as an immunologic and prognostic biomarker.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:31.776974"
+  },
+  "40531993": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Other"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Other"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on the role of ZC3H4 in maintaining genome integrity through suppression of noncoding RNA production and prevention of transcription-replication conflicts. The study appears to use bioinformatic analysis, biochemical methods, and super-resolution microscopy, but specific use of cBioPortal data or tools is not described in the provided text.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40531993",
+    "title": "ZC3H4 safeguards genome integrity by preventing transcription-replication conflicts at noncoding RNA loci.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:37.301859"
+  },
+  "40526350": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Precision medicine",
+      "Methods/Tools development"
+    ],
+    "study_type": [
+      "Methods/Software",
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, cBioPortal appears to be cited as a reference resource rather than directly used for data analysis in this study. The paper focuses on developing MONOCLE, a web application for molecular tumor board documentation and workflow optimization. The specific role of cBioPortal in this work is not clearly described in the provided text, suggesting it may be referenced as a related tool or data source rather than being central to the methodology.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40526350",
+    "title": "Streamlining and Accelerating the Molecular Tumor Board Process at the University Medical Center Hamburg-Eppendorf.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:44.134176"
+  },
+  "40522583": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis",
+      "Copy number analysis",
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer",
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Immunotherapy",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "TCGA",
+      "Multiple sources"
+    ],
+    "cbioportal_usage_summary": "While the abstract does not explicitly mention cBioPortal by name, the study utilized multiple public databases including TCGA and performed genetic alteration analysis, which is a typical cBioPortal function. The authors analyzed genetic alterations and identified gene amplification as the predominant form of aberration affecting DCAF5, suggesting cBioPortal was likely used for querying mutation and copy number data across cancer types. The pan-cancer analysis of DCAF5 expression patterns and genetic alterations is consistent with typical cBioPortal usage patterns.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40522583",
+    "title": "Identification of DCAF5 as a novel cancer prognostic and immunotherapy biomarker through pan-cancer analysis and renal clear cell carcinoma clinical data validation.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:50.616959"
+  },
+  "40518921": {
+    "analysis_type": [
+      "Mutation analysis"
+    ],
+    "cancer_type": [
+      "Not specified"
+    ],
+    "research_area": [
+      "Other"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This paper does not appear to use cBioPortal for its research. The study focuses on experimental laboratory work investigating the transmembrane domain of OLR1 (oxidized low-density lipoprotein receptor 1) through in vitro experiments using cell lines (COS-7, THP-1), site-directed mutagenesis, and protein interaction studies. The research is focused on cardiovascular disease mechanisms related to foam cell formation and atherosclerosis, not cancer genomics.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40518921",
+    "title": "Mutation within the transmembrane domain of oxidized low-density lipoprotein receptor 1 influences oxidized low-density lipoprotein-induced signal transduction.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:58:57.302812"
+  },
+  "40518465": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The research appears to be primarily based on immunohistochemistry (IHC) analysis of tissue microarrays containing 18,582 tumor samples and 608 normal tissue samples. cBioPortal is likely cited as a reference or background resource rather than being directly used for data analysis in this particular study.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40518465",
+    "title": "High mobility group protein 2 (HMGA2) is highly expressed in a broad range of benign and malignant tumors.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:59:03.132886"
+  },
+  "40517236": {
+    "analysis_type": [
+      "Other"
+    ],
+    "cancer_type": [
+      "Pan-cancer"
+    ],
+    "research_area": [
+      "Review/Commentary",
+      "Drug response/resistance"
+    ],
+    "study_type": [
+      "Review"
+    ],
+    "data_source": [
+      "Not specified"
+    ],
+    "cbioportal_usage_summary": "This is a review paper discussing regulated cell death pathways in p53-mutant cancers. Based on the abstract and introduction provided, there is no clear indication that cBioPortal was directly used for data analysis in this study. The paper appears to cite cBioPortal as a reference resource rather than using it for original data analysis.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40517236",
+    "title": "Bypassing the guardian: regulated cell death pathways in p53-mutant cancers.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:59:08.941002"
+  },
+  "40512859": {
+    "analysis_type": [
+      "Gene expression analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Prostate cancer"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Pathway analysis"
+    ],
+    "study_type": [
+      "Original research"
+    ],
+    "data_source": [
+      "TCGA"
+    ],
+    "cbioportal_usage_summary": "Based on the abstract and introduction provided, the paper appears to use cBioPortal to access gene expression data and potentially survival data for prostate cancer patients, likely from TCGA datasets. The study investigates the NF-\u03baB-PLAC8-BCL-xL axis in cadmium-induced prostate carcinogenesis, and cBioPortal would have been used to validate expression patterns and clinical correlations of PLAC8 and related genes in prostate cancer cohorts. However, specific details about cBioPortal usage are not explicitly mentioned in the provided text.",
+    "specific_datasets": [
+      "TCGA"
+    ],
+    "confidence": "medium",
+    "paper_id": "40512859",
+    "title": "Interaction between NF-\u03baB and PLAC8 impairs autophagy providing a survival advantage to prostate cells transformed by cadmium.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:59:15.397783"
+  },
+  "40506726": {
+    "analysis_type": [
+      "Mutation analysis",
+      "Survival analysis"
+    ],
+    "cancer_type": [
+      "Other solid tumor"
+    ],
+    "research_area": [
+      "Biomarker discovery",
+      "Methods/Tools development",
+      "Precision medicine"
+    ],
+    "study_type": [
+      "Original research",
+      "Clinical study"
+    ],
+    "data_source": [
+      "Custom/Private data"
+    ],
+    "cbioportal_usage_summary": "Based on the provided abstract and introduction, there is no explicit mention of cBioPortal usage in this study. The research focuses on comparing tumor-informed (WES-based mutation tracking) and tumor-type informed (methylation-based) approaches for ctDNA detection in epithelial ovarian cancer patients. The study appears to use custom patient samples and does not describe accessing or analyzing data through cBioPortal.",
+    "specific_datasets": [],
+    "confidence": "low",
+    "paper_id": "40506726",
+    "title": "Improved tumor-type informed compared to tumor-informed mutation tracking for ctDNA detection and microscopic residual disease assessment in epithelial ovarian cancer.",
+    "year": "2025",
+    "classified_date": "2025-12-19T01:59:22.343865"
+  }
+}

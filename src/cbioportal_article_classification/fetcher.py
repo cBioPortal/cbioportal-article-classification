@@ -251,12 +251,41 @@ class CitationFetcher:
 class PDFDownloader:
     """Downloads PDFs for papers from various sources."""
 
-    def __init__(self):
+    def __init__(self, citation_fetcher=None):
         self.session = requests.Session()
         self.session.headers.update({
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36"
         })
         self.stats = {"pmc": 0, "biorxiv": 0, "unpaywall": 0, "doi": 0, "failed": 0}
+        self.citation_fetcher = citation_fetcher  # Reference to save metadata
+
+    def _sync_existing_pdfs(self, citations_data: Dict) -> int:
+        """Check for existing PDFs on disk and sync metadata.
+
+        Args:
+            citations_data: Citations metadata dictionary
+
+        Returns:
+            Number of PDFs found on disk
+        """
+        synced = 0
+
+        for pmid, pmid_data in citations_data["papers"].items():
+            for citation in pmid_data["citations"]:
+                pdf_filename = f"{citation['paper_id']}.pdf"
+                pdf_path = PDF_DIR / pdf_filename
+
+                # If PDF exists on disk but metadata says not downloaded
+                if pdf_path.exists() and not citation.get("pdf_downloaded"):
+                    citation["pdf_downloaded"] = True
+                    citation["pdf_path"] = str(pdf_path)
+                    synced += 1
+                    logger.debug(f"Synced existing PDF: {pdf_filename}")
+
+        if synced > 0:
+            logger.info(f"Found {synced} existing PDFs on disk, synced metadata")
+
+        return synced
 
     def _try_pmc_pdf(self, paper_data: Dict, output_path: Path) -> bool:
         """Try to download PDF from PubMed Central.
@@ -455,37 +484,74 @@ class PDFDownloader:
         logger.debug(f"All sources failed for: {paper_data['title'][:50]}")
         return False
 
-    def download_all_pdfs(self, citations_data: Dict, max_downloads: Optional[int] = None) -> int:
+    def download_all_pdfs(
+        self,
+        citations_data: Dict,
+        max_downloads: Optional[int] = None,
+        checkpoint_frequency: int = 10
+    ) -> int:
         """Download PDFs for all citations that don't have them yet.
 
         Args:
             citations_data: Citations metadata dictionary
             max_downloads: Maximum number of PDFs to download (None for unlimited)
+            checkpoint_frequency: Save metadata every N successful downloads
 
         Returns:
             Number of PDFs successfully downloaded
         """
+        # First, sync existing PDFs on disk
+        self._sync_existing_pdfs(citations_data)
+
         downloaded = 0
+        attempted = 0
 
         for pmid, pmid_data in citations_data["papers"].items():
             for citation in tqdm(pmid_data["citations"], desc=f"Downloading PDFs for PMID {pmid}"):
+                # Skip if already downloaded
                 if citation.get("pdf_downloaded"):
+                    continue
+
+                # Skip if previously attempted and failed (unless force retry)
+                if citation.get("download_attempted") and not citation.get("pdf_downloaded"):
                     continue
 
                 if max_downloads and downloaded >= max_downloads:
                     logger.info(f"Reached download limit of {max_downloads}")
+                    if self.citation_fetcher:
+                        self.citation_fetcher._save_metadata()
                     self._print_stats()
                     return downloaded
 
                 pdf_filename = f"{citation['paper_id']}.pdf"
                 pdf_path = PDF_DIR / pdf_filename
 
+                # Mark as attempted
+                citation["download_attempted"] = True
+                citation["download_attempt_date"] = datetime.now().isoformat()
+                attempted += 1
+
                 if self.download_pdf(citation, pdf_path):
                     citation["pdf_downloaded"] = True
                     citation["pdf_path"] = str(pdf_path)
                     downloaded += 1
 
+                    # Periodic checkpoint
+                    if checkpoint_frequency and downloaded % checkpoint_frequency == 0:
+                        if self.citation_fetcher:
+                            self.citation_fetcher._save_metadata()
+                            logger.info(f"Checkpoint: Saved metadata after {downloaded} downloads")
+
                 time.sleep(FETCH_DELAY_SECONDS)
+
+            # Save after each PMID batch
+            if self.citation_fetcher and attempted > 0:
+                self.citation_fetcher._save_metadata()
+                logger.info(f"Saved metadata after completing PMID {pmid}")
+
+        # Final save
+        if self.citation_fetcher:
+            self.citation_fetcher._save_metadata()
 
         self._print_stats()
         return downloaded
