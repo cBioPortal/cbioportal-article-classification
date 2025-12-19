@@ -49,7 +49,7 @@ class UsageAnalyzer:
             return pd.DataFrame()
 
     def _load_citations_metadata(self) -> pd.DataFrame:
-        """Load citations metadata for bibliometric analysis."""
+        """Load citations metadata for bibliometric analysis (deduplicated)."""
         if not self.citations_file.exists():
             logger.warning("No citations metadata found")
             return pd.DataFrame()
@@ -57,11 +57,25 @@ class UsageAnalyzer:
         with open(self.citations_file, "r") as f:
             citations_data = json.load(f)
 
-        # Flatten citations from all PMIDs into a single list
+        # Flatten citations from all PMIDs into a single list, tracking which PMIDs each paper cites
         all_citations = []
+        paper_to_pmids = {}  # Track which cBioPortal PMIDs each paper cites
+
         for pmid, pmid_data in citations_data.get("papers", {}).items():
             for citation in pmid_data.get("citations", []):
-                all_citations.append(citation)
+                paper_id = citation.get("paper_id")
+
+                # Track which cBioPortal papers this cites
+                if paper_id not in paper_to_pmids:
+                    paper_to_pmids[paper_id] = []
+                paper_to_pmids[paper_id].append(pmid)
+
+                # Only add paper once (deduplicate)
+                if len(paper_to_pmids[paper_id]) == 1:
+                    all_citations.append(citation)
+
+        # Store the mapping for overlap analysis
+        self.paper_to_pmids = paper_to_pmids
 
         return pd.DataFrame(all_citations)
 
@@ -338,6 +352,35 @@ class UsageAnalyzer:
 
         return pd.DataFrame({'MeSH Term': mesh_counts.head(top_n).index, 'Count': mesh_counts.head(top_n).values})
 
+    def analyze_citation_overlap(self) -> Dict:
+        """Analyze how many papers cite multiple cBioPortal publications.
+
+        Returns:
+            Dictionary with overlap statistics
+        """
+        if not hasattr(self, 'paper_to_pmids') or not self.paper_to_pmids:
+            return {}
+
+        # Count how many cBioPortal papers each citing paper references
+        cite_counts = {}
+        for paper_id, pmids in self.paper_to_pmids.items():
+            count = len(pmids)
+            cite_counts[count] = cite_counts.get(count, 0) + 1
+
+        # Calculate totals
+        total_papers = len(self.paper_to_pmids)
+        citing_one = cite_counts.get(1, 0)
+        citing_two = cite_counts.get(2, 0)
+        citing_three = cite_counts.get(3, 0)
+
+        return {
+            "total_unique_papers": total_papers,
+            "citing_one_paper": citing_one,
+            "citing_two_papers": citing_two,
+            "citing_three_papers": citing_three,
+            "cross_citations": total_papers - citing_one  # Papers citing 2 or more
+        }
+
     def analyze_temporal_trends(self) -> pd.DataFrame:
         """Analyze usage trends over time.
 
@@ -560,12 +603,28 @@ class UsageAnalyzer:
             with open(self.citations_file, 'r') as f:
                 citations_data = json.load(f)
             total_citations = sum(len(p['citations']) for p in citations_data.get('papers', {}).values())
-            report_lines.append(f"**Total citations in database**: {total_citations:,} papers\n")
+
+            # Get overlap analysis
+            overlap_stats = self.analyze_citation_overlap()
+            unique_papers = overlap_stats.get('total_unique_papers', 0)
+            cross_citations = overlap_stats.get('cross_citations', 0)
+
+            report_lines.append(f"**Total citations in database**: {total_citations:,} papers")
+            report_lines.append(f"**Unique papers** (deduplicated): {unique_papers:,} papers")
+            report_lines.append(f"**Papers citing multiple cBioPortal publications**: {cross_citations:,} papers\n")
 
         report_lines.append("**Important limitation**: The PubMed eutils API returns fewer citations than shown on the PubMed website. ")
         report_lines.append("For example, PMID 37668528 shows 750 citations on PubMed's website but the API only returns 407 citations. ")
         report_lines.append("This is a known limitation of the eutils citation indexing system. ")
         report_lines.append("Our analysis is based on the subset of citations available through the API.\n")
+
+        # Add detailed citation overlap section
+        overlap_stats = self.analyze_citation_overlap()
+        if overlap_stats:
+            report_lines.append("## Citation Overlap Analysis\n")
+            report_lines.append(f"- Papers citing only 1 cBioPortal publication: {overlap_stats['citing_one_paper']:,}")
+            report_lines.append(f"- Papers citing 2 cBioPortal publications: {overlap_stats['citing_two_papers']:,}")
+            report_lines.append(f"- Papers citing all 3 cBioPortal publications: {overlap_stats['citing_three_papers']:,}\n")
 
         # Add Visualizations section if plots exist
         if plot_filename or research_plot_filename:
