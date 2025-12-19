@@ -1,28 +1,30 @@
 # cBioPortal Usage Analysis Report
 
-*Generated on 2025-12-19 02:44:21*
+*Generated on 2025-12-19 02:51:21*
 
 ---
 
 ## Summary Statistics
 
-- **Total Papers Analyzed**: 133
+- **Total Papers Analyzed**: 233
 - **Year Range**: 2024 - 2026
+- **Classified from Full PDF**: 2 (0.9%)
+- **Classified from Abstract Only**: 98 (42.1%)
 - **Most Common Analysis Type**: Gene expression analysis
 - **Most Common Cancer Type**: Other solid tumor
-- **Most Common Data Source**: TCGA
+- **Most Common Data Source**: Multiple sources
 
 ## Visualizations
 
 ### Usage Analysis Overview
 
-![Usage Analysis](../plots/usage_analysis_20251219.png)
+![Usage Analysis](../plots/usage_analysis.png)
 
 *Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*
 
 ### Research Areas
 
-![Research Areas](../plots/research_areas_20251219.png)
+![Research Areas](../plots/research_areas.png)
 
 *Distribution of research areas utilizing cBioPortal.*
 
@@ -30,36 +32,37 @@
 
 ## Top Analysis Types
 
-1. Gene expression analysis: 94 papers
-2. Mutation analysis: 71 papers
-3. Survival analysis: 66 papers
-4. Pathway analysis: 60 papers
-5. Multi-omics integration: 28 papers
-6. Copy number analysis: 26 papers
-7. Other: 16 papers
+1. Gene expression analysis: 172 papers
+2. Survival analysis: 127 papers
+3. Mutation analysis: 122 papers
+4. Pathway analysis: 104 papers
+5. Multi-omics integration: 53 papers
+6. Copy number analysis: 49 papers
+7. Other: 30 papers
 
 ## Top Cancer Types
 
-1. Other solid tumor: 46 papers
-2. Pan-cancer: 31 papers
-3. Breast cancer: 20 papers
-4. Lung cancer: 17 papers
-5. Colorectal cancer: 16 papers
-6. Prostate cancer: 11 papers
-7. Glioma/Brain cancer: 10 papers
-8. Leukemia/Lymphoma: 6 papers
-9. Melanoma: 6 papers
-10. Not specified: 6 papers
+1. Other solid tumor: 80 papers
+2. Pan-cancer: 58 papers
+3. Breast cancer: 44 papers
+4. Lung cancer: 24 papers
+5. Colorectal cancer: 24 papers
+6. Prostate cancer: 19 papers
+7. Glioma/Brain cancer: 15 papers
+8. Leukemia/Lymphoma: 13 papers
+9. Melanoma: 9 papers
+10. Not specified: 7 papers
 
 ## Data Sources Used
 
-1. TCGA: 52 papers
-2. Multiple sources: 50 papers
-3. Custom/Private data: 39 papers
-4. Not specified: 34 papers
-5. MSK-IMPACT: 5 papers
-6. GENIE: 4 papers
-7. METABRIC: 1 papers
+1. Multiple sources: 101 papers
+2. TCGA: 100 papers
+3. Custom/Private data: 65 papers
+4. Not specified: 47 papers
+5. MSK-IMPACT: 6 papers
+6. GENIE: 6 papers
+7. METABRIC: 4 papers
+8. ICGC: 1 papers
 
 ## Recent Papers Using cBioPortal
 
@@ -80,6 +83,12 @@
 - **Research Area**: ['Other']
 - **Cancer Type**: ['Not specified']
 - **Usage**: This paper does not appear to directly use cBioPortal for its primary research. The study focuses on developmental biology using zebrafish models to investigate Sfrp1a's role in hematopoietic stem and progenitor cell development. The citation to cBioPortal is likely a reference to support the statement about SFRP1 variants in hematopoietic cancers mentioned in the abstract, rather than indicating actual data analysis using the platform.
+
+### Cohesin mutations and chromatin changes in cancer. (2026)
+
+- **Research Area**: ['Review/Commentary']
+- **Cancer Type**: ['Pan-cancer']
+- **Usage**: This is a review paper that discusses cohesin mutations across different cancer types. While cBioPortal is cited as a reference, the abstract and introduction do not provide specific details about how cBioPortal data was directly used or analyzed in this review. The paper likely references cBioPortal as a source for mutation prevalence data across cancer types, but specific usage details are not evident from the provided text.
 
 ### Investigating the role of oncogenic FAM83A as a prognostic biomarker in lung adenocarcinoma: Insights from smoker and non-smoker cohorts. (2025)
 
@@ -116,9 +125,3 @@
 - **Research Area**: ['Biomarker discovery', 'Pathway analysis', 'Immunotherapy']
 - **Cancer Type**: ['Glioma/Brain cancer']
 - **Usage**: Based on the abstract and introduction provided, the paper does not explicitly mention cBioPortal usage. The study utilized transcriptomic data from GSE147352, GSE165595, TCGA, and CGGA databases to perform differential expression analysis and survival analysis. While TCGA data was used (which is available through cBioPortal), there is no direct mention of cBioPortal as the data access platform in the provided text.
-
-### Genomic and Demographic Characteristics of Angiosarcoma as Described in the AACR Project GENIE Registry. (2025)
-
-- **Research Area**: ['Biomarker discovery', 'Precision medicine']
-- **Cancer Type**: ['Other solid tumor']
-- **Usage**: cBioPortal was used to access and analyze the AACR Project GENIE v18.0-public database to identify 359 tumor samples from 346 patients with angiosarcoma. The platform was utilized to assess somatic mutations, copy number alterations, gene co-occurrence patterns, and mutual exclusivity relationships across the angiosarcoma cohort.

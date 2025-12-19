@@ -220,18 +220,11 @@ class UsageAnalyzer:
             axes[1, 1].set_xlim(temporal_df['year'].min() - 0.5, temporal_df['year'].max() + 0.5)
 
         plt.tight_layout()
-        filename = f"usage_analysis_{datetime.now().strftime('%Y%m%d')}.png"
+        filename = "usage_analysis.png"
         plot_path = PLOTS_DIR / filename
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
         logger.info(f"Saved visualization to {plot_path}")
         plt.close()
-
-        # Create/update symlink to latest
-        latest_link = PLOTS_DIR / "usage_analysis_latest.png"
-        if latest_link.exists() or latest_link.is_symlink():
-            latest_link.unlink()
-        latest_link.symlink_to(filename)
-        logger.debug(f"Updated symlink: usage_analysis_latest.png -> {filename}")
 
         return filename
 
@@ -258,18 +251,11 @@ class UsageAnalyzer:
         plt.gca().invert_yaxis()
         plt.tight_layout()
 
-        filename = f"research_areas_{datetime.now().strftime('%Y%m%d')}.png"
+        filename = "research_areas.png"
         plot_path = PLOTS_DIR / filename
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
         logger.info(f"Saved research areas plot to {plot_path}")
         plt.close()
-
-        # Create/update symlink to latest
-        latest_link = PLOTS_DIR / "research_areas_latest.png"
-        if latest_link.exists() or latest_link.is_symlink():
-            latest_link.unlink()
-        latest_link.symlink_to(filename)
-        logger.debug(f"Updated symlink: research_areas_latest.png -> {filename}")
 
         return filename
 
@@ -359,12 +345,12 @@ class UsageAnalyzer:
 
             if plot_filename:
                 report_lines.append("### Usage Analysis Overview\n")
-                report_lines.append(f"![Usage Analysis](../plots/{plot_filename})\n")
+                report_lines.append(f"![Usage Analysis](../plots/usage_analysis.png)\n")
                 report_lines.append("*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*\n")
 
             if research_plot_filename:
                 report_lines.append("### Research Areas\n")
-                report_lines.append(f"![Research Areas](../plots/{research_plot_filename})\n")
+                report_lines.append(f"![Research Areas](../plots/research_areas.png)\n")
                 report_lines.append("*Distribution of research areas utilizing cBioPortal.*\n")
 
             report_lines.append("---\n")
@@ -406,19 +392,12 @@ class UsageAnalyzer:
                 report_lines.append("")
 
         # Save report
-        filename = f"usage_report_{datetime.now().strftime('%Y%m%d')}.md"
+        filename = "usage_report.md"
         report_path = REPORTS_DIR / filename
         with open(report_path, "w") as f:
             f.write("\n".join(report_lines))
 
         logger.info(f"Generated report at {report_path}")
-
-        # Create/update symlink to latest
-        latest_link = REPORTS_DIR / "latest.md"
-        if latest_link.exists() or latest_link.is_symlink():
-            latest_link.unlink()
-        latest_link.symlink_to(filename)
-        logger.debug(f"Updated symlink: latest.md -> {filename}")
 
         return str(report_path)
 

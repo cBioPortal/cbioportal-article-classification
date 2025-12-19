@@ -23,6 +23,8 @@ data/metadata/last_run.json
 # Keep directory structure
 !data/pdfs/.gitkeep
 !data/metadata/.gitkeep
+
+# Keep output files (reports and plots use fixed filenames)
 !output/reports/.gitkeep
 !output/plots/.gitkeep
 

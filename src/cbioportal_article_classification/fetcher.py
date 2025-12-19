@@ -154,9 +154,34 @@ class CitationFetcher:
                             for a in authors_list if "LastName" in a
                         ])
 
-                        # Get publication year
-                        pub_date = article_data.get("Journal", {}).get("JournalIssue", {}).get("PubDate", {})
-                        year = pub_date.get("Year", "")
+                        # Get publication year - try multiple sources
+                        # 1. Try ArticleDate (electronic publication date)
+                        year = ""
+                        article_dates = article_data.get("ArticleDate", [])
+                        if article_dates and isinstance(article_dates, list) and len(article_dates) > 0:
+                            year = article_dates[0].get("Year", "")
+
+                        # 2. Fall back to Journal PubDate
+                        if not year:
+                            pub_date = article_data.get("Journal", {}).get("JournalIssue", {}).get("PubDate", {})
+                            year = pub_date.get("Year", "")
+                            # Handle MedlineDate format (e.g., "2023 Jan-Feb")
+                            if not year and "MedlineDate" in pub_date:
+                                medline_date = pub_date["MedlineDate"]
+                                # Extract first 4 digits as year
+                                import re
+                                year_match = re.search(r'\d{4}', str(medline_date))
+                                if year_match:
+                                    year = year_match.group()
+
+                        # 3. Last resort: check PubMed history for earliest pubmed/entrez date
+                        if not year:
+                            history = article.get("PubmedData", {}).get("History", [])
+                            for date_entry in history:
+                                if date_entry.attributes.get("PubStatus") in ["pubmed", "entrez", "epublish"]:
+                                    year = date_entry.get("Year", "")
+                                    if year:
+                                        break
 
                         # Get journal name
                         venue = str(article_data.get("Journal", {}).get("Title", ""))

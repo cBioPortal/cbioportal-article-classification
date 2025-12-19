@@ -6,7 +6,7 @@
 
 ## 📊 See the Latest Results
 
-**[→ View the latest usage analysis report](output/reports/latest.md)**
+**[→ View the latest usage analysis report](output/reports/usage_report.md)**
 
 This report includes:
 - Classification of 133+ papers citing cBioPortal
