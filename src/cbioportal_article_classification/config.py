@@ -112,3 +112,7 @@ FETCH_DELAY_SECONDS = 0.34  # ~3 requests/second (NCBI rate limit without API ke
 # PDF download settings
 PDF_SOURCE_PRIORITY = ["pmc", "biorxiv", "unpaywall", "doi"]  # Order to try PDF sources
 PDF_DOWNLOAD_TIMEOUT = 30  # Timeout for PDF downloads in seconds
+
+# Classification settings
+CLASSIFICATION_MAX_WORKERS = 10  # Number of parallel classification workers
+CLASSIFICATION_RATE_LIMIT_DELAY = 0.1  # Delay between classifications (seconds)

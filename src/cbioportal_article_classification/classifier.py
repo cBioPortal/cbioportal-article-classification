@@ -5,6 +5,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 import time
 from datetime import datetime
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 from anthropic import AnthropicBedrock
 import instructor
@@ -19,6 +21,8 @@ from .config import (
     BEDROCK_MODEL_ID,
     CLASSIFICATION_CATEGORIES,
     CLASSIFICATION_SCHEMA_VERSION,
+    CLASSIFICATION_MAX_WORKERS,
+    CLASSIFICATION_RATE_LIMIT_DELAY,
     METADATA_DIR,
 )
 
@@ -202,13 +206,54 @@ Instructions:
             logger.error(f"Error classifying paper {paper_data.get('paper_id')}: {e}")
             return {"error": str(e), "paper_id": paper_data.get("paper_id")}
 
+    def _classify_single_paper(self, paper: Dict, is_upgrade: bool = False) -> Dict:
+        """Classify a single paper (helper for parallel processing).
+
+        Args:
+            paper: Paper metadata dictionary
+            is_upgrade: Whether this is an upgrade classification
+
+        Returns:
+            Result dictionary with classification or error info
+        """
+        paper_id = paper.get("paper_id")
+
+        # Get paper text and determine source
+        paper_text = None
+        text_source = "none"
+
+        if paper.get("pdf_downloaded") and paper.get("pdf_path"):
+            pdf_path = Path(paper["pdf_path"])
+            if pdf_path.exists():
+                paper_text = self.extract_text_from_pdf(pdf_path)
+                if paper_text:
+                    text_source = "pdf"
+
+        # If no PDF, use abstract
+        if not paper_text:
+            paper_text = paper.get("abstract", "")
+            if paper_text:
+                text_source = "abstract"
+
+        # Classify
+        classification = self.classify_paper(paper, paper_text, text_source=text_source)
+
+        # Add upgrade info to result
+        classification["is_upgrade"] = is_upgrade
+        classification["paper_id"] = paper_id
+
+        # Rate limiting
+        time.sleep(CLASSIFICATION_RATE_LIMIT_DELAY)
+
+        return classification
+
     def classify_all_papers(
         self,
         citations_data: Dict,
         max_papers: Optional[int] = None,
         skip_existing: bool = True
     ) -> pd.DataFrame:
-        """Classify all papers in the citations database.
+        """Classify all papers in the citations database using parallel processing.
 
         Args:
             citations_data: Citations metadata dictionary
@@ -228,14 +273,12 @@ Instructions:
 
         logger.info(f"Found {len(all_papers)} total papers to potentially classify")
 
-        classified_count = 0
-        upgraded_count = 0
+        # Determine which papers need classification
+        papers_to_classify = []
         skipped_count = 0
 
-        for paper in tqdm(all_papers, desc="Classifying papers"):
+        for paper in all_papers:
             paper_id = paper.get("paper_id")
-
-            # Determine if we should classify this paper
             should_classify = False
             is_upgrade = False
 
@@ -271,61 +314,65 @@ Instructions:
                 # New paper, needs classification
                 should_classify = True
 
+            if should_classify:
+                paper["_is_upgrade"] = is_upgrade  # Store for later use
+                papers_to_classify.append(paper)
+
             # Check limit
-            if max_papers and classified_count >= max_papers:
+            if max_papers and len(papers_to_classify) >= max_papers:
                 logger.info(f"Reached classification limit of {max_papers}")
                 break
 
-            if not should_classify:
-                continue
+        logger.info(f"Classifying {len(papers_to_classify)} papers using {CLASSIFICATION_MAX_WORKERS} parallel workers")
+        logger.info(f"Skipped {skipped_count} papers (already classified or previously failed)")
 
-            # Get paper text and determine source
-            paper_text = None
-            text_source = "none"
+        # Parallel classification using ThreadPoolExecutor
+        classified_count = 0
+        upgraded_count = 0
 
-            if paper.get("pdf_downloaded") and paper.get("pdf_path"):
-                pdf_path = Path(paper["pdf_path"])
-                if pdf_path.exists():
-                    paper_text = self.extract_text_from_pdf(pdf_path)
-                    if paper_text:
-                        text_source = "pdf"
+        with ThreadPoolExecutor(max_workers=CLASSIFICATION_MAX_WORKERS) as executor:
+            # Submit all classification tasks
+            future_to_paper = {
+                executor.submit(self._classify_single_paper, paper, paper.get("_is_upgrade", False)): paper
+                for paper in papers_to_classify
+            }
 
-            # If no PDF, use abstract
-            if not paper_text:
-                paper_text = paper.get("abstract", "")
-                if paper_text:
-                    text_source = "abstract"
+            # Process results as they complete with progress bar
+            from concurrent.futures import as_completed
+            for future in tqdm(as_completed(future_to_paper), total=len(papers_to_classify), desc="Classifying papers"):
+                paper = future_to_paper[future]
+                paper_id = paper.get("paper_id")
 
-            # Classify
-            classification = self.classify_paper(paper, paper_text, text_source=text_source)
+                try:
+                    classification = future.result()
+                    is_upgrade = classification.pop("is_upgrade", False)
 
-            if "error" in classification:
-                # Track failed attempt to avoid retrying
-                classification["classification_attempted"] = True
-                classification["classification_failed"] = True
-                classification["classification_error"] = classification.get("error")
-                self.classifications[paper_id] = classification
-                logger.warning(f"Classification failed for {paper_id}: {classification.get('error')}")
-            else:
-                # Successful classification
-                self.classifications[paper_id] = classification
-                classified_count += 1
-                if is_upgrade:
-                    upgraded_count += 1
+                    if "error" in classification:
+                        # Track failed attempt to avoid retrying
+                        classification["classification_attempted"] = True
+                        classification["classification_failed"] = True
+                        classification["classification_error"] = classification.get("error")
+                        self.classifications[paper_id] = classification
+                        logger.warning(f"Classification failed for {paper_id}: {classification.get('error')}")
+                    else:
+                        # Successful classification
+                        self.classifications[paper_id] = classification
+                        classified_count += 1
+                        if is_upgrade:
+                            upgraded_count += 1
 
-                # Save periodically
-                if classified_count % 10 == 0:
-                    self._save_classifications()
-                    self._save_csv()
+                        # Save periodically
+                        if classified_count % 10 == 0:
+                            self._save_classifications()
+                            self._save_csv()
 
-            # Rate limiting
-            time.sleep(1)  # Be respectful with API calls
+                except Exception as e:
+                    logger.error(f"Unexpected error classifying {paper_id}: {e}")
 
         # Final save
         self._save_classifications()
 
         logger.info(f"Classified {classified_count} papers ({upgraded_count} upgraded from abstract to PDF)")
-        logger.info(f"Skipped {skipped_count} papers (already classified or previously failed)")
         logger.info(f"Total papers in database: {len(self.classifications)}")
 
         # Always save complete CSV with ALL classifications
