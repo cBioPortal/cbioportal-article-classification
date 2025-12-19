@@ -17,7 +17,6 @@ from .config import (
     METADATA_DIR,
     PDF_DIR,
     FETCH_DELAY_SECONDS,
-    MAX_CITATIONS_PER_PAPER,
     NCBI_EMAIL,
     NCBI_API_KEY,
     UNPAYWALL_EMAIL,
@@ -177,10 +176,7 @@ class CitationFetcher:
 
             # Get list of citing PMIDs
             citing_pmids = [link["Id"] for link in record[0]["LinkSetDb"][0]["Link"]]
-            logger.info(f"Found {len(citing_pmids)} citations for PMID {pmid}")
-
-            # Limit to avoid overwhelming requests
-            citing_pmids = citing_pmids[:MAX_CITATIONS_PER_PAPER]
+            logger.info(f"Fetching all {len(citing_pmids)} citations for PMID {pmid}")
 
             citations = []
             citation_count = 0

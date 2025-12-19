@@ -132,7 +132,6 @@ NCBI_API_KEY = os.getenv("NCBI_API_KEY", "")  # Optional, increases rate limit
 UNPAYWALL_EMAIL = os.getenv("UNPAYWALL_EMAIL", NCBI_EMAIL)  # Required by Unpaywall API
 
 # Fetcher settings
-MAX_CITATIONS_PER_PAPER = 1000  # Limit per PMID to avoid overwhelming requests
 FETCH_DELAY_SECONDS = 0.34  # ~3 requests/second (NCBI rate limit without API key)
 
 # PDF download settings
