@@ -1,6 +1,6 @@
 # cBioPortal Usage Analysis Report
 
-*Generated on 2025-12-19 02:00:41*
+*Generated on 2025-12-19 02:25:49*
 
 ---
 
@@ -11,6 +11,22 @@
 - **Most Common Analysis Type**: Gene expression analysis
 - **Most Common Cancer Type**: Other solid tumor
 - **Most Common Data Source**: TCGA
+
+## Visualizations
+
+### Usage Analysis Overview
+
+![Usage Analysis](../plots/usage_analysis_20251219.png)
+
+*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*
+
+### Research Areas
+
+![Research Areas](../plots/research_areas_20251219.png)
+
+*Distribution of research areas utilizing cBioPortal.*
+
+---
 
 ## Top Analysis Types
 
