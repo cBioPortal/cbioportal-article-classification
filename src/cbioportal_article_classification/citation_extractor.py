@@ -134,12 +134,13 @@ class CitationExtractor:
 
         return True
 
-    def extract_text_from_pdf(self, pdf_path: Path, max_pages: int = 20) -> str:
-        """Extract text from PDF file (optimized with pdfplumber).
+    def extract_text_from_pdf(self, pdf_path: Path, max_pages: int = 20, extract_all: bool = False) -> str:
+        """Extract text from PDF file (first + last pages, or all pages).
 
         Args:
             pdf_path: Path to PDF file
             max_pages: Maximum number of pages to extract (default: 20)
+            extract_all: If True, extract all pages regardless of max_pages
 
         Returns:
             Extracted text content
@@ -148,11 +149,31 @@ class CitationExtractor:
             text_parts = []
 
             with pdfplumber.open(pdf_path) as pdf:
-                # Extract from first N pages (where most citations appear)
-                num_pages = min(len(pdf.pages), max_pages)
+                total_pages = len(pdf.pages)
 
-                for i in range(num_pages):
-                    page = pdf.pages[i]
+                if extract_all:
+                    # Extract ALL pages
+                    pages_to_extract = list(range(total_pages))
+                else:
+                    # Extract first half + last half to capture both in-text citations
+                    # (in intro/methods) and references section (at end)
+                    first_n = max_pages // 2
+                    last_n = max_pages // 2
+
+                    # Build list of page indices to extract
+                    pages_to_extract = []
+
+                    # Add first N pages
+                    pages_to_extract.extend(range(min(first_n, total_pages)))
+
+                    # Add last N pages (avoid duplicates if paper is short)
+                    if total_pages > first_n:
+                        last_start = max(first_n, total_pages - last_n)
+                        pages_to_extract.extend(range(last_start, total_pages))
+
+                # Extract text from selected pages
+                for page_num in pages_to_extract:
+                    page = pdf.pages[page_num]
                     text = page.extract_text()
                     if text:
                         text_parts.append(text)
@@ -274,10 +295,10 @@ class CitationExtractor:
             logger.debug(f"Citation sentences already extracted for {paper_id}")
             return self.citation_data[paper_id]
 
-        # Extract full text
+        # Pass 1: Extract first + last pages (fast)
         step_start = time.time()
-        text = self.extract_text_from_pdf(pdf_path)
-        step_times['pdf_extraction'] = time.time() - step_start
+        text = self.extract_text_from_pdf(pdf_path, max_pages=20, extract_all=False)
+        step_times['pdf_extraction_pass1'] = time.time() - step_start
 
         if not text:
             logger.warning(f"No text extracted from {pdf_path}")
@@ -291,6 +312,37 @@ class CitationExtractor:
             context_keywords=None  # Only PMID citations
         )
         step_times['cbioportal_papers'] = time.time() - step_start
+
+        # Pass 2: If no cBioPortal citations found, try full extraction
+        # (We KNOW the paper cites cBioPortal - that's how we found it!)
+        if not cbioportal_paper_citations:
+            logger.debug(f"No cBioPortal citations in first/last pages for {paper_id}, trying full extraction")
+            step_start = time.time()
+            text_full = self.extract_text_from_pdf(pdf_path, extract_all=True)
+            step_times['pdf_extraction_pass2'] = time.time() - step_start
+
+            if text_full:
+                step_start = time.time()
+                cbioportal_paper_citations = self.find_citation_sentences(
+                    text_full,
+                    self.cbioportal_pmids,
+                    context_keywords=None
+                )
+                step_times['cbioportal_papers_pass2'] = time.time() - step_start
+
+                # Use full text for remaining searches
+                text = text_full
+                step_times['used_full_extraction'] = True
+            else:
+                step_times['used_full_extraction'] = False
+        else:
+            step_times['used_full_extraction'] = False
+
+        # Update total PDF extraction time
+        step_times['pdf_extraction'] = (
+            step_times.get('pdf_extraction_pass1', 0) +
+            step_times.get('pdf_extraction_pass2', 0)
+        )
 
         step_start = time.time()
         cbioportal_platform_mentions = self.find_citation_sentences(
@@ -344,8 +396,9 @@ class CitationExtractor:
 
         # Log timing for slow papers (>2 seconds)
         if total_time > 2.0:
+            full_extract_marker = " [FULL]" if step_times.get('used_full_extraction') else ""
             logger.warning(
-                f"Slow extraction for {paper_id}: {total_time:.2f}s - "
+                f"Slow extraction for {paper_id}: {total_time:.2f}s{full_extract_marker} - "
                 f"pdf={step_times['pdf_extraction']:.2f}s, "
                 f"cb_papers={step_times['cbioportal_papers']:.2f}s, "
                 f"platform={step_times['platform_mentions']:.2f}s, "

@@ -118,7 +118,7 @@ class PaperClassifier:
             logger.debug(f"Saved {len(df)} classifications to CSV")
 
     def extract_text_from_pdf(self, pdf_path: Path, max_pages: int = 10) -> str:
-        """Extract text from PDF file (using pdfplumber).
+        """Extract text from PDF file (first + last pages for better coverage).
 
         Args:
             pdf_path: Path to PDF file
@@ -131,11 +131,27 @@ class PaperClassifier:
             text_parts = []
 
             with pdfplumber.open(pdf_path) as pdf:
-                # Extract from first N pages (usually intro/methods are most relevant)
-                num_pages = min(len(pdf.pages), max_pages)
+                total_pages = len(pdf.pages)
 
-                for i in range(num_pages):
-                    page = pdf.pages[i]
+                # Extract first half + last half to capture both intro/methods
+                # and discussion/conclusion sections
+                first_n = max_pages // 2
+                last_n = max_pages // 2
+
+                # Build list of page indices to extract
+                pages_to_extract = []
+
+                # Add first N pages
+                pages_to_extract.extend(range(min(first_n, total_pages)))
+
+                # Add last N pages (avoid duplicates if paper is short)
+                if total_pages > first_n:
+                    last_start = max(first_n, total_pages - last_n)
+                    pages_to_extract.extend(range(last_start, total_pages))
+
+                # Extract text from selected pages
+                for page_num in pages_to_extract:
+                    page = pdf.pages[page_num]
                     text = page.extract_text()
                     if text:
                         text_parts.append(text)
