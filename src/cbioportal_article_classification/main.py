@@ -131,6 +131,8 @@ def run_all(download_pdfs, max_downloads, max_papers):
 @cli.command()
 def status():
     """Show current status of the database."""
+    from .config import CLASSIFICATION_SCHEMA_VERSION
+
     citations_file = METADATA_DIR / "citations.json"
     classifications_file = METADATA_DIR / "classifications.json"
     last_run_file = METADATA_DIR / "last_run.json"
@@ -153,8 +155,14 @@ def status():
 
         click.echo(click.style("Citations:", fg='cyan', bold=True))
         click.echo(f"  Total papers: {click.style(str(total_citations), fg='green')}")
-        click.echo(f"  PDFs downloaded: {click.style(str(pdfs_downloaded), fg='green')}")
+        click.echo(f"  PDFs downloaded: {click.style(str(pdfs_downloaded), fg='green')} ({pdfs_downloaded/total_citations*100:.1f}%)" if total_citations > 0 else f"  PDFs downloaded: {click.style(str(pdfs_downloaded), fg='green')}")
         click.echo(f"  Last updated: {last_updated}")
+
+        # Show breakdown by PMID
+        click.echo(f"\n  Papers citing each cBioPortal paper:")
+        for pmid, pmid_data in citations_data.get("papers", {}).items():
+            citation_count = len(pmid_data.get("citations", []))
+            click.echo(f"    PMID {pmid}: {click.style(str(citation_count), fg='green')} citations")
     else:
         click.echo(click.style("Citations:", fg='cyan', bold=True) + " No data (run 'fetch' command)")
 
@@ -165,8 +173,40 @@ def status():
         with open(classifications_file, "r") as f:
             classifications = json.load(f)
 
+        total = len(classifications)
+
+        # Count by schema version
+        version_counts = {}
+        text_source_counts = {"pdf": 0, "abstract": 0, "none": 0, "unknown": 0}
+
+        for paper_id, classification in classifications.items():
+            version = classification.get("schema_version", 0)
+            version_counts[version] = version_counts.get(version, 0) + 1
+
+            text_source = classification.get("text_source")
+            if text_source in text_source_counts:
+                text_source_counts[text_source] += 1
+            elif text_source is None:
+                text_source_counts["unknown"] += 1
+
         click.echo(click.style("Classifications:", fg='cyan', bold=True))
-        click.echo(f"  Total classified: {click.style(str(len(classifications)), fg='green')}")
+        click.echo(f"  Total classified: {click.style(str(total), fg='green')}")
+        click.echo(f"  Current schema version: {click.style(f'v{CLASSIFICATION_SCHEMA_VERSION}', fg='yellow')}")
+
+        # Show version breakdown if there are outdated papers
+        outdated = sum(count for version, count in version_counts.items() if version < CLASSIFICATION_SCHEMA_VERSION)
+        if outdated > 0:
+            click.echo(f"  Outdated schema: {click.style(str(outdated), fg='yellow')} papers (will be re-classified on next run)")
+
+        # Show text source breakdown
+        if text_source_counts["pdf"] > 0 or text_source_counts["abstract"] > 0:
+            click.echo(f"\n  Text sources:")
+            if text_source_counts["pdf"] > 0:
+                click.echo(f"    From PDF: {click.style(str(text_source_counts['pdf']), fg='green')} ({text_source_counts['pdf']/total*100:.1f}%)")
+            if text_source_counts["abstract"] > 0:
+                click.echo(f"    From Abstract: {click.style(str(text_source_counts['abstract']), fg='green')} ({text_source_counts['abstract']/total*100:.1f}%)")
+            if text_source_counts["unknown"] > 0:
+                click.echo(f"    Unknown: {click.style(str(text_source_counts['unknown']), fg='yellow')} ({text_source_counts['unknown']/total*100:.1f}%)")
     else:
         click.echo(click.style("Classifications:", fg='cyan', bold=True) + " No data (run 'classify' command)")
 
