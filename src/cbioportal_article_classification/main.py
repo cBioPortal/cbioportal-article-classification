@@ -83,12 +83,17 @@ def analyze(skip_plots):
     analyzer = UsageAnalyzer()
 
     # Generate visualizations
+    plot_filename = None
+    research_plot_filename = None
     if not skip_plots:
-        analyzer.create_visualizations()
-        analyzer.create_research_area_plot()
+        plot_filename = analyzer.create_visualizations()
+        research_plot_filename = analyzer.create_research_area_plot()
 
-    # Generate report
-    report_path = analyzer.generate_report()
+    # Generate report with plot references
+    report_path = analyzer.generate_report(
+        plot_filename=plot_filename,
+        research_plot_filename=research_plot_filename
+    )
 
     click.echo(click.style("Analysis complete!", fg='green'))
     click.echo(f"Report: {report_path}")

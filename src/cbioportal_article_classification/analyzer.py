@@ -157,11 +157,15 @@ class UsageAnalyzer:
 
         return recent
 
-    def create_visualizations(self):
-        """Create all visualization plots."""
+    def create_visualizations(self) -> Optional[str]:
+        """Create all visualization plots.
+
+        Returns:
+            Filename of the generated plot (without directory path)
+        """
         if self.df.empty:
             logger.warning("No data available for visualization")
-            return
+            return None
 
         fig, axes = plt.subplots(2, 2, figsize=(16, 12))
         fig.suptitle('cBioPortal Usage Analysis', fontsize=16, fontweight='bold')
@@ -201,15 +205,22 @@ class UsageAnalyzer:
             axes[1, 1].grid(True, alpha=0.3)
 
         plt.tight_layout()
-        plot_path = PLOTS_DIR / f"usage_analysis_{datetime.now().strftime('%Y%m%d')}.png"
+        filename = f"usage_analysis_{datetime.now().strftime('%Y%m%d')}.png"
+        plot_path = PLOTS_DIR / filename
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
         logger.info(f"Saved visualization to {plot_path}")
         plt.close()
 
-    def create_research_area_plot(self):
-        """Create detailed plot for research areas."""
+        return filename
+
+    def create_research_area_plot(self) -> Optional[str]:
+        """Create detailed plot for research areas.
+
+        Returns:
+            Filename of the generated plot (without directory path)
+        """
         if self.df.empty or 'research_area' not in self.df.columns:
-            return
+            return None
 
         df_temp = self.df.copy()
         df_temp['research_area'] = df_temp['research_area'].apply(
@@ -225,10 +236,13 @@ class UsageAnalyzer:
         plt.gca().invert_yaxis()
         plt.tight_layout()
 
-        plot_path = PLOTS_DIR / f"research_areas_{datetime.now().strftime('%Y%m%d')}.png"
+        filename = f"research_areas_{datetime.now().strftime('%Y%m%d')}.png"
+        plot_path = PLOTS_DIR / filename
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
         logger.info(f"Saved research areas plot to {plot_path}")
         plt.close()
+
+        return filename
 
     def generate_summary_stats(self) -> Dict:
         """Generate summary statistics.
@@ -263,8 +277,12 @@ class UsageAnalyzer:
 
         return stats
 
-    def generate_report(self) -> str:
+    def generate_report(self, plot_filename: Optional[str] = None, research_plot_filename: Optional[str] = None) -> str:
         """Generate a comprehensive markdown report.
+
+        Args:
+            plot_filename: Filename of main usage analysis plot
+            research_plot_filename: Filename of research areas plot
 
         Returns:
             Path to generated report
@@ -283,6 +301,22 @@ class UsageAnalyzer:
         report_lines.append(f"- **Most Common Analysis Type**: {stats.get('most_common_analysis_type', 'N/A')}")
         report_lines.append(f"- **Most Common Cancer Type**: {stats.get('most_common_cancer_type', 'N/A')}")
         report_lines.append(f"- **Most Common Data Source**: {stats.get('most_common_data_source', 'N/A')}\n")
+
+        # Add Visualizations section if plots exist
+        if plot_filename or research_plot_filename:
+            report_lines.append("## Visualizations\n")
+
+            if plot_filename:
+                report_lines.append("### Usage Analysis Overview\n")
+                report_lines.append(f"![Usage Analysis](../plots/{plot_filename})\n")
+                report_lines.append("*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*\n")
+
+            if research_plot_filename:
+                report_lines.append("### Research Areas\n")
+                report_lines.append(f"![Research Areas](../plots/{research_plot_filename})\n")
+                report_lines.append("*Distribution of research areas utilizing cBioPortal.*\n")
+
+            report_lines.append("---\n")
 
         # Top Analysis Types
         analysis_df = self.analyze_analysis_types()
@@ -336,11 +370,14 @@ def main():
     analyzer = UsageAnalyzer()
 
     # Generate visualizations
-    analyzer.create_visualizations()
-    analyzer.create_research_area_plot()
+    plot_filename = analyzer.create_visualizations()
+    research_plot_filename = analyzer.create_research_area_plot()
 
-    # Generate report
-    report_path = analyzer.generate_report()
+    # Generate report with plot references
+    report_path = analyzer.generate_report(
+        plot_filename=plot_filename,
+        research_plot_filename=research_plot_filename
+    )
 
     logger.info(f"Analysis complete! Report saved to: {report_path}")
 
