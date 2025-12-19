@@ -17774,9 +17774,91 @@
           "pdf_path": null,
           "download_attempted": true,
           "download_attempt_date": "2025-12-19T03:50:09.017175"
+        },
+        {
+          "paper_id": "41399371",
+          "title": "Integrative analysis identifies PIGK as an oncogenic glycosylphosphatidylinositol transamidase subunit with prognostic, immunological, and therapeutic relevance in head and neck cancer.",
+          "authors": "Yang YF, Liao JB, Yu PL, Chou CY, Lin YH",
+          "year": "2026",
+          "venue": "International journal of medical sciences",
+          "url": "https://doi.org/10.7150/ijms.121484",
+          "doi": "10.7150/ijms.121484",
+          "abstract": "Glycosylphosphatidylinositol transamidase (GPI-T) catalyzes the attachment of glycosylphosphatidylinositol (GPI) anchors to membrane proteins implicated in oncogenic signaling. However, the specific contribution of individual GPI-T subunits to head and neck cancer (HNC) remains unclear. We first compare the expression profiles of GPI-T subunits in HNC and then integrate multi-omics analyses to assess <i>phosphatidylinositol glycan class K</i> (<i>PIGK</i>) expression, genomic alterations, function and pathway enrichment, molecular interactions, and immune associations. Clinical relevance is validated by immunohistochemistry on tissue microarray, and <i>in vitro</i> assays were conducted to assess PIGK-mediated phenotypes, regulation of <i>Family with sequence similarity 20-member C</i> (<i>FAM20C</i>), taxane response, and cancer-associated fibroblast (CAF) formation. Among the five subunits, PIGK was uniquely and consistently upregulated at both mRNA and protein levels in tumors. High PIGK expression correlates with aggressive clinicopathological features and poor survival across independent cohorts. Genomic analysis shows that <i>PIGK</i> overexpression is associated with copy number gains and inversely correlated with mutations in <i>FAT1</i>, <i>CDKN2A</i>, <i>NOTCH1</i>, and <i>CASP8</i>. Functionally, PIGK knockdown significantly suppressed cell migration, invasion, proliferation, and colony formation, reduced <i>FAM20C</i> expression, decreased sensitivity to paclitaxel and docetaxel, and attenuated fibroblast activation. Enrichment analysis of co-expressed genes showed involvement in cancer-related biological processes, while protein-level interactors of PIGK were enriched in GPI-anchor biosynthesis and membrane-associated pathways. Clinically, patients with <i>PIGK</i> <sup>high</sup>/<i>FAM20C</i> <sup>high</sup> profile exhibited the worst survival outcomes. PIGK functions as a potential oncogenic driver in HNC with prognostic and therapeutic relevance. Its association with FAM20C, taxane response, and modulation of fibroblast activation provides insights into PIGK-mediated oncogenesis and may inform patient stratification strategies.",
+          "journal_iso": "Int J Med Sci",
+          "journal_country": "Australia",
+          "publication_types": [
+            "Journal Article"
+          ],
+          "mesh_terms": [
+            "Humans",
+            "Head and Neck Neoplasms",
+            "Prognosis",
+            "Gene Expression Regulation, Neoplastic",
+            "Female",
+            "Biomarkers, Tumor",
+            "Male",
+            "Cell Line, Tumor",
+            "Taxoids",
+            "Docetaxel",
+            "Middle Aged",
+            "Cell Proliferation",
+            "Acyltransferases"
+          ],
+          "affiliations": [
+            "Department of Medical Education and Research, Kaohsiung Veterans General Hospital, Kaohsiung 813, Taiwan.",
+            "Department of Pathology and Laboratory Medicine, Kaohsiung Veterans General Hospital, Kaohsiung 813, Taiwan.",
+            "Department of Medical Education and Research, Kaohsiung Veterans General Hospital, Kaohsiung 813, Taiwan.",
+            "Department of Medical Education and Research, Kaohsiung Veterans General Hospital, Kaohsiung 813, Taiwan.",
+            "Department of Otolaryngology, Head and Neck Surgery, Kaohsiung Veterans General Hospital, Kaohsiung 813, Taiwan.",
+            "School of Medicine, National Yang Ming Chiao Tung University, Taipei 112, Taiwan.",
+            "School of Medicine, Chung Shan Medical University, Taichung 402, Taiwan.",
+            "School of Medicine, College of Medicine, National Sun Yat-sen University, Kaohsiung 804, Taiwan."
+          ],
+          "author_countries": [],
+          "primary_institution": "Kaohsiung Veterans General Hospital",
+          "grants": [],
+          "pmc_id": "PMC12701967",
+          "fetched_date": "2025-12-19T08:26:02.695474",
+          "pdf_downloaded": false,
+          "pdf_path": null
+        },
+        {
+          "paper_id": "41386881",
+          "title": "Transcriptomics analysis unveils the complex interplay between diabetes and hypertension in regulating renal cell carcinoma pathway followed by pancreatic metastasis.",
+          "authors": "Islam KMT, Khanam R, Roy A, Mohiuddin RB, Akter J, Haque S, Al Ashik SA, Sarker S, Mohiuddin AKM, Mahmud S",
+          "year": "2025",
+          "venue": "Journal, genetic engineering & biotechnology",
+          "url": "https://doi.org/10.1016/j.jgeb.2025.100616",
+          "doi": "10.1016/j.jgeb.2025.100616",
+          "abstract": "Renal cell carcinoma (RCC) is often associated with metabolic disorders such as type 2 diabetes mellitus (T2DM) and hypertension. While existing research has established connections between these metabolic conditions and RCC, the underlying mechanisms driving RCC followed by pancreatic metastasis remain incompletely understood. Therefore, our study aimed to investigate the complex interplay between metabolic disorders (type 2 diabetes and hypertension) and malignancies (renal cell carcinoma and pancreatic cancer). To investigate the hidden link, we performed an integrative transcriptomic analysis. The analysis focuses only on T2DM and hypertension to identify a connection with the RCC pathway. Our analysis revealed that 190 significantly upregulated genes, of which MET emerged as a master regulator in RCC, while KRAS was the key regulator in pancreatic cancer. Furthermore, we identified key microRNAs (has-mir-1-3p, has-mir-16-5p, and has-mir-455-3p) and transcription factors (MBD1, TFDP1, and KLF9) regulate these targets. Additionally, we identified and validated CDC42, PTPN11, TGFB3, and MET as potential prognostic or theragnostic biomarkers. MET, KRAS, and PIK3CD emerged as the most promising therapeutic targets against a panel of 28 repurposable inhibitory drugs. The genetic and immune association suggested that CD8\u00a0+\u00a0T cells are the key immune infiltrate significantly associated with poor survival outcomes in RCC and pancreatic cancer patients. Mutational analysis further highlighted the significance of KRAS G12C, G12V, and G12D mutations, which were common between RCC and pancreatic metastasis. Our study provides critical insights into the statistically significant associations between metabolic disorders and malignancies, emphasizing the potential of tailored therapies alongside shared therapies in managing RCC and its progression to pancreatic metastasis.",
+          "journal_iso": "J Genet Eng Biotechnol",
+          "journal_country": "Netherlands",
+          "publication_types": [
+            "Journal Article"
+          ],
+          "mesh_terms": [],
+          "affiliations": [
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Statistics, University of Dhaka, Dhaka 1000, Bangladesh.",
+            "Department of Pharmacy, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology, Bangladesh Agricultural University, Mymensingh 2202, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh.",
+            "Department of Biotechnology and Genetic Engineering, Mawlana Bhashani Science and Technology University, Santosh, Tangail 1902, Bangladesh. Electronic address: shahin018mbstu@gmail.com."
+          ],
+          "author_countries": [],
+          "primary_institution": "Mawlana Bhashani Science and Technology University",
+          "grants": [],
+          "pmc_id": "PMC12704389",
+          "fetched_date": "2025-12-19T08:26:02.695593",
+          "pdf_downloaded": false,
+          "pdf_path": null
         }
       ],
-      "last_updated": "2025-12-19T01:16:07.635519"
+      "last_updated": "2025-12-19T08:26:16.663378"
     },
     "22588877": {
       "citations": [
@@ -25804,11 +25886,134 @@
           "pdf_path": null,
           "download_attempted": true,
           "download_attempt_date": "2025-12-19T03:53:20.415503"
+        },
+        {
+          "paper_id": "41413243",
+          "title": "Computational prediction of human genetic variants in the mouse genome.",
+          "authors": "Dong K, Gould SI, Li M, S\u00e1nchez Rivera FJ",
+          "year": "2025",
+          "venue": "Nature biotechnology",
+          "url": "https://doi.org/10.1038/s41587-025-02925-0",
+          "doi": "10.1038/s41587-025-02925-0",
+          "abstract": "The design of genetically engineered mouse models would benefit from a computational pipeline to predict mouse genetic variants that mirror the sequence and functional effects of human disease variants. Here we present H2M (human-to-mouse), which achieves this by integrating mouse-to-human and paralog-to-paralog variant mapping analyses with genome-editing tools. We provide a database containing >3 million human-mouse equivalent mutation pairs and base-editing and prime-editing libraries to engineer 4,944 variant pairs.",
+          "journal_iso": "Nat Biotechnol",
+          "journal_country": "United States",
+          "publication_types": [
+            "Journal Article"
+          ],
+          "mesh_terms": [],
+          "affiliations": [
+            "Department of Biology, Massachusetts Institute of Technology, Cambridge, MA, USA.",
+            "David H. Koch Institute for Integrative Cancer Research, Massachusetts Institute of Technology, Cambridge, MA, USA.",
+            "University of Chinese Academy of Sciences, Beijing, China.",
+            "Department of Biology, Massachusetts Institute of Technology, Cambridge, MA, USA.",
+            "David H. Koch Institute for Integrative Cancer Research, Massachusetts Institute of Technology, Cambridge, MA, USA.",
+            "Department of Biosystems Science and Engineering, ETH Zurich, Basel, Switzerland.",
+            "Department of Biology, Massachusetts Institute of Technology, Cambridge, MA, USA. fsr@mit.edu.",
+            "David H. Koch Institute for Integrative Cancer Research, Massachusetts Institute of Technology, Cambridge, MA, USA. fsr@mit.edu."
+          ],
+          "author_countries": [
+            "USA",
+            "China",
+            "Switzerland"
+          ],
+          "primary_institution": "Massachusetts Institute of Technology",
+          "grants": [
+            {
+              "grant_id": "GT15656",
+              "agency": "Howard Hughes Medical Institute (HHMI)",
+              "country": ""
+            },
+            {
+              "grant_id": "V2022-028",
+              "agency": "V Foundation for Cancer Research (V Foundation)",
+              "country": ""
+            },
+            {
+              "grant_id": "NIH T32GM136540",
+              "agency": "U.S. Department of Health & Human Services | NIH | National Institute of General Medical Sciences (NIGMS)",
+              "country": ""
+            },
+            {
+              "grant_id": "NIH T32GM136540",
+              "agency": "U.S. Department of Health & Human Services | NIH | National Institute of General Medical Sciences (NIGMS)",
+              "country": ""
+            },
+            {
+              "grant_id": "1P01CA291694-01A1",
+              "agency": "U.S. Department of Health & Human Services | NIH | National Cancer Institute (NCI)",
+              "country": ""
+            }
+          ],
+          "pmc_id": "",
+          "fetched_date": "2025-12-19T08:26:20.841850",
+          "pdf_downloaded": false,
+          "pdf_path": null
+        },
+        {
+          "paper_id": "41243511",
+          "title": "A novel germline <i>NF1</i> splicing variant drives the onset of an anorectal mucosal melanoma in a patient with a stable and durable nivolumab response.",
+          "authors": "Berrino E, Bellomo SE, Mastorino L, Morbidoni V, Crosetto N, Sapino A, Sarotto I, Chesta A, Gianluca A, Quaglino P, Zampieri D, Senetta R, Trevisson E, Marchi\u00f2 C, Ribero S",
+          "year": "2025",
+          "venue": "Pathologica",
+          "url": "https://doi.org/10.32074/1591-951X-N1157",
+          "doi": "10.32074/1591-951X-N1157",
+          "abstract": "Neurofibromatosis type-1 (NF1) patients rarely develop mucosal melanomas. We report a rare form of anorectal mucosal melanoma (ARMM) in an NF1 syndromic patient profiled for genomics and transcriptomics to assess the determinants of the response to nivolumab. Primary melanoma and metastases were analyzed with targeted sequencing and gene expression profile (tGEP). We applied <i>in silico</i> (cBioPortal and predictor tools) and <i>in vitro</i> (hybrid minigene) approaches to confirm the variant pathogenicity. We detected the novel c.4269+2_4269+3delTG germline splicing variant in <i>NF1</i>, which proved to be pathogenic by the minigene assay showing an aberrant splicing. The tumor showed a copy-number (CN) neutral loss of heterozygosity for the WT allele, and both ARMM and metastases carried several CN gains associated with <i>NF1</i>-driven carcinogenesis and very low mutation burden. The tGEP analysis unveiled a macrophagic infiltration, with a pro-inflammatory M1-type polarization, in the context of lack of PD-L1 expression. The response to nivolumab in a germline NF1-driven ARMM case seems independent from levels of TMB and PD-L1 expression and may be mediated by inflammatory response induced by M1-polarized macrophages.",
+          "journal_iso": "Pathologica",
+          "journal_country": "Italy",
+          "publication_types": [
+            "Case Reports",
+            "Journal Article"
+          ],
+          "mesh_terms": [
+            "Humans",
+            "Antineoplastic Agents, Immunological",
+            "Anus Neoplasms",
+            "Germ-Line Mutation",
+            "Melanoma",
+            "Neurofibromatosis 1",
+            "Neurofibromin 1",
+            "Nivolumab",
+            "Rectal Neoplasms"
+          ],
+          "affiliations": [
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Department of Medical Sciences, University of Turin, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Dermathology Unit, AOU Citt\u00e0 della Salute e della Scienza di Torino, Italy.",
+            "Clinical Genetics Unit, Department of Women's and Children's Health, University of Padova, Padova, Italy.",
+            "Pediatric Research Institute (IRP) - Fondazione Citt\u00e0 della Speranza, Padova, Italy.",
+            "Human Technopole, Milano, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Department of Medical Sciences, University of Turin, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Dermathology Unit, AOU Citt\u00e0 della Salute e della Scienza di Torino, Italy.",
+            "Department of Medical Sciences, University of Turin, Italy.",
+            "Dermathology Unit, AOU Citt\u00e0 della Salute e della Scienza di Torino, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Pathology Unit, AOU Citt\u00e0 della Salute e della Scienza di Torino, Italy.",
+            "Clinical Genetics Unit, Department of Women's and Children's Health, University of Padova, Padova, Italy.",
+            "Pediatric Research Institute (IRP) - Fondazione Citt\u00e0 della Speranza, Padova, Italy.",
+            "Pathology Unit, FPO-IRCCS Candiolo Cancer Institute, Candiolo, Italy.",
+            "Department of Medical Sciences, University of Turin, Italy.",
+            "Department of Medical Sciences, University of Turin, Italy.",
+            "Dermathology Unit, AOU Citt\u00e0 della Salute e della Scienza di Torino, Italy."
+          ],
+          "author_countries": [
+            "Italy"
+          ],
+          "primary_institution": "FPO-IRCCS Candiolo Cancer Institute",
+          "grants": [],
+          "pmc_id": "PMC12620939",
+          "fetched_date": "2025-12-19T08:26:20.842001",
+          "pdf_downloaded": false,
+          "pdf_path": null
         }
       ],
-      "last_updated": "2025-12-19T01:16:25.482966"
+      "last_updated": "2025-12-19T08:26:32.840953"
     }
   },
-  "total_citations": 1721,
-  "last_updated": "2025-12-19T03:49:13.996808"
+  "total_citations": 1725,
+  "last_updated": "2025-12-19T08:26:32.840972"
 }

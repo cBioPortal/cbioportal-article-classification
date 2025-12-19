@@ -45,6 +45,71 @@ class CitationFetcher:
         self.citations_data = self._load_metadata()
         self.last_run_info = self._load_last_run()
 
+    def _extract_countries_from_affiliation(self, affiliation: str) -> List[str]:
+        """Extract countries from an affiliation string.
+
+        Args:
+            affiliation: Affiliation text
+
+        Returns:
+            List of detected countries
+        """
+        countries = []
+        affiliation_upper = affiliation.upper()
+
+        # Country patterns (checking for common variations)
+        country_patterns = {
+            'USA': ['USA', 'UNITED STATES', 'U.S.A', 'U.S.', 'AMERICA'],
+            'China': ['CHINA', 'P.R. CHINA', 'PEOPLE\'S REPUBLIC OF CHINA'],
+            'United Kingdom': ['UK', 'U.K.', 'UNITED KINGDOM', 'ENGLAND', 'SCOTLAND', 'WALES', 'NORTHERN IRELAND'],
+            'Germany': ['GERMANY', 'DEUTSCHLAND'],
+            'France': ['FRANCE'],
+            'Italy': ['ITALY', 'ITALIA'],
+            'Japan': ['JAPAN'],
+            'Canada': ['CANADA'],
+            'Australia': ['AUSTRALIA'],
+            'India': ['INDIA'],
+            'South Korea': ['SOUTH KOREA', 'REPUBLIC OF KOREA', 'KOREA'],
+            'Netherlands': ['NETHERLANDS', 'THE NETHERLANDS'],
+            'Spain': ['SPAIN', 'ESPAÑA'],
+            'Switzerland': ['SWITZERLAND'],
+            'Sweden': ['SWEDEN'],
+            'Brazil': ['BRAZIL', 'BRASIL'],
+            'Israel': ['ISRAEL'],
+            'Singapore': ['SINGAPORE'],
+            'Belgium': ['BELGIUM'],
+            'Austria': ['AUSTRIA'],
+        }
+
+        for country, patterns in country_patterns.items():
+            if any(pattern in affiliation_upper for pattern in patterns):
+                countries.append(country)
+                break  # Only one country per affiliation
+
+        return countries
+
+    def _extract_institution_from_affiliation(self, affiliation: str) -> str:
+        """Extract primary institution from affiliation string.
+
+        Args:
+            affiliation: Affiliation text
+
+        Returns:
+            Primary institution name (first organization mentioned)
+        """
+        # Usually the first part before comma is the department/institute
+        # Try to get the university/hospital/institute name
+        parts = affiliation.split(',')
+        if len(parts) >= 2:
+            # Second part often contains the main institution
+            institution = parts[1].strip()
+            # Remove common prefixes
+            institution = institution.replace('Department of', '').strip()
+            return institution[:100]  # Truncate if too long
+        elif len(parts) == 1:
+            return parts[0].strip()[:100]
+        return ""
+
     def _load_metadata(self) -> Dict:
         """Load existing citations metadata."""
         if self.metadata_file.exists():
@@ -197,18 +262,66 @@ class CitationFetcher:
                         else:
                             abstract = str(abstract_parts) if abstract_parts else ""
 
-                        # Get DOI if available
+                        # Get DOI and PMC ID
                         doi = ""
+                        pmc_id = ""
                         article_ids = article.get("PubmedData", {}).get("ArticleIdList", [])
                         for aid in article_ids:
-                            if aid.attributes.get("IdType") == "doi":
+                            id_type = aid.attributes.get("IdType")
+                            if id_type == "doi":
                                 doi = str(aid)
-                                break
+                            elif id_type == "pmc":
+                                pmc_id = str(aid)
 
                         # Build URL
                         url = f"https://pubmed.ncbi.nlm.nih.gov/{citing_pmid}/"
                         if doi:
                             url = f"https://doi.org/{doi}"
+
+                        # Extract author affiliations and countries
+                        affiliations = []
+                        author_countries = []
+                        primary_institution = ""
+
+                        for idx, author in enumerate(authors_list):
+                            aff_info = author.get("AffiliationInfo", [])
+                            for aff in aff_info:
+                                aff_text = aff.get("Affiliation", "")
+                                if aff_text:
+                                    affiliations.append(aff_text)
+                                    # Extract countries
+                                    countries = self._extract_countries_from_affiliation(aff_text)
+                                    author_countries.extend(countries)
+                                    # Get primary institution from first author's first affiliation
+                                    if idx == 0 and not primary_institution:
+                                        primary_institution = self._extract_institution_from_affiliation(aff_text)
+
+                        # Deduplicate countries while preserving order
+                        author_countries = list(dict.fromkeys(author_countries))
+
+                        # Get journal metadata
+                        journal = article_data.get("Journal", {})
+                        journal_iso = str(journal.get("ISOAbbreviation", ""))
+                        journal_info = medline.get("MedlineJournalInfo", {})
+                        journal_country = str(journal_info.get("Country", ""))
+
+                        # Get publication types
+                        pub_types_list = article_data.get("PublicationTypeList", [])
+                        publication_types = [str(pt) for pt in pub_types_list]
+
+                        # Get MeSH terms
+                        mesh_list = medline.get("MeshHeadingList", [])
+                        mesh_terms = [str(mesh.get("DescriptorName", "")) for mesh in mesh_list]
+
+                        # Get grant information
+                        grant_list = article_data.get("GrantList", [])
+                        grants = []
+                        for grant in grant_list:
+                            grants.append({
+                                "grant_id": str(grant.get("GrantID", "")),
+                                "agency": str(grant.get("Agency", "")),
+                                "country": str(grant.get("Country", ""))
+                            })
 
                         citation_data = {
                             "paper_id": citing_pmid,
@@ -219,6 +332,17 @@ class CitationFetcher:
                             "url": url,
                             "doi": doi,
                             "abstract": abstract,
+                            # Extended metadata
+                            "journal_iso": journal_iso,
+                            "journal_country": journal_country,
+                            "publication_types": publication_types,
+                            "mesh_terms": mesh_terms,
+                            "affiliations": affiliations,
+                            "author_countries": author_countries,
+                            "primary_institution": primary_institution,
+                            "grants": grants,
+                            "pmc_id": pmc_id,
+                            # Existing fields
                             "fetched_date": datetime.now().isoformat(),
                             "pdf_downloaded": False,
                             "pdf_path": None,

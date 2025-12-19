@@ -34,6 +34,7 @@ class UsageAnalyzer:
         self.classifications_csv = METADATA_DIR / "classifications.csv"
         self.citations_file = METADATA_DIR / "citations.json"
         self.df = self._load_classifications()
+        self.citations_df = self._load_citations_metadata()
 
     def _load_classifications(self) -> pd.DataFrame:
         """Load classifications from CSV or JSON."""
@@ -46,6 +47,23 @@ class UsageAnalyzer:
         else:
             logger.warning("No classification data found")
             return pd.DataFrame()
+
+    def _load_citations_metadata(self) -> pd.DataFrame:
+        """Load citations metadata for bibliometric analysis."""
+        if not self.citations_file.exists():
+            logger.warning("No citations metadata found")
+            return pd.DataFrame()
+
+        with open(self.citations_file, "r") as f:
+            citations_data = json.load(f)
+
+        # Flatten citations from all PMIDs into a single list
+        all_citations = []
+        for pmid, pmid_data in citations_data.get("papers", {}).items():
+            for citation in pmid_data.get("citations", []):
+                all_citations.append(citation)
+
+        return pd.DataFrame(all_citations)
 
     def explode_categories(self, df: pd.DataFrame) -> pd.DataFrame:
         """Explode list-type category columns for analysis.
@@ -201,6 +219,124 @@ class UsageAnalyzer:
 
         location_counts = self.df['analysis_location'].value_counts()
         return pd.DataFrame({'Location': location_counts.index, 'Count': location_counts.values})
+
+    def analyze_author_countries(self, top_n: int = 20) -> pd.DataFrame:
+        """Analyze geographic distribution of citing papers.
+
+        Args:
+            top_n: Number of top countries to return
+
+        Returns:
+            DataFrame with country counts
+        """
+        if self.citations_df.empty or 'author_countries' not in self.citations_df.columns:
+            return pd.DataFrame()
+
+        # Explode author_countries lists
+        df_temp = self.citations_df.copy()
+        df_temp['author_countries'] = df_temp['author_countries'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        country_counts = df_temp.explode('author_countries')['author_countries'].value_counts()
+        # Filter out empty strings
+        country_counts = country_counts[country_counts.index != '']
+
+        return pd.DataFrame({'Country': country_counts.head(top_n).index, 'Count': country_counts.head(top_n).values})
+
+    def analyze_journals(self, top_n: int = 20) -> pd.DataFrame:
+        """Analyze which journals cite cBioPortal most.
+
+        Args:
+            top_n: Number of top journals to return
+
+        Returns:
+            DataFrame with journal counts
+        """
+        if self.citations_df.empty or 'venue' not in self.citations_df.columns:
+            return pd.DataFrame()
+
+        journal_counts = self.citations_df['venue'].value_counts()
+        # Filter out empty strings
+        journal_counts = journal_counts[journal_counts.index != '']
+
+        return pd.DataFrame({'Journal': journal_counts.head(top_n).index, 'Count': journal_counts.head(top_n).values})
+
+    def analyze_publication_types(self) -> pd.DataFrame:
+        """Analyze types of publications citing cBioPortal.
+
+        Returns:
+            DataFrame with publication type counts
+        """
+        if self.citations_df.empty or 'publication_types' not in self.citations_df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.citations_df.copy()
+        df_temp['publication_types'] = df_temp['publication_types'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        type_counts = df_temp.explode('publication_types')['publication_types'].value_counts()
+        # Filter out empty strings
+        type_counts = type_counts[type_counts.index != '']
+
+        return pd.DataFrame({'Publication Type': type_counts.index, 'Count': type_counts.values})
+
+    def analyze_funding_agencies(self, top_n: int = 15) -> pd.DataFrame:
+        """Analyze funding sources of citing papers.
+
+        Args:
+            top_n: Number of top agencies to return
+
+        Returns:
+            DataFrame with funding agency counts
+        """
+        if self.citations_df.empty or 'grants' not in self.citations_df.columns:
+            return pd.DataFrame()
+
+        # Extract agencies from grants
+        agencies = []
+        for grants_list in self.citations_df['grants']:
+            if isinstance(grants_list, str):
+                try:
+                    grants_list = eval(grants_list)
+                except:
+                    continue
+            if isinstance(grants_list, list):
+                for grant in grants_list:
+                    if isinstance(grant, dict) and grant.get('agency'):
+                        agencies.append(grant['agency'])
+
+        if not agencies:
+            return pd.DataFrame()
+
+        agency_series = pd.Series(agencies)
+        agency_counts = agency_series.value_counts()
+
+        return pd.DataFrame({'Funding Agency': agency_counts.head(top_n).index, 'Count': agency_counts.head(top_n).values})
+
+    def analyze_mesh_terms(self, top_n: int = 20) -> pd.DataFrame:
+        """Analyze research topics via MeSH terms.
+
+        Args:
+            top_n: Number of top MeSH terms to return
+
+        Returns:
+            DataFrame with MeSH term counts
+        """
+        if self.citations_df.empty or 'mesh_terms' not in self.citations_df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.citations_df.copy()
+        df_temp['mesh_terms'] = df_temp['mesh_terms'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        mesh_counts = df_temp.explode('mesh_terms')['mesh_terms'].value_counts()
+        # Filter out empty strings
+        mesh_counts = mesh_counts[mesh_counts.index != '']
+
+        return pd.DataFrame({'MeSH Term': mesh_counts.head(top_n).index, 'Count': mesh_counts.head(top_n).values})
 
     def analyze_temporal_trends(self) -> pd.DataFrame:
         """Analyze usage trends over time.
@@ -498,6 +634,46 @@ class UsageAnalyzer:
             report_lines.append("## Most Frequently Queried Genes\n")
             for idx, row in genes_df.iterrows():
                 report_lines.append(f"{idx+1}. {row['Gene']}: {row['Count']} papers")
+            report_lines.append("")
+
+        # Bibliometric analyses
+        report_lines.append("---\n")
+        report_lines.append("# Bibliometric Analysis\n")
+        report_lines.append("*Analysis of metadata from citing papers*\n")
+
+        countries_df = self.analyze_author_countries(top_n=20)
+        if not countries_df.empty:
+            report_lines.append("## Geographic Distribution\n")
+            for idx, row in countries_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['Country']}: {row['Count']} papers")
+            report_lines.append("")
+
+        journals_df = self.analyze_journals(top_n=15)
+        if not journals_df.empty:
+            report_lines.append("## Top Journals Citing cBioPortal\n")
+            for idx, row in journals_df.head(15).iterrows():
+                report_lines.append(f"{idx+1}. {row['Journal']}: {row['Count']} papers")
+            report_lines.append("")
+
+        pub_types_df = self.analyze_publication_types()
+        if not pub_types_df.empty:
+            report_lines.append("## Publication Types\n")
+            for idx, row in pub_types_df.head(10).iterrows():
+                report_lines.append(f"{idx+1}. {row['Publication Type']}: {row['Count']} papers")
+            report_lines.append("")
+
+        funding_df = self.analyze_funding_agencies(top_n=15)
+        if not funding_df.empty:
+            report_lines.append("## Funding Agencies\n")
+            for idx, row in funding_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['Funding Agency']}: {row['Count']} papers")
+            report_lines.append("")
+
+        mesh_df = self.analyze_mesh_terms(top_n=20)
+        if not mesh_df.empty:
+            report_lines.append("## Research Topics (MeSH Terms)\n")
+            for idx, row in mesh_df.iterrows():
+                report_lines.append(f"{idx+1}. {row['MeSH Term']}: {row['Count']} papers")
             report_lines.append("")
 
         # Recent Papers

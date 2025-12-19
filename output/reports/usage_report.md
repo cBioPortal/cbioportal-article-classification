@@ -1,6 +1,6 @@
 # cBioPortal Usage Analysis Report
 
-*Generated on 2025-12-19 04:13:53*
+*Generated on 2025-12-19 08:26:55*
 
 ---
 
@@ -22,7 +22,7 @@ This analysis is based on papers that cite the three main cBioPortal publication
 - PMID 23550210
 - PMID 22588877
 
-**Total citations in database**: 1,721 papers
+**Total citations in database**: 1,725 papers
 
 **Important limitation**: The PubMed eutils API returns fewer citations than shown on the PubMed website. 
 For example, PMID 37668528 shows 750 citations on PubMed's website but the API only returns 407 citations. 
@@ -142,6 +142,72 @@ Our analysis is based on the subset of citations available through the API.
 18. ATM: 17 papers
 19. TERT: 17 papers
 20. NF1: 17 papers
+
+---
+
+# Bibliometric Analysis
+
+*Analysis of metadata from citing papers*
+
+## Geographic Distribution
+
+1. USA: 1 papers
+2. China: 1 papers
+3. Switzerland: 1 papers
+4. Italy: 1 papers
+
+## Top Journals Citing cBioPortal
+
+1. Scientific reports: 91 papers
+2. Discover oncology: 77 papers
+3. International journal of molecular sciences: 66 papers
+4. bioRxiv : the preprint server for biology: 60 papers
+5. Cancers: 54 papers
+6. Nature communications: 51 papers
+7. Frontiers in immunology: 40 papers
+8. Frontiers in oncology: 30 papers
+9. BMC cancer: 30 papers
+10. NPJ precision oncology: 25 papers
+11. PloS one: 24 papers
+12. Biomedicines: 22 papers
+13. Translational cancer research: 17 papers
+14. Journal of translational medicine: 17 papers
+15. Genes: 16 papers
+
+## Publication Types
+
+1. Journal Article: 4 papers
+2. Case Reports: 1 papers
+
+## Funding Agencies
+
+1. U.S. Department of Health & Human Services | NIH | National Institute of General Medical Sciences (NIGMS): 2 papers
+2. Howard Hughes Medical Institute (HHMI): 1 papers
+3. V Foundation for Cancer Research (V Foundation): 1 papers
+4. U.S. Department of Health & Human Services | NIH | National Cancer Institute (NCI): 1 papers
+
+## Research Topics (MeSH Terms)
+
+1. Humans: 2 papers
+2. Cell Proliferation: 1 papers
+3. Nivolumab: 1 papers
+4. Neurofibromin 1: 1 papers
+5. Neurofibromatosis 1: 1 papers
+6. Melanoma: 1 papers
+7. Germ-Line Mutation: 1 papers
+8. Anus Neoplasms: 1 papers
+9. Antineoplastic Agents, Immunological: 1 papers
+10. Acyltransferases: 1 papers
+11. Middle Aged: 1 papers
+12. Head and Neck Neoplasms: 1 papers
+13. Docetaxel: 1 papers
+14. Taxoids: 1 papers
+15. Cell Line, Tumor: 1 papers
+16. Male: 1 papers
+17. Biomarkers, Tumor: 1 papers
+18. Female: 1 papers
+19. Gene Expression Regulation, Neoplastic: 1 papers
+20. Prognosis: 1 papers
 
 ## Recent Papers Using cBioPortal
 
