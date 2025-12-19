@@ -1,15 +1,15 @@
 # cBioPortal Usage Analysis Report
 
-*Generated on 2025-12-19 08:26:55*
+*Generated on 2025-12-19 11:35:23*
 
 ---
 
 ## Summary Statistics
 
-- **Total Papers Analyzed**: 1721
-- **Year Range**: 2022 - 2026
-- **Classified from Full PDF**: 697 (40.5%)
-- **Classified from Abstract Only**: 1019 (59.2%)
+- **Total Papers Analyzed**: 13890
+- **Year Range**: 2012 - 2026
+- **Classified from Full PDF**: 697 (5.0%)
+- **Classified from Abstract Only**: 13120 (94.5%)
 - **Most Common Analysis Type**: Gene expression analysis
 - **Most Common Cancer Type**: Other solid tumor
 - **Most Common Data Source**: TCGA
@@ -22,12 +22,20 @@ This analysis is based on papers that cite the three main cBioPortal publication
 - PMID 23550210
 - PMID 22588877
 
-**Total citations in database**: 1,725 papers
+**Total citations in database**: 14,834 papers
+**Unique papers** (deduplicated): 13,890 papers
+**Papers citing multiple cBioPortal publications**: 944 papers
 
 **Important limitation**: The PubMed eutils API returns fewer citations than shown on the PubMed website. 
 For example, PMID 37668528 shows 750 citations on PubMed's website but the API only returns 407 citations. 
 This is a known limitation of the eutils citation indexing system. 
 Our analysis is based on the subset of citations available through the API.
+
+## Citation Overlap Analysis
+
+- Papers citing only 1 cBioPortal publication: 12,946
+- Papers citing 2 cBioPortal publications: 944
+- Papers citing all 3 cBioPortal publications: 0
 
 ## Visualizations
 
@@ -47,101 +55,107 @@ Our analysis is based on the subset of citations available through the API.
 
 ## Top Analysis Types
 
-1. Gene expression analysis: 1315 papers
-2. Survival analysis: 1010 papers
-3. Mutation analysis: 877 papers
-4. Pathway analysis: 796 papers
-5. Multi-omics integration: 447 papers
-6. Copy number analysis: 390 papers
-7. Other: 190 papers
-8. Drug response/resistance: 5 papers
-9. Methods/Tools development: 5 papers
-10. Biomarker discovery: 2 papers
+1. Gene expression analysis: 10628 papers
+2. Survival analysis: 7324 papers
+3. Mutation analysis: 6150 papers
+4. Pathway analysis: 5554 papers
+5. Copy number analysis: 3192 papers
+6. Multi-omics integration: 2582 papers
+7. Other: 1614 papers
+8. Drug response/resistance: 26 papers
+9. Methods/Tools development: 23 papers
+10. Tumor evolution: 17 papers
 
 ## Top Cancer Types
 
-1. Other solid tumor: 575 papers
-2. Pan-cancer: 450 papers
-3. Breast cancer: 305 papers
-4. Lung cancer: 215 papers
-5. Colorectal cancer: 166 papers
-6. Glioma/Brain cancer: 122 papers
-7. Prostate cancer: 114 papers
-8. Leukemia/Lymphoma: 86 papers
-9. Melanoma: 72 papers
-10. Not specified: 50 papers
+1. Other solid tumor: 4858 papers
+2. Pan-cancer: 2916 papers
+3. Breast cancer: 2374 papers
+4. Lung cancer: 1505 papers
+5. Colorectal cancer: 1079 papers
+6. Prostate cancer: 947 papers
+7. Glioma/Brain cancer: 945 papers
+8. Melanoma: 643 papers
+9. Leukemia/Lymphoma: 589 papers
+10. Not specified: 505 papers
 
 ## Data Sources Used
 
-1. TCGA: 981 papers
-2. Multiple sources: 796 papers
-3. Custom/Private data: 411 papers
-4. Not specified: 301 papers
-5. METABRIC: 66 papers
-6. GENIE: 27 papers
-7. MSK-IMPACT: 22 papers
-8. ICGC: 11 papers
-9. GEO: 2 papers
-10. GTEx: 1 papers
+1. TCGA: 8248 papers
+2. Multiple sources: 4878 papers
+3. Custom/Private data: 3784 papers
+4. Not specified: 2105 papers
+5. METABRIC: 429 papers
+6. MSK-IMPACT: 168 papers
+7. ICGC: 111 papers
+8. GENIE: 87 papers
+9. GEO: 3 papers
+10. GDSC: 2 papers
 
 ## How cBioPortal is Being Used
 
-1. Citation only: 1090 papers
-2. Web-based analysis: 468 papers
-3. Data download/export: 284 papers
-4. Web-based visualization: 209 papers
-5. Query interface: 11 papers
-6. API access: 6 papers
-7. Expression analysis: 4 papers
-8. Unclear: 1 papers
-9. Database/Resource: 1 papers
+1. Citation only: 8389 papers
+2. Web-based analysis: 4393 papers
+3. Web-based visualization: 2130 papers
+4. Data download/export: 2099 papers
+5. Query interface: 73 papers
+6. API access: 21 papers
+7. Expression analysis: 14 papers
+8. Unclear: 12 papers
+9. Database/Resource: 2 papers
+10. Not applicable - cBioPortal not used: 2 papers
+11. Survival analysis: 1 papers
+12. Group comparison: 1 papers
 
 ## cBioPortal Features Used
 
-1. Not specified: 1194 papers
-2. Query interface: 276 papers
-3. Expression analysis: 267 papers
-4. Download data: 212 papers
-5. Survival analysis: 159 papers
-6. Group comparison: 27 papers
-7. Mutation Mapper: 26 papers
-8. OncoPrint: 5 papers
-9. Mutation analysis: 3 papers
-10. Enrichment analysis: 3 papers
+1. Not specified: 9211 papers
+2. Expression analysis: 2771 papers
+3. Query interface: 2637 papers
+4. Survival analysis: 1583 papers
+5. Download data: 1431 papers
+6. Mutation Mapper: 255 papers
+7. Group comparison: 188 papers
+8. OncoPrint: 79 papers
+9. Copy number analysis: 37 papers
+10. Enrichment analysis: 36 papers
 
 ## Where Analysis Was Performed
 
-1. Unclear: 1109 papers
-2. External (downloaded data): 190 papers
-3. cBioPortal platform: 159 papers
-4. Mixed: 105 papers
-5. ["Unclear"]: 79 papers
-6. ["External (downloaded data)"]: 28 papers
-7. ["Mixed"]: 27 papers
-8. ["cBioPortal platform"]: 19 papers
+1. Unclear: 8768 papers
+2. cBioPortal platform: 1524 papers
+3. External (downloaded data): 1251 papers
+4. Mixed: 722 papers
+5. ["Unclear"]: 697 papers
+6. ["cBioPortal platform"]: 320 papers
+7. ["External (downloaded data)"]: 289 papers
+8. ["Mixed"]: 243 papers
+9. Not applicable - This study does not use cBioPortal: 1 papers
+10. ="External (downloaded data)": 1 papers
+11. Not applicable - cBioPortal not used: 1 papers
 
 ## Most Frequently Queried Genes
 
-1. TP53: 142 papers
-2. KRAS: 89 papers
-3. EGFR: 69 papers
-4. BRAF: 61 papers
-5. PIK3CA: 56 papers
-6. CDKN2A: 38 papers
-7. MYC: 37 papers
-8. PTEN: 35 papers
-9. BRCA2: 34 papers
-10. BRCA1: 34 papers
-11. ERBB2: 29 papers
-12. ESR1: 22 papers
-13. IDH1: 21 papers
-14. APC: 20 papers
-15. RB1: 19 papers
-16. NRAS: 18 papers
-17. MET: 18 papers
-18. ATM: 17 papers
-19. TERT: 17 papers
-20. NF1: 17 papers
+1. TP53: 779 papers
+2. KRAS: 384 papers
+3. EGFR: 316 papers
+4. PIK3CA: 272 papers
+5. BRAF: 247 papers
+6. PTEN: 242 papers
+7. MYC: 195 papers
+8. CDKN2A: 177 papers
+9. BRCA1: 148 papers
+10. ERBB2: 147 papers
+11. BRCA2: 141 papers
+12. IDH1: 113 papers
+13. RB1: 100 papers
+14. CD274: 100 papers
+15. NRAS: 93 papers
+16. ARID1A: 91 papers
+17. CTNNB1: 82 papers
+18. APC: 81 papers
+19. ESR1: 81 papers
+20. ATM: 81 papers
 
 ---
 
@@ -151,63 +165,98 @@ Our analysis is based on the subset of citations available through the API.
 
 ## Geographic Distribution
 
-1. USA: 1 papers
-2. China: 1 papers
-3. Switzerland: 1 papers
-4. Italy: 1 papers
+1. USA: 4261 papers
+2. China: 4034 papers
+3. United Kingdom: 1209 papers
+4. Germany: 726 papers
+5. Canada: 560 papers
+6. Italy: 497 papers
+7. Japan: 478 papers
+8. Spain: 376 papers
+9. Australia: 353 papers
+10. France: 343 papers
+11. South Korea: 325 papers
+12. India: 285 papers
+13. Netherlands: 233 papers
+14. Sweden: 214 papers
+15. Switzerland: 161 papers
+16. Brazil: 149 papers
+17. Austria: 122 papers
+18. Belgium: 114 papers
+19. Israel: 113 papers
+20. Singapore: 101 papers
 
 ## Top Journals Citing cBioPortal
 
-1. Scientific reports: 91 papers
-2. Discover oncology: 77 papers
-3. International journal of molecular sciences: 66 papers
-4. bioRxiv : the preprint server for biology: 60 papers
-5. Cancers: 54 papers
-6. Nature communications: 51 papers
-7. Frontiers in immunology: 40 papers
-8. Frontiers in oncology: 30 papers
-9. BMC cancer: 30 papers
-10. NPJ precision oncology: 25 papers
-11. PloS one: 24 papers
-12. Biomedicines: 22 papers
-13. Translational cancer research: 17 papers
-14. Journal of translational medicine: 17 papers
-15. Genes: 16 papers
+1. Cancers: 617 papers
+2. Scientific reports: 567 papers
+3. Oncotarget: 445 papers
+4. Frontiers in oncology: 438 papers
+5. International journal of molecular sciences: 382 papers
+6. Nature communications: 375 papers
+7. PloS one: 240 papers
+8. Oncogene: 215 papers
+9. Frontiers in genetics: 213 papers
+10. BMC cancer: 196 papers
+11. Aging: 168 papers
+12. Frontiers in immunology: 167 papers
+13. Cancer research: 155 papers
+14. Clinical cancer research : an official journal of the American Association for Cancer Research: 155 papers
+15. Oncology letters: 134 papers
 
 ## Publication Types
 
-1. Journal Article: 4 papers
-2. Case Reports: 1 papers
+1. Journal Article: 12113 papers
+2. Research Support, Non-U.S. Gov't: 4543 papers
+3. Research Support, N.I.H., Extramural: 2475 papers
+4. Review: 1174 papers
+5. Research Support, U.S. Gov't, Non-P.H.S.: 532 papers
+6. Case Reports: 113 papers
+7. Research Support, N.I.H., Intramural: 100 papers
+8. Preprint: 65 papers
+9. Meta-Analysis: 65 papers
+10. Comparative Study: 58 papers
 
 ## Funding Agencies
 
-1. U.S. Department of Health & Human Services | NIH | National Institute of General Medical Sciences (NIGMS): 2 papers
-2. Howard Hughes Medical Institute (HHMI): 1 papers
-3. V Foundation for Cancer Research (V Foundation): 1 papers
-4. U.S. Department of Health & Human Services | NIH | National Cancer Institute (NCI): 1 papers
+1. NCI NIH HHS: 10349 papers
+2. NIGMS NIH HHS: 1457 papers
+3. Cancer Research UK: 692 papers
+4. NIH HHS: 594 papers
+5. National Natural Science Foundation of China: 441 papers
+6. NIDDK NIH HHS: 412 papers
+7. NCATS NIH HHS: 402 papers
+8. NHLBI NIH HHS: 378 papers
+9. Medical Research Council: 353 papers
+10. NINDS NIH HHS: 321 papers
+11. Wellcome Trust: 254 papers
+12. NIAID NIH HHS: 252 papers
+13. NIDCR NIH HHS: 219 papers
+14. NIEHS NIH HHS: 208 papers
+15. NHGRI NIH HHS: 192 papers
 
 ## Research Topics (MeSH Terms)
 
-1. Humans: 2 papers
-2. Cell Proliferation: 1 papers
-3. Nivolumab: 1 papers
-4. Neurofibromin 1: 1 papers
-5. Neurofibromatosis 1: 1 papers
-6. Melanoma: 1 papers
-7. Germ-Line Mutation: 1 papers
-8. Anus Neoplasms: 1 papers
-9. Antineoplastic Agents, Immunological: 1 papers
-10. Acyltransferases: 1 papers
-11. Middle Aged: 1 papers
-12. Head and Neck Neoplasms: 1 papers
-13. Docetaxel: 1 papers
-14. Taxoids: 1 papers
-15. Cell Line, Tumor: 1 papers
-16. Male: 1 papers
-17. Biomarkers, Tumor: 1 papers
-18. Female: 1 papers
-19. Gene Expression Regulation, Neoplastic: 1 papers
-20. Prognosis: 1 papers
+1. Humans: 7864 papers
+2. Female: 2966 papers
+3. Animals: 2317 papers
+4. Gene Expression Regulation, Neoplastic: 2257 papers
+5. Cell Line, Tumor: 2253 papers
+6. Male: 1900 papers
+7. Prognosis: 1852 papers
+8. Mutation: 1790 papers
+9. Mice: 1662 papers
+10. Biomarkers, Tumor: 1503 papers
+11. Neoplasms: 1291 papers
+12. Signal Transduction: 1229 papers
+13. Middle Aged: 1152 papers
+14. Cell Proliferation: 1101 papers
+15. Breast Neoplasms: 947 papers
+16. Aged: 920 papers
+17. Gene Expression Profiling: 782 papers
+18. Adult: 736 papers
+19. Lung Neoplasms: 722 papers
+20. Tumor Microenvironment: 641 papers
 
 ## Recent Papers Using cBioPortal
 
@@ -265,8 +314,8 @@ Our analysis is based on the subset of citations available through the API.
 - **Cancer Type**: ['Lung cancer']
 - **Usage**: Based on the abstract and introduction provided, there is no explicit mention of cBioPortal usage in this study. The paper focuses on experimental characterization of a novel NOTCH2-NTRK1 fusion gene using in vitro and in vivo models, phosphoproteomic analyses, and protein interaction studies. cBioPortal may be cited in the references but its specific use is not described in the provided text.
 
-### Investigating the role of oncogenic FAM83A as a prognostic biomarker in lung adenocarcinoma: Insights from smoker and non-smoker cohorts. (2025.0)
+### Integrative analysis identifies PIGK as an oncogenic glycosylphosphatidylinositol transamidase subunit with prognostic, immunological, and therapeutic relevance in head and neck cancer. (2026.0)
 
-- **Research Area**: ['Biomarker discovery', 'Pathway analysis']
-- **Cancer Type**: ['Lung cancer']
-- **Usage**: The study utilized cBioPortal to analyze the TCGA-LUAD cohort, specifically examining FAM83A amplification in lung adenocarcinoma samples. The authors used cBioPortal to assess copy number alterations and their correlation with immune cell infiltration. The platform was used to validate prognostic significance of identified meta-DEGs including FAM83A, CLDN2, CLDN18, CYP4B1, CYP4X1, HLF, and PLA2G1B in the TCGA-LUAD dataset.
+- **Research Area**: ['Biomarker discovery', 'Drug response/resistance', 'Pathway analysis', 'Precision medicine']
+- **Cancer Type**: ['Other solid tumor']
+- **Usage**: The paper used cBioPortal to analyze PIGK expression, genomic alterations (copy number gains), and correlations with mutations in other genes (FAT1, CDKN2A, NOTCH1, CASP8) in head and neck cancer. The platform was likely used to access TCGA head and neck cancer data for multi-omics integration including gene expression, copy number analysis, and mutation profiling. The study integrated cBioPortal data with additional validation using tissue microarrays and in vitro experiments.
