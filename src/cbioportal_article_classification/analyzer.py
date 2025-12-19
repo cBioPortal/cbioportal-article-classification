@@ -118,6 +118,18 @@ class UsageAnalyzer:
         source_counts = df_temp.explode('data_source')['data_source'].value_counts()
         return pd.DataFrame({'Data Source': source_counts.index, 'Count': source_counts.values})
 
+    def analyze_text_sources(self) -> pd.DataFrame:
+        """Analyze distribution of text sources used for classification.
+
+        Returns:
+            DataFrame with text source counts
+        """
+        if self.df.empty or 'text_source' not in self.df.columns:
+            return pd.DataFrame()
+
+        text_source_counts = self.df['text_source'].value_counts()
+        return pd.DataFrame({'Text Source': text_source_counts.index, 'Count': text_source_counts.values})
+
     def analyze_temporal_trends(self) -> pd.DataFrame:
         """Analyze usage trends over time.
 
@@ -267,6 +279,13 @@ class UsageAnalyzer:
             if not years.empty:
                 stats["year_range"] = f"{int(years.min())} - {int(years.max())}"
 
+        # Text source statistics
+        if 'text_source' in self.df.columns:
+            text_source_counts = self.df['text_source'].value_counts()
+            stats["papers_from_pdf"] = int(text_source_counts.get('pdf', 0))
+            stats["papers_from_abstract"] = int(text_source_counts.get('abstract', 0))
+            stats["papers_no_text"] = int(text_source_counts.get('none', 0))
+
         # Most common categories
         for category in ['analysis_type', 'cancer_type', 'research_area', 'data_source']:
             if category in self.df.columns:
@@ -301,6 +320,21 @@ class UsageAnalyzer:
         report_lines.append("## Summary Statistics\n")
         report_lines.append(f"- **Total Papers Analyzed**: {stats.get('total_papers', 0)}")
         report_lines.append(f"- **Year Range**: {stats.get('year_range', 'N/A')}")
+
+        # Text source breakdown
+        if 'papers_from_pdf' in stats:
+            total = stats.get('total_papers', 0)
+            pdf_count = stats.get('papers_from_pdf', 0)
+            abstract_count = stats.get('papers_from_abstract', 0)
+            none_count = stats.get('papers_no_text', 0)
+            pdf_pct = (pdf_count / total * 100) if total > 0 else 0
+            abstract_pct = (abstract_count / total * 100) if total > 0 else 0
+
+            report_lines.append(f"- **Classified from Full PDF**: {pdf_count} ({pdf_pct:.1f}%)")
+            report_lines.append(f"- **Classified from Abstract Only**: {abstract_count} ({abstract_pct:.1f}%)")
+            if none_count > 0:
+                report_lines.append(f"- **No Text Available**: {none_count}")
+
         report_lines.append(f"- **Most Common Analysis Type**: {stats.get('most_common_analysis_type', 'N/A')}")
         report_lines.append(f"- **Most Common Cancer Type**: {stats.get('most_common_cancer_type', 'N/A')}")
         report_lines.append(f"- **Most Common Data Source**: {stats.get('most_common_data_source', 'N/A')}\n")

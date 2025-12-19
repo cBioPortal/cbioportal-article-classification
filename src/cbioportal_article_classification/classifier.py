@@ -80,6 +80,14 @@ class PaperClassifier:
         with open(self.classifications_file, "w") as f:
             json.dump(self.classifications, indent=2, fp=f)
 
+    def _save_csv(self):
+        """Save classifications to CSV format."""
+        if self.classifications:
+            df = pd.DataFrame(list(self.classifications.values()))
+            csv_path = METADATA_DIR / "classifications.csv"
+            df.to_csv(csv_path, index=False)
+            logger.debug(f"Saved {len(df)} classifications to CSV")
+
     def extract_text_from_pdf(self, pdf_path: Path, max_pages: int = 10) -> str:
         """Extract text from PDF file.
 
@@ -219,20 +227,48 @@ Instructions:
         logger.info(f"Found {len(all_papers)} total papers to potentially classify")
 
         classified_count = 0
-        results = []
+        upgraded_count = 0
+        skipped_count = 0
 
         for paper in tqdm(all_papers, desc="Classifying papers"):
             paper_id = paper.get("paper_id")
 
-            # Skip if already classified
-            if skip_existing and paper_id in self.classifications:
-                results.append(self.classifications[paper_id])
-                continue
+            # Determine if we should classify this paper
+            should_classify = False
+            is_upgrade = False
+
+            if paper_id in self.classifications:
+                existing = self.classifications[paper_id]
+
+                # Check for failed attempts - skip those
+                if existing.get("classification_failed"):
+                    skipped_count += 1
+                    continue
+
+                # Check if we can upgrade from abstract to PDF
+                if existing.get('text_source') == 'abstract':
+                    if paper.get("pdf_downloaded") and paper.get("pdf_path"):
+                        pdf_path = Path(paper["pdf_path"])
+                        if pdf_path.exists():
+                            logger.info(f"PDF now available for {paper_id}, upgrading classification")
+                            should_classify = True
+                            is_upgrade = True
+
+                # Skip if already classified and no upgrade available
+                if not should_classify and skip_existing:
+                    skipped_count += 1
+                    continue
+            else:
+                # New paper, needs classification
+                should_classify = True
 
             # Check limit
             if max_papers and classified_count >= max_papers:
                 logger.info(f"Reached classification limit of {max_papers}")
                 break
+
+            if not should_classify:
+                continue
 
             # Get paper text and determine source
             paper_text = None
@@ -254,14 +290,24 @@ Instructions:
             # Classify
             classification = self.classify_paper(paper, paper_text, text_source=text_source)
 
-            if "error" not in classification:
+            if "error" in classification:
+                # Track failed attempt to avoid retrying
+                classification["classification_attempted"] = True
+                classification["classification_failed"] = True
+                classification["classification_error"] = classification.get("error")
                 self.classifications[paper_id] = classification
-                results.append(classification)
+                logger.warning(f"Classification failed for {paper_id}: {classification.get('error')}")
+            else:
+                # Successful classification
+                self.classifications[paper_id] = classification
                 classified_count += 1
+                if is_upgrade:
+                    upgraded_count += 1
 
                 # Save periodically
                 if classified_count % 10 == 0:
                     self._save_classifications()
+                    self._save_csv()
 
             # Rate limiting
             time.sleep(1)  # Be respectful with API calls
@@ -269,18 +315,16 @@ Instructions:
         # Final save
         self._save_classifications()
 
-        logger.info(f"Classified {classified_count} new papers")
+        logger.info(f"Classified {classified_count} papers ({upgraded_count} upgraded from abstract to PDF)")
+        logger.info(f"Skipped {skipped_count} papers (already classified or previously failed)")
         logger.info(f"Total papers in database: {len(self.classifications)}")
 
-        # Convert to DataFrame
-        if results:
-            df = pd.DataFrame(results)
+        # Always save complete CSV with ALL classifications
+        self._save_csv()
 
-            # Save to CSV
-            csv_path = METADATA_DIR / "classifications.csv"
-            df.to_csv(csv_path, index=False)
-            logger.info(f"Saved classifications to {csv_path}")
-
+        # Return DataFrame of all classifications
+        if self.classifications:
+            df = pd.DataFrame(list(self.classifications.values()))
             return df
 
         return pd.DataFrame()
