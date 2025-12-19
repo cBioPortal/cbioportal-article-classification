@@ -685,6 +685,7 @@ class PDFDownloader:
         max_downloads: Optional[int] = None,
         checkpoint_frequency: int = 10,
         force_paper_ids: Optional[Set[str]] = None,
+        retry_failed: bool = False,
     ) -> int:
         """Download PDFs for all citations that don't have them yet (parallel).
 
@@ -692,6 +693,8 @@ class PDFDownloader:
             citations_data: Citations metadata dictionary
             max_downloads: Maximum number of PDFs to download (None for unlimited)
             checkpoint_frequency: Save metadata every N successful downloads
+            force_paper_ids: Set of paper IDs to force re-download
+            retry_failed: If True, retry all previously failed downloads
 
         Returns:
             Number of PDFs successfully downloaded
@@ -706,6 +709,16 @@ class PDFDownloader:
                 len(force_paper_ids),
                 ", ".join(sorted(force_paper_ids)),
             )
+
+        # Handle retry_failed flag - reset attempt flags for all previously failed downloads
+        if retry_failed:
+            failed_count = 0
+            for pmid, pmid_data in citations_data["papers"].items():
+                for citation in pmid_data["citations"]:
+                    if citation.get("download_attempted") and not citation.get("pdf_downloaded"):
+                        citation["download_attempted"] = False
+                        failed_count += 1
+            logger.info(f"Retrying {failed_count} previously failed PDF downloads")
 
         remaining_forced = set(force_paper_ids)
 

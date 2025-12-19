@@ -31,13 +31,14 @@ def cli():
 @click.option('--force', is_flag=True, help='Force re-fetch of all citations')
 @click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
 @click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+@click.option('--retry-failed', is_flag=True, help='Retry all previously failed PDF downloads')
 @click.option(
     '--mode',
     type=click.Choice(['all', 'citations', 'pdfs'], case_sensitive=False),
     default='all',
     help='Choose whether to fetch citations, PDFs, or both',
 )
-def fetch(force, max_downloads, force_pmid, mode):
+def fetch(force, max_downloads, force_pmid, retry_failed, mode):
     """Fetch citations and/or PDFs based on mode."""
     mode = mode.lower()
 
@@ -61,7 +62,8 @@ def fetch(force, max_downloads, force_pmid, mode):
         downloaded = downloader.download_all_pdfs(
             citations_data,
             max_downloads=max_downloads,
-            force_paper_ids=set(force_pmid) if force_pmid else None
+            force_paper_ids=set(force_pmid) if force_pmid else None,
+            retry_failed=retry_failed
         )
         logger.info(f"Downloaded {downloaded} PDFs")
 
@@ -69,7 +71,8 @@ def fetch(force, max_downloads, force_pmid, mode):
 @cli.command(name='download-pdfs')
 @click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
 @click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
-def download_pdfs(max_downloads, force_pmid):
+@click.option('--retry-failed', is_flag=True, help='Retry all previously failed PDF downloads')
+def download_pdfs(max_downloads, force_pmid, retry_failed):
     """Download PDFs using existing citation metadata."""
     citations_file = METADATA_DIR / "citations.json"
     if not citations_file.exists():
@@ -83,7 +86,8 @@ def download_pdfs(max_downloads, force_pmid):
     downloaded = downloader.download_all_pdfs(
         citations_data,
         max_downloads=max_downloads,
-        force_paper_ids=set(force_pmid) if force_pmid else None
+        force_paper_ids=set(force_pmid) if force_pmid else None,
+        retry_failed=retry_failed
     )
 
     logger.info(f"Downloaded {downloaded} PDFs")
