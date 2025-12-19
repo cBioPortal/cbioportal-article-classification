@@ -12,7 +12,7 @@ from anthropic import AnthropicBedrock
 import instructor
 from pydantic import BaseModel, Field
 import pandas as pd
-from PyPDF2 import PdfReader
+import pdfplumber
 from tqdm import tqdm
 
 from .config import (
@@ -28,6 +28,9 @@ from .config import (
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+
+# Suppress pdfminer warnings for malformed PDFs
+logging.getLogger('pdfminer').setLevel(logging.ERROR)
 
 
 class PaperClassification(BaseModel):
@@ -84,6 +87,15 @@ class PaperClassifier:
         self.client = instructor.from_anthropic(base_client)
         self.classifications_file = METADATA_DIR / "classifications.json"
         self.classifications = self._load_classifications()
+        self.citation_sentences_file = METADATA_DIR / "citation_sentences.json"
+        self.citation_sentences = self._load_citation_sentences()
+
+    def _load_citation_sentences(self) -> Dict:
+        """Load citation sentences from disk."""
+        if self.citation_sentences_file.exists():
+            with open(self.citation_sentences_file, "r") as f:
+                return json.load(f)
+        return {}
 
     def _load_classifications(self) -> Dict:
         """Load existing classifications from disk."""
@@ -106,7 +118,7 @@ class PaperClassifier:
             logger.debug(f"Saved {len(df)} classifications to CSV")
 
     def extract_text_from_pdf(self, pdf_path: Path, max_pages: int = 10) -> str:
-        """Extract text from PDF file.
+        """Extract text from PDF file (using pdfplumber).
 
         Args:
             pdf_path: Path to PDF file
@@ -116,13 +128,17 @@ class PaperClassifier:
             Extracted text content
         """
         try:
-            reader = PdfReader(pdf_path)
             text_parts = []
 
-            # Extract from first N pages (usually intro/methods are most relevant)
-            for page_num in range(min(len(reader.pages), max_pages)):
-                page = reader.pages[page_num]
-                text_parts.append(page.extract_text())
+            with pdfplumber.open(pdf_path) as pdf:
+                # Extract from first N pages (usually intro/methods are most relevant)
+                num_pages = min(len(pdf.pages), max_pages)
+
+                for i in range(num_pages):
+                    page = pdf.pages[i]
+                    text = page.extract_text()
+                    if text:
+                        text_parts.append(text)
 
             return "\n\n".join(text_parts)
 
@@ -248,34 +264,89 @@ Remember: Be specific and conservative. Only include information that is explici
             logger.error(f"Error classifying paper {paper_data.get('paper_id')}: {e}")
             return {"error": str(e), "paper_id": paper_data.get("paper_id")}
 
-    def _classify_single_paper(self, paper: Dict, is_upgrade: bool = False) -> Dict:
+    def get_citation_sentences(self, paper_id: str) -> Optional[str]:
+        """Get citation sentences for a paper.
+
+        Args:
+            paper_id: Paper ID
+
+        Returns:
+            Formatted citation sentences or None if not available
+        """
+        if paper_id not in self.citation_sentences:
+            return None
+
+        data = self.citation_sentences[paper_id]
+
+        # Combine all citation sentences
+        sentences = []
+
+        # Add cBioPortal paper citations
+        paper_cites = data.get("cbioportal_paper_citations", [])
+        if paper_cites:
+            sentences.append("=== Sentences citing cBioPortal papers ===")
+            sentences.extend(paper_cites)
+            sentences.append("")
+
+        # Add platform mentions
+        platform_mentions = data.get("cbioportal_platform_mentions", [])
+        if platform_mentions:
+            sentences.append("=== Sentences mentioning cBioPortal platform ===")
+            sentences.extend(platform_mentions)
+            sentences.append("")
+
+        # Add data citations
+        data_cites = data.get("data_publication_citations", {})
+        if data_cites:
+            sentences.append("=== Sentences citing underlying data sources ===")
+            for pmid, pmid_sentences in data_cites.items():
+                sentences.append(f"Data PMID {pmid}:")
+                sentences.extend(pmid_sentences)
+                sentences.append("")
+
+        if not sentences:
+            return None
+
+        return "\n".join(sentences)
+
+    def _classify_single_paper(self, paper: Dict, is_upgrade: bool = False, source: str = "auto") -> Dict:
         """Classify a single paper (helper for parallel processing).
 
         Args:
             paper: Paper metadata dictionary
             is_upgrade: Whether this is an upgrade classification
+            source: Classification source - "auto", "pdf", "sentences", or "both"
 
         Returns:
             Result dictionary with classification or error info
         """
         paper_id = paper.get("paper_id")
 
-        # Get paper text and determine source
+        # Get paper text based on source parameter
         paper_text = None
         text_source = "none"
 
-        if paper.get("pdf_downloaded") and paper.get("pdf_path"):
-            pdf_path = Path(paper["pdf_path"])
-            if pdf_path.exists():
-                paper_text = self.extract_text_from_pdf(pdf_path)
-                if paper_text:
-                    text_source = "pdf"
+        if source in ("auto", "pdf", "both"):
+            # Try PDF first
+            if paper.get("pdf_downloaded") and paper.get("pdf_path"):
+                pdf_path = Path(paper["pdf_path"])
+                if pdf_path.exists():
+                    paper_text = self.extract_text_from_pdf(pdf_path)
+                    if paper_text:
+                        text_source = "pdf"
 
-        # If no PDF, use abstract
-        if not paper_text:
-            paper_text = paper.get("abstract", "")
-            if paper_text:
-                text_source = "abstract"
+            # If no PDF and auto mode, use abstract
+            if not paper_text and source == "auto":
+                paper_text = paper.get("abstract", "")
+                if paper_text:
+                    text_source = "abstract"
+
+        if source in ("sentences", "both") and not paper_text:
+            # Try citation sentences
+            sentences_text = self.get_citation_sentences(paper_id)
+            if sentences_text:
+                paper_text = sentences_text
+                text_source = "sentences"
 
         # Classify
         classification = self.classify_paper(paper, paper_text, text_source=text_source)
@@ -293,7 +364,8 @@ Remember: Be specific and conservative. Only include information that is explici
         self,
         citations_data: Dict,
         max_papers: Optional[int] = None,
-        skip_existing: bool = True
+        skip_existing: bool = True,
+        source: str = "auto"
     ) -> pd.DataFrame:
         """Classify all papers in the citations database using parallel processing.
 
@@ -301,6 +373,7 @@ Remember: Be specific and conservative. Only include information that is explici
             citations_data: Citations metadata dictionary
             max_papers: Maximum number of papers to classify (None for all)
             skip_existing: Skip papers that have already been classified
+            source: Classification source - "auto" (default), "pdf", "sentences", or "both"
 
         Returns:
             DataFrame with classification results
@@ -375,7 +448,7 @@ Remember: Be specific and conservative. Only include information that is explici
         with ThreadPoolExecutor(max_workers=CLASSIFICATION_MAX_WORKERS) as executor:
             # Submit all classification tasks
             future_to_paper = {
-                executor.submit(self._classify_single_paper, paper, paper.get("_is_upgrade", False)): paper
+                executor.submit(self._classify_single_paper, paper, paper.get("_is_upgrade", False), source): paper
                 for paper in papers_to_classify
             }
 

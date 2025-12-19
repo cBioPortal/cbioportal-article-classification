@@ -101,11 +101,38 @@ cbioportal-classify run-all
 - `data/metadata/classifications.json` - Raw classification data
 - `data/metadata/classifications.csv` - Classifications in CSV format
 
-## How It Works
+## Workflow
 
-1. **Fetcher**: Uses NCBI's Entrez API to find papers citing cBioPortal papers, downloads PDFs from PMC/bioRxiv/Unpaywall
-2. **Classifier**: Uses Claude via AWS Bedrock with instructor + Pydantic for structured outputs, classifies by analysis type, cancer type, research area, etc.
-3. **Analyzer**: Generates temporal trends, breakdowns by category, and comprehensive markdown reports with embedded plots
+```mermaid
+graph TD
+    subgraph Input
+        A[cBioPortal PMIDs]
+    end
+
+    subgraph Pipeline
+        B[Fetch Citations] --> C[Download PDFs];
+        C --> D[Classify Papers];
+        D --> E[Analyze Data];
+    end
+
+    subgraph Output
+        F[Usage Report]
+        G[Plots]
+    end
+
+    A --> B;
+    B -- Fetched Metadata --> C;
+    C -- Full Text or Abstract --> D;
+    D -- Structured Data --> E;
+    E --> F;
+    E --> G;
+```
+
+### How It Works
+
+1.  **Fetcher**: Uses NCBI's Entrez API to find papers citing cBioPortal papers, downloads PDFs from PMC/bioRxiv/Unpaywall.
+2.  **Classifier**: Uses Claude via AWS Bedrock with `instructor` + Pydantic for structured outputs, classifies by analysis type, cancer type, research area, etc.
+3.  **Analyzer**: Generates temporal trends, breakdowns by category, and comprehensive markdown reports with embedded plots.
 
 ## Configuration
 

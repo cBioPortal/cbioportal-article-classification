@@ -9,6 +9,8 @@ import click
 from .fetcher import CitationFetcher, PDFDownloader
 from .classifier import PaperClassifier
 from .analyzer import UsageAnalyzer
+from .study_fetcher import StudyFetcher
+from .citation_extractor import CitationExtractor
 from .config import METADATA_DIR
 
 logging.basicConfig(
@@ -96,15 +98,30 @@ def download_pdfs(max_downloads, force_pmid, retry_failed):
 @cli.command()
 @click.option('--max-papers', type=int, help='Maximum number of papers to classify')
 @click.option('--reclassify', is_flag=True, help='Re-classify existing papers')
-def classify(max_papers, reclassify):
+@click.option(
+    '--source',
+    type=click.Choice(['auto', 'pdf', 'sentences', 'both'], case_sensitive=False),
+    default='auto',
+    help='Text source for classification: auto (PDF→abstract), pdf (PDF only), sentences (citation sentences), or both (PDF+sentences)'
+)
+def classify(max_papers, reclassify, source):
     """Classify papers using LLM via AWS Bedrock."""
-    logger.info("Starting classification process...")
+    logger.info(f"Starting classification process (source: {source})...")
 
     # Load citations data
     citations_file = METADATA_DIR / "citations.json"
     if not citations_file.exists():
         click.echo(click.style("Error: No citations data found. Run 'fetch' command first!", fg='red'))
         return
+
+    # Check if citation sentences are needed
+    if source in ('sentences', 'both'):
+        citation_sentences_file = METADATA_DIR / "citation_sentences.json"
+        if not citation_sentences_file.exists():
+            click.echo(click.style(f"Warning: No citation sentences found. Run 'extract-citations' first!", fg='yellow'))
+            if source == 'sentences':
+                click.echo(click.style("Cannot proceed with --source=sentences without citation data.", fg='red'))
+                return
 
     with open(citations_file, "r") as f:
         citations_data = json.load(f)
@@ -114,7 +131,8 @@ def classify(max_papers, reclassify):
     df = classifier.classify_all_papers(
         citations_data,
         max_papers=max_papers,
-        skip_existing=not reclassify
+        skip_existing=not reclassify,
+        source=source
     )
 
     logger.info(f"Classification complete! Processed {len(df)} papers")
@@ -172,7 +190,7 @@ def run_all(download_pdfs, max_downloads, max_papers, force_pmid):
 
     # Step 2: Classify
     click.echo("\n" + click.style("Step 2/3: Classifying papers", fg='cyan'))
-    ctx.invoke(classify, max_papers=max_papers, reclassify=False)
+    ctx.invoke(classify, max_papers=max_papers, reclassify=False, source='auto')
 
     # Step 3: Analyze
     click.echo("\n" + click.style("Step 3/3: Analyzing results", fg='cyan'))
@@ -277,6 +295,76 @@ def status():
         click.echo(click.style("Last Run:", fg='cyan', bold=True) + " No data")
 
     click.echo()
+
+
+@cli.command(name='fetch-studies')
+@click.option('--force', is_flag=True, help='Force re-fetch of studies metadata')
+def fetch_studies(force):
+    """Fetch cBioPortal study metadata from API."""
+    logger.info("Fetching cBioPortal study metadata...")
+
+    fetcher = StudyFetcher()
+    studies_data = fetcher.fetch_all_studies(force_refresh=force)
+
+    stats = fetcher.get_summary_stats()
+
+    click.echo(click.style("\n=== cBioPortal Studies Summary ===\n", bold=True))
+    click.echo(f"Total studies: {click.style(str(stats.get('total_studies', 0)), fg='green')}")
+    click.echo(f"Studies with PMID: {click.style(str(stats.get('studies_with_pmid', 0)), fg='green')}")
+    click.echo(f"Unique data PMIDs: {click.style(str(stats.get('unique_data_pmids', 0)), fg='green')}")
+    click.echo(f"Last updated: {stats.get('last_updated', 'Never')}")
+
+    click.echo(f"\nTop cancer types:")
+    for cancer_type, count in stats.get('top_cancer_types', [])[:5]:
+        click.echo(f"  {cancer_type}: {click.style(str(count), fg='green')}")
+
+
+@cli.command(name='extract-citations')
+@click.option('--max-papers', type=int, help='Maximum number of papers to process')
+@click.option('--force', is_flag=True, help='Force re-extraction even if data exists')
+@click.option('--workers', type=int, default=10, help='Number of parallel workers (default: 10)')
+def extract_citations(max_papers, force, workers):
+    """Extract citation sentences from PDFs."""
+    logger.info("Starting citation extraction process...")
+
+    # Load citations data
+    citations_file = METADATA_DIR / "citations.json"
+    if not citations_file.exists():
+        click.echo(click.style("Error: No citations data found. Run 'fetch' command first!", fg='red'))
+        return
+
+    # Check if studies metadata exists
+    studies_file = METADATA_DIR / "cbioportal_studies.json"
+    if not studies_file.exists():
+        click.echo(click.style("Warning: No studies metadata found. Run 'fetch-studies' first for data citation tracking.", fg='yellow'))
+        click.echo("Proceeding with cBioPortal citation extraction only...\n")
+
+    with open(citations_file, "r") as f:
+        citations_data = json.load(f)
+
+    # Extract citations
+    extractor = CitationExtractor()
+    stats = extractor.extract_all_citations(
+        citations_data,
+        max_papers=max_papers,
+        force_reextract=force,
+        max_workers=workers
+    )
+
+    click.echo(click.style("\n=== Citation Extraction Summary ===\n", bold=True))
+
+    if "extraction_run" in stats:
+        run_stats = stats["extraction_run"]
+        click.echo(f"Processed: {click.style(str(run_stats['total_processed']), fg='green')} papers")
+        click.echo(f"Extracted: {click.style(str(run_stats['extracted_count']), fg='green')} papers")
+        if run_stats['error_count'] > 0:
+            click.echo(f"Errors: {click.style(str(run_stats['error_count']), fg='yellow')}")
+
+    click.echo(f"\nTotal papers with extractions: {click.style(str(stats.get('total_papers_extracted', 0)), fg='green')}")
+    click.echo(f"Papers with cBioPortal paper citations: {click.style(str(stats.get('papers_with_cbioportal_paper_citations', 0)), fg='green')}")
+    click.echo(f"Papers with cBioPortal platform mentions: {click.style(str(stats.get('papers_with_cbioportal_platform_mentions', 0)), fg='green')}")
+    click.echo(f"Papers citing underlying data: {click.style(str(stats.get('papers_with_data_citations', 0)), fg='green')}")
+    click.echo(f"Papers citing both cBioPortal and data: {click.style(str(stats.get('papers_citing_both', 0)), fg='green')}")
 
 
 if __name__ == "__main__":

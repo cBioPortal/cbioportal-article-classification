@@ -43,6 +43,7 @@ class CitationFetcher:
         self.last_run_file = METADATA_DIR / "last_run.json"
         self.citations_data = self._load_metadata()
         self.last_run_info = self._load_last_run()
+        self._ensure_reference_fields()
 
     def _extract_countries_from_affiliation(self, affiliation: str) -> List[str]:
         """Extract countries from an affiliation string.
@@ -136,6 +137,229 @@ class CitationFetcher:
         }
         with open(self.last_run_file, "w") as f:
             json.dump(info, indent=2, fp=f)
+
+    def _ensure_reference_fields(self):
+        """Ensure every citation record has reference tracking fields."""
+        for pmid_data in self.citations_data.get("papers", {}).values():
+            for citation in pmid_data.get("citations", []):
+                citation.setdefault("reference_pmids", [])
+                citation.setdefault("reference_pmids_last_updated", None)
+
+    def _fetch_references_opencitations(self, pmids: List[str]) -> Dict[str, List[str]]:
+        """Fetch references from OpenCitations API (fast, bulk-friendly).
+
+        Args:
+            pmids: List of PMIDs to fetch references for
+
+        Returns:
+            Dict mapping PMID -> list of cited PMIDs
+        """
+        reference_map: Dict[str, List[str]] = {}
+        if not pmids:
+            return reference_map
+
+        # OpenCitations supports bulk queries with semicolon separator
+        batch_size = 100  # Balance between speed and reliability
+
+        for i in range(0, len(pmids), batch_size):
+            batch = pmids[i:i + batch_size]
+            # Build bulk query: pmid:{id1};pmid:{id2};...
+            bulk_query = ";".join([f"pmid:{pmid}" for pmid in batch])
+
+            try:
+                url = f"https://opencitations.net/index/api/v1/references/{bulk_query}"
+                response = requests.get(url, timeout=30)
+
+                if response.status_code == 200:
+                    data = response.json()
+                    # Response is a list of citation objects
+                    for item in data:
+                        citing = item.get("citing", "").replace("pmid:", "")
+                        cited = item.get("cited", "").replace("pmid:", "")
+
+                        if citing and cited:
+                            if citing not in reference_map:
+                                reference_map[citing] = []
+                            reference_map[citing].append(cited)
+
+                # Small delay to be respectful
+                time.sleep(0.1)
+
+            except Exception as e:
+                logger.debug(f"OpenCitations failed for batch: {e}")
+                continue
+
+        return reference_map
+
+    def _fetch_references_europepmc(self, pmids: List[str]) -> Dict[str, List[str]]:
+        """Fetch references from Europe PMC API (fallback, faster than US PubMed).
+
+        Args:
+            pmids: List of PMIDs to fetch references for
+
+        Returns:
+            Dict mapping PMID -> list of cited PMIDs
+        """
+        reference_map: Dict[str, List[str]] = {}
+        if not pmids:
+            return reference_map
+
+        # Europe PMC requires individual queries
+        for pmid in pmids:
+            try:
+                url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search"
+                params = {
+                    "query": f"EXT_ID:{pmid}",
+                    "format": "json",
+                    "resultType": "core"
+                }
+
+                response = requests.get(url, params=params, timeout=10)
+
+                if response.status_code == 200:
+                    data = response.json()
+                    result_list = data.get("resultList", {}).get("result", [])
+
+                    if result_list:
+                        # Get the first result
+                        article = result_list[0]
+                        pmcid = article.get("pmcid")
+
+                        if pmcid:
+                            # Fetch references using PMC ID
+                            ref_url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/{pmcid}/references"
+                            ref_response = requests.get(ref_url, params={"format": "json"}, timeout=10)
+
+                            if ref_response.status_code == 200:
+                                ref_data = ref_response.json()
+                                ref_list = ref_data.get("referenceList", {}).get("reference", [])
+
+                                references = []
+                                for ref in ref_list:
+                                    ref_pmid = ref.get("id")
+                                    if ref_pmid:
+                                        references.append(ref_pmid.replace("PMID:", ""))
+
+                                if references:
+                                    reference_map[pmid] = references
+
+                time.sleep(0.2)  # Rate limiting
+
+            except Exception as e:
+                logger.debug(f"Europe PMC failed for PMID {pmid}: {e}")
+                continue
+
+        return reference_map
+
+    def _fetch_reference_pmids(self, pmids: List[str]) -> Dict[str, List[str]]:
+        """Fetch PubMed reference lists using multi-provider fallback.
+
+        Tries providers in order: OpenCitations → Europe PMC → NCBI PubMed
+
+        Args:
+            pmids: List of PMIDs to fetch references for
+
+        Returns:
+            Dict mapping PMID -> list of cited PMIDs
+        """
+        reference_map: Dict[str, List[str]] = {}
+        if not pmids:
+            return reference_map
+
+        # Try OpenCitations first (fastest, bulk queries)
+        logger.info(f"Trying OpenCitations for {len(pmids)} papers...")
+        reference_map = self._fetch_references_opencitations(pmids)
+        found_count = len(reference_map)
+        logger.info(f"OpenCitations found references for {found_count}/{len(pmids)} papers")
+
+        # Find PMIDs that still need references
+        missing_pmids = [p for p in pmids if p not in reference_map]
+
+        if missing_pmids:
+            # Try Europe PMC for missing (faster than US PubMed)
+            logger.info(f"Trying Europe PMC for {len(missing_pmids)} remaining papers...")
+            europepmc_map = self._fetch_references_europepmc(missing_pmids[:100])  # Limit to avoid timeout
+            reference_map.update(europepmc_map)
+            logger.info(f"Europe PMC found references for {len(europepmc_map)} additional papers")
+
+            # Update missing list
+            missing_pmids = [p for p in pmids if p not in reference_map]
+
+        if missing_pmids:
+            # Final fallback: NCBI PubMed (slowest but most reliable)
+            logger.info(f"Using NCBI PubMed for {len(missing_pmids)} remaining papers...")
+            batch_size = 200  # PubMed elink limit
+            batch_indices = range(0, len(missing_pmids), batch_size)
+
+            with tqdm(batch_indices, desc="Fetching PubMed references", unit="batch") as progress:
+                for i in progress:
+                    batch = missing_pmids[i:i + batch_size]
+                    try:
+                        time.sleep(FETCH_DELAY_SECONDS)
+                        handle = Entrez.elink(
+                            dbfrom="pubmed",
+                            db="pubmed",
+                            id=batch,
+                            linkname="pubmed_pubmed_refs"
+                        )
+                        records = Entrez.read(handle)
+                        handle.close()
+                    except Exception as e:
+                        logger.warning(
+                            f"Failed to fetch reference PMIDs for batch starting at index {i}: {e}"
+                        )
+                        continue
+
+                    for record in records:
+                        id_list = record.get("IdList", [])
+                        source_id = str(id_list[0]) if id_list else None
+                        if not source_id:
+                            continue
+
+                        references: List[str] = []
+                        for linkset in record.get("LinkSetDb", []):
+                            if linkset.get("LinkName") == "pubmed_pubmed_refs":
+                                references = [
+                                    str(link["Id"])
+                                    for link in linkset.get("Link", [])
+                                ]
+                                break
+
+                        reference_map[source_id] = references
+
+        logger.info(f"Total: found references for {len(reference_map)}/{len(pmids)} papers")
+        return reference_map
+
+    def _populate_reference_pmids(self, citations: List[Dict]):
+        """Populate reference PMIDs for citations missing this information."""
+        pending = [
+            c for c in citations
+            if c.get("paper_id") and not c.get("reference_pmids_last_updated")
+        ]
+
+        if not pending:
+            return
+
+        pending_pmids = [c["paper_id"] for c in pending]
+        logger.info(f"Fetching PubMed reference lists for {len(pending_pmids)} papers")
+        reference_map = self._fetch_reference_pmids(pending_pmids)
+        timestamp = datetime.now().isoformat()
+
+        for citation in pending:
+            paper_id = citation["paper_id"]
+            if paper_id not in reference_map:
+                continue
+
+            citation["reference_pmids"] = reference_map.get(paper_id, [])
+            citation["reference_pmids_last_updated"] = timestamp
+
+    def _populate_reference_pmids_for_missing(self):
+        """Ensure all stored citations have reference PMIDs fetched."""
+        all_citations: List[Dict] = []
+        for pmid_data in self.citations_data.get("papers", {}).values():
+            all_citations.extend(pmid_data.get("citations", []))
+
+        self._populate_reference_pmids(all_citations)
 
     def get_existing_paper_ids(self) -> Set[str]:
         """Get set of paper IDs we already have."""
@@ -342,6 +566,8 @@ class CitationFetcher:
                             "fetched_date": datetime.now().isoformat(),
                             "pdf_downloaded": False,
                             "pdf_path": None,
+                            "reference_pmids": [],
+                            "reference_pmids_last_updated": None,
                         }
 
                         citations.append(citation_data)
@@ -353,6 +579,7 @@ class CitationFetcher:
                         continue
 
             logger.info(f"Fetched {citation_count} new citations for PMID {pmid}")
+            self._populate_reference_pmids(citations)
             return citations
 
         except Exception as e:
@@ -389,6 +616,9 @@ class CitationFetcher:
             len(p["citations"]) for p in self.citations_data["papers"].values()
         )
         self.citations_data["last_updated"] = datetime.now().isoformat()
+
+        # Ensure all stored citations have reference metadata populated
+        self._populate_reference_pmids_for_missing()
 
         self._save_metadata()
         self._save_last_run(total_new)

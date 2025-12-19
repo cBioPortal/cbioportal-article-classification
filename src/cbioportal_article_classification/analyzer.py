@@ -381,6 +381,79 @@ class UsageAnalyzer:
             "cross_citations": total_papers - citing_one  # Papers citing 2 or more
         }
 
+    def analyze_data_citation_overlap(self) -> Dict:
+        """Analyze overlap between cBioPortal citations and underlying data citations.
+
+        Returns:
+            Dictionary with data citation overlap statistics
+        """
+        citation_sentences_file = METADATA_DIR / "citation_sentences.json"
+        if not citation_sentences_file.exists():
+            logger.warning("No citation sentences data found. Run 'extract-citations' first.")
+            return {}
+
+        with open(citation_sentences_file, "r") as f:
+            citation_data = json.load(f)
+
+        # Categorize papers
+        cbioportal_only = 0
+        data_only = 0
+        both = 0
+        neither = 0
+
+        # Track which data PMIDs are most commonly cited
+        data_pmid_counts = {}
+
+        # Track cBioPortal paper citations vs platform mentions
+        papers_citing_cbioportal_papers = 0
+        papers_mentioning_platform = 0
+
+        for paper_id, data in citation_data.items():
+            # Check for any cBioPortal mention (paper citation OR platform mention)
+            has_cbioportal = (data.get("total_cbioportal_paper_citations", 0) > 0
+                            or data.get("total_cbioportal_platform_mentions", 0) > 0)
+            has_data = data.get("total_data_pmids_cited", 0) > 0
+
+            if has_cbioportal and has_data:
+                both += 1
+            elif has_cbioportal:
+                cbioportal_only += 1
+            elif has_data:
+                data_only += 1
+            else:
+                neither += 1
+
+            # Track breakdown of cBioPortal mentions
+            if data.get("total_cbioportal_paper_citations", 0) > 0:
+                papers_citing_cbioportal_papers += 1
+            if data.get("total_cbioportal_platform_mentions", 0) > 0:
+                papers_mentioning_platform += 1
+
+            # Count data PMID occurrences
+            for pmid in data.get("data_publication_citations", {}).keys():
+                data_pmid_counts[pmid] = data_pmid_counts.get(pmid, 0) + 1
+
+        # Top cited data PMIDs
+        top_data_pmids = sorted(
+            data_pmid_counts.items(),
+            key=lambda x: x[1],
+            reverse=True
+        )[:20]
+
+        total_papers = len(citation_data)
+
+        return {
+            "total_papers_analyzed": total_papers,
+            "cbioportal_only": cbioportal_only,
+            "data_only": data_only,
+            "both_cbioportal_and_data": both,
+            "neither": neither,
+            "percentage_citing_both": round(both / total_papers * 100, 1) if total_papers > 0 else 0,
+            "papers_citing_cbioportal_papers": papers_citing_cbioportal_papers,
+            "papers_mentioning_platform": papers_mentioning_platform,
+            "top_cited_data_pmids": top_data_pmids
+        }
+
     def analyze_temporal_trends(self) -> pd.DataFrame:
         """Analyze usage trends over time.
 
@@ -625,6 +698,37 @@ class UsageAnalyzer:
             report_lines.append(f"- Papers citing only 1 cBioPortal publication: {overlap_stats['citing_one_paper']:,}")
             report_lines.append(f"- Papers citing 2 cBioPortal publications: {overlap_stats['citing_two_papers']:,}")
             report_lines.append(f"- Papers citing all 3 cBioPortal publications: {overlap_stats['citing_three_papers']:,}\n")
+
+        # Add data citation overlap section
+        data_overlap_stats = self.analyze_data_citation_overlap()
+        if data_overlap_stats:
+            report_lines.append("## Data Citation Analysis\n")
+            report_lines.append("*Analysis of papers that cite both cBioPortal and underlying data sources*\n")
+            total = data_overlap_stats.get('total_papers_analyzed', 0)
+            both = data_overlap_stats.get('both_cbioportal_and_data', 0)
+            cbioportal_only = data_overlap_stats.get('cbioportal_only', 0)
+            data_only = data_overlap_stats.get('data_only', 0)
+            pct = data_overlap_stats.get('percentage_citing_both', 0)
+
+            report_lines.append(f"- **Total papers with extracted citations**: {total:,}")
+            report_lines.append(f"- **Papers citing cBioPortal AND underlying data**: {both:,} ({pct}%)")
+            report_lines.append(f"- **Papers citing cBioPortal only**: {cbioportal_only:,}")
+            report_lines.append(f"- **Papers citing data PMIDs only**: {data_only:,}\n")
+
+            # cBioPortal citation breakdown
+            paper_cites = data_overlap_stats.get('papers_citing_cbioportal_papers', 0)
+            platform_mentions = data_overlap_stats.get('papers_mentioning_platform', 0)
+            report_lines.append("### cBioPortal Citation Breakdown\n")
+            report_lines.append(f"- Papers citing cBioPortal papers (PMIDs): {paper_cites:,}")
+            report_lines.append(f"- Papers mentioning cBioPortal platform (without PMID): {platform_mentions:,}\n")
+
+            # Top cited data sources
+            top_data = data_overlap_stats.get('top_cited_data_pmids', [])
+            if top_data:
+                report_lines.append("### Most Frequently Co-Cited Data Sources\n")
+                for i, (pmid, count) in enumerate(top_data[:10], 1):
+                    report_lines.append(f"{i}. PMID {pmid}: {count:,} papers")
+                report_lines.append("")
 
         # Add Visualizations section if plots exist
         if plot_filename or research_plot_filename:
