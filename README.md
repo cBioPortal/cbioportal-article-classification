@@ -4,6 +4,19 @@
 > This tool is currently under active development and was vibe-coded. Use at your own risk!
 > Expect bugs, breaking changes, and incomplete features.
 
+## 📊 See the Latest Results
+
+**[→ View the latest usage analysis report](output/reports/latest.md)**
+
+This report includes:
+- Classification of 133+ papers citing cBioPortal
+- Embedded visualizations and plots
+- Analysis types, research areas, and cancer types studied
+- Temporal trends showing citation patterns over time
+- Detailed summaries of how researchers use cBioPortal
+
+---
+
 A comprehensive tool for fetching, classifying, and analyzing scientific papers that cite cBioPortal. This tool helps track how researchers are using cBioPortal across different cancer types, analysis methods, and research areas.
 
 ## Features

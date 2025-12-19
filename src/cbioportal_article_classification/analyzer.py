@@ -226,6 +226,13 @@ class UsageAnalyzer:
         logger.info(f"Saved visualization to {plot_path}")
         plt.close()
 
+        # Create/update symlink to latest
+        latest_link = PLOTS_DIR / "usage_analysis_latest.png"
+        if latest_link.exists() or latest_link.is_symlink():
+            latest_link.unlink()
+        latest_link.symlink_to(filename)
+        logger.debug(f"Updated symlink: usage_analysis_latest.png -> {filename}")
+
         return filename
 
     def create_research_area_plot(self) -> Optional[str]:
@@ -256,6 +263,13 @@ class UsageAnalyzer:
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
         logger.info(f"Saved research areas plot to {plot_path}")
         plt.close()
+
+        # Create/update symlink to latest
+        latest_link = PLOTS_DIR / "research_areas_latest.png"
+        if latest_link.exists() or latest_link.is_symlink():
+            latest_link.unlink()
+        latest_link.symlink_to(filename)
+        logger.debug(f"Updated symlink: research_areas_latest.png -> {filename}")
 
         return filename
 
@@ -392,11 +406,20 @@ class UsageAnalyzer:
                 report_lines.append("")
 
         # Save report
-        report_path = REPORTS_DIR / f"usage_report_{datetime.now().strftime('%Y%m%d')}.md"
+        filename = f"usage_report_{datetime.now().strftime('%Y%m%d')}.md"
+        report_path = REPORTS_DIR / filename
         with open(report_path, "w") as f:
             f.write("\n".join(report_lines))
 
         logger.info(f"Generated report at {report_path}")
+
+        # Create/update symlink to latest
+        latest_link = REPORTS_DIR / "latest.md"
+        if latest_link.exists() or latest_link.is_symlink():
+            latest_link.unlink()
+        latest_link.symlink_to(filename)
+        logger.debug(f"Updated symlink: latest.md -> {filename}")
+
         return str(report_path)
 
 
