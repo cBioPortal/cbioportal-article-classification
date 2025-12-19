@@ -198,11 +198,14 @@ class UsageAnalyzer:
         # 4. Temporal Trends
         temporal_df = self.analyze_temporal_trends()
         if not temporal_df.empty:
-            axes[1, 1].plot(temporal_df['year'], temporal_df['count'], marker='o', linewidth=2)
+            axes[1, 1].plot(temporal_df['year'], temporal_df['count'], marker='o', linewidth=2, markersize=8)
             axes[1, 1].set_xlabel('Year')
             axes[1, 1].set_ylabel('Number of Papers')
             axes[1, 1].set_title('cBioPortal Citations Over Time')
             axes[1, 1].grid(True, alpha=0.3)
+            # Format x-axis to show years as integers
+            axes[1, 1].xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+            axes[1, 1].set_xlim(temporal_df['year'].min() - 0.5, temporal_df['year'].max() + 0.5)
 
         plt.tight_layout()
         filename = f"usage_analysis_{datetime.now().strftime('%Y%m%d')}.png"
