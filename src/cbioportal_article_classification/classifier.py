@@ -18,6 +18,7 @@ from .config import (
     AWS_PROFILE,
     BEDROCK_MODEL_ID,
     CLASSIFICATION_CATEGORIES,
+    CLASSIFICATION_SCHEMA_VERSION,
     METADATA_DIR,
 )
 
@@ -188,6 +189,7 @@ Instructions:
 
             # Convert to dict and add metadata
             classification = classification_obj.model_dump()
+            classification["schema_version"] = CLASSIFICATION_SCHEMA_VERSION
             classification["paper_id"] = paper_data.get("paper_id")
             classification["title"] = paper_data.get("title")
             classification["year"] = paper_data.get("year")
@@ -245,8 +247,15 @@ Instructions:
                     skipped_count += 1
                     continue
 
-                # Check if we can upgrade from abstract to PDF
-                if existing.get('text_source') == 'abstract':
+                # Re-classify if schema version is outdated
+                existing_version = existing.get("schema_version", 0)
+                if existing_version < CLASSIFICATION_SCHEMA_VERSION:
+                    logger.info(f"Schema outdated for {paper_id} (v{existing_version} -> v{CLASSIFICATION_SCHEMA_VERSION}), re-classifying")
+                    should_classify = True
+                    is_upgrade = True
+
+                # Check if we can upgrade from abstract to PDF (only if schema is current)
+                elif existing.get('text_source') == 'abstract':
                     if paper.get("pdf_downloaded") and paper.get("pdf_path"):
                         pdf_path = Path(paper["pdf_path"])
                         if pdf_path.exists():

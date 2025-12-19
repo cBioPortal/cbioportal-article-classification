@@ -35,6 +35,13 @@ BEDROCK_MODEL_ID = os.getenv("BEDROCK_MODEL_ID", "anthropic.claude-3-sonnet-2024
 # S3 configuration (optional, for future use)
 S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
 
+# Classification Schema Version
+# Increment this when the classification schema changes (new fields, categories, major prompt changes)
+# Version History:
+#   v1: Initial schema (no text_source tracking)
+#   v2: Added text_source field (pdf/abstract/none)
+CLASSIFICATION_SCHEMA_VERSION = 2
+
 # Classification categories
 CLASSIFICATION_CATEGORIES = {
     "analysis_type": [
