@@ -1,4 +1,4 @@
-"""Module for extracting citation sentences from PDFs."""
+"""Module for extracting citation sentences from PDFs and JATS XML."""
 import json
 import logging
 import re
@@ -12,6 +12,7 @@ from tqdm import tqdm
 import pdfplumber
 
 from .config import METADATA_DIR, CBIOPORTAL_PMIDS
+from .jats_parser import JATSParser
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -30,6 +31,9 @@ class CitationExtractor:
         self.cbioportal_pmids = set(CBIOPORTAL_PMIDS)
         self.data_pmids = set()  # Will be populated from studies metadata
         self.data_pmids_version: Optional[str] = None
+
+        # Initialize JATS parser for XML extraction
+        self.jats_parser = JATSParser()
 
         # Pre-compile regex patterns for performance
         self._compile_patterns()
@@ -270,6 +274,89 @@ class CitationExtractor:
 
         return unique_sentences
 
+    def extract_from_jats_xml(
+        self,
+        xml_path: Path,
+        paper_metadata: Optional[Dict] = None,
+    ) -> Dict:
+        """Extract citation contexts from JATS XML file.
+
+        Args:
+            xml_path: Path to JATS XML file
+            paper_metadata: Optional paper metadata for filtering data PMIDs
+
+        Returns:
+            Dictionary with extracted citation contexts
+        """
+        start_time = time.time()
+
+        # Extract cBioPortal paper citations
+        cbioportal_paper_citations, cbioportal_platform_mentions = self.jats_parser.extract_citation_contexts(
+            xml_path,
+            self.cbioportal_pmids,
+            context_keywords=["cBioPortal", "cbioportal.org"]
+        )
+
+        # Extract data publication citations (only if we have data PMIDs loaded)
+        data_publication_citations = {}
+        pmids_to_check: Set[str] = set()
+        references_known = False
+
+        if paper_metadata:
+            reference_pmids = paper_metadata.get("reference_pmids") or []
+            pmids_to_check = {
+                str(pmid)
+                for pmid in reference_pmids
+            }
+            references_known = bool(paper_metadata.get("reference_pmids_last_updated"))
+
+        if self.data_pmids:
+            if pmids_to_check:
+                # Filter data PMIDs to only those in references
+                pmids_to_check = pmids_to_check & self.data_pmids
+            elif references_known:
+                # We know the references but none match data PMIDs
+                pmids_to_check = set()
+            else:
+                # No reference info, search all data PMIDs
+                pmids_to_check = set(self.data_pmids)
+
+            num_data_pmids = len(pmids_to_check)
+
+            # Extract contexts for each data PMID
+            if pmids_to_check:
+                for pmid in pmids_to_check:
+                    contexts, _ = self.jats_parser.extract_citation_contexts(
+                        xml_path,
+                        {pmid},
+                        context_keywords=None
+                    )
+                    if contexts:
+                        data_publication_citations[pmid] = contexts
+        else:
+            num_data_pmids = 0
+
+        total_time = time.time() - start_time
+
+        logger.debug(
+            f"JATS XML extraction: {total_time:.2f}s - "
+            f"{len(cbioportal_paper_citations)} cBioPortal citations, "
+            f"{len(cbioportal_platform_mentions)} platform mentions, "
+            f"{len(data_publication_citations)} data citations"
+        )
+
+        return {
+            "cbioportal_paper_citations": cbioportal_paper_citations,
+            "cbioportal_platform_mentions": cbioportal_platform_mentions,
+            "data_publication_citations": data_publication_citations,
+            "total_cbioportal_paper_citations": len(cbioportal_paper_citations),
+            "total_cbioportal_platform_mentions": len(cbioportal_platform_mentions),
+            "total_data_pmids_cited": len(data_publication_citations),
+            "extraction_method": "jats_xml",
+            "extraction_time": total_time,
+            "data_pmids_checked": num_data_pmids,
+        }
+
     def extract_citations_from_paper(
         self,
         paper_id: str,
@@ -277,12 +364,13 @@ class CitationExtractor:
         force_reextract: bool = False,
         paper_metadata: Optional[Dict] = None,
     ) -> Dict:
-        """Extract citation sentences from a single paper.
+        """Extract citation sentences from a single paper (JATS XML preferred, PDF fallback).
 
         Args:
             paper_id: Paper ID
             pdf_path: Path to PDF file
             force_reextract: Force re-extraction even if data exists
+            paper_metadata: Optional paper metadata (used for XML path if available)
 
         Returns:
             Dictionary with extracted citation sentences
@@ -294,6 +382,31 @@ class CitationExtractor:
         if paper_id in self.citation_data and not force_reextract:
             logger.debug(f"Citation sentences already extracted for {paper_id}")
             return self.citation_data[paper_id]
+
+        # Prefer JATS XML if available
+        xml_path = None
+        if paper_metadata and paper_metadata.get("xml_path"):
+            xml_path = Path(paper_metadata["xml_path"])
+        else:
+            # Try to find XML file by paper_id
+            from .config import METADATA_DIR
+            potential_xml_path = Path(METADATA_DIR).parent / "data" / "xml" / f"{paper_id}.xml"
+            if potential_xml_path.exists():
+                xml_path = potential_xml_path
+
+        # If XML exists, use JATS parser
+        if xml_path and xml_path.exists():
+            logger.debug(f"Using JATS XML for {paper_id}: {xml_path}")
+            try:
+                result = self.extract_from_jats_xml(xml_path, paper_metadata)
+                result["paper_id"] = paper_id
+                result["extraction_date"] = datetime.now().isoformat()
+                result["xml_path"] = str(xml_path)
+                result["data_pmids_version"] = self._current_data_pmids_version()
+                return result
+            except Exception as e:
+                logger.warning(f"JATS XML extraction failed for {paper_id}, falling back to PDF: {e}")
+                # Fall through to PDF extraction
 
         # Pass 1: Extract first + last pages (fast)
         step_start = time.time()
@@ -417,6 +530,7 @@ class CitationExtractor:
             "total_cbioportal_platform_mentions": len(cbioportal_platform_mentions),
             "total_data_pmids_cited": len(data_publication_citations),
             "data_pmids_version": self._current_data_pmids_version(),
+            "extraction_method": "pdf",  # Track that PDF was used
             "_timing": step_times  # Store timing for analysis
         }
 
@@ -449,6 +563,7 @@ class CitationExtractor:
         self,
         citations_data: Dict,
         max_papers: Optional[int] = None,
+        paper_ids: Optional[Set[str]] = None,
         force_reextract: bool = False,
         max_workers: int = 10
     ) -> Dict:
@@ -457,6 +572,7 @@ class CitationExtractor:
         Args:
             citations_data: Citations metadata dictionary
             max_papers: Maximum number of papers to process (None for all)
+            paper_ids: If provided, only process papers with these PMIDs
             force_reextract: Force re-extraction even if data exists
             max_workers: Number of parallel workers
 
@@ -471,10 +587,16 @@ class CitationExtractor:
         skipped_existing = 0
         for pmid_data in citations_data.get("papers", {}).values():
             for citation in pmid_data.get("citations", []):
+                paper_id = citation.get("paper_id")
+
+                # If paper_ids filter is provided, only process those papers
+                if paper_ids and paper_id not in paper_ids:
+                    continue
+
                 if citation.get("pdf_downloaded") and citation.get("pdf_path"):
                     pdf_path = Path(citation["pdf_path"])
                     if pdf_path.exists():
-                        if self._should_skip_paper(citation.get("paper_id"), pdf_path, force_reextract):
+                        if self._should_skip_paper(paper_id, pdf_path, force_reextract):
                             skipped_existing += 1
                             continue
 

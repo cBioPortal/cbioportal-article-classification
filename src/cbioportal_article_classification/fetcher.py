@@ -16,6 +16,7 @@ from .config import (
     CBIOPORTAL_PMIDS,
     METADATA_DIR,
     PDF_DIR,
+    XML_DIR,
     FETCH_DELAY_SECONDS,
     NCBI_EMAIL,
     NCBI_API_KEY,
@@ -145,187 +146,60 @@ class CitationFetcher:
                 citation.setdefault("reference_pmids", [])
                 citation.setdefault("reference_pmids_last_updated", None)
 
-    def _fetch_references_opencitations(self, pmids: List[str]) -> Dict[str, List[str]]:
-        """Fetch references from OpenCitations API (fast, bulk-friendly).
-
-        Args:
-            pmids: List of PMIDs to fetch references for
-
-        Returns:
-            Dict mapping PMID -> list of cited PMIDs
-        """
-        reference_map: Dict[str, List[str]] = {}
-        if not pmids:
-            return reference_map
-
-        # OpenCitations supports bulk queries with semicolon separator
-        batch_size = 100  # Balance between speed and reliability
-
-        for i in range(0, len(pmids), batch_size):
-            batch = pmids[i:i + batch_size]
-            # Build bulk query: pmid:{id1};pmid:{id2};...
-            bulk_query = ";".join([f"pmid:{pmid}" for pmid in batch])
-
-            try:
-                url = f"https://opencitations.net/index/api/v1/references/{bulk_query}"
-                response = requests.get(url, timeout=30)
-
-                if response.status_code == 200:
-                    data = response.json()
-                    # Response is a list of citation objects
-                    for item in data:
-                        citing = item.get("citing", "").replace("pmid:", "")
-                        cited = item.get("cited", "").replace("pmid:", "")
-
-                        if citing and cited:
-                            if citing not in reference_map:
-                                reference_map[citing] = []
-                            reference_map[citing].append(cited)
-
-                # Small delay to be respectful
-                time.sleep(0.1)
-
-            except Exception as e:
-                logger.debug(f"OpenCitations failed for batch: {e}")
-                continue
-
-        return reference_map
-
-    def _fetch_references_europepmc(self, pmids: List[str]) -> Dict[str, List[str]]:
-        """Fetch references from Europe PMC API (fallback, faster than US PubMed).
-
-        Args:
-            pmids: List of PMIDs to fetch references for
-
-        Returns:
-            Dict mapping PMID -> list of cited PMIDs
-        """
-        reference_map: Dict[str, List[str]] = {}
-        if not pmids:
-            return reference_map
-
-        # Europe PMC requires individual queries
-        for pmid in pmids:
-            try:
-                url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/search"
-                params = {
-                    "query": f"EXT_ID:{pmid}",
-                    "format": "json",
-                    "resultType": "core"
-                }
-
-                response = requests.get(url, params=params, timeout=10)
-
-                if response.status_code == 200:
-                    data = response.json()
-                    result_list = data.get("resultList", {}).get("result", [])
-
-                    if result_list:
-                        # Get the first result
-                        article = result_list[0]
-                        pmcid = article.get("pmcid")
-
-                        if pmcid:
-                            # Fetch references using PMC ID
-                            ref_url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/{pmcid}/references"
-                            ref_response = requests.get(ref_url, params={"format": "json"}, timeout=10)
-
-                            if ref_response.status_code == 200:
-                                ref_data = ref_response.json()
-                                ref_list = ref_data.get("referenceList", {}).get("reference", [])
-
-                                references = []
-                                for ref in ref_list:
-                                    ref_pmid = ref.get("id")
-                                    if ref_pmid:
-                                        references.append(ref_pmid.replace("PMID:", ""))
-
-                                if references:
-                                    reference_map[pmid] = references
-
-                time.sleep(0.2)  # Rate limiting
-
-            except Exception as e:
-                logger.debug(f"Europe PMC failed for PMID {pmid}: {e}")
-                continue
-
-        return reference_map
+    def _lookup_seeds_for_paper(self, paper_id: str) -> List[str]:
+        """Return list of CBioPortal seed PMIDs that include the citing paper."""
+        seeds = []
+        for seed, pmid_data in self.citations_data.get("papers", {}).items():
+            if any(c.get("paper_id") == paper_id for c in pmid_data.get("citations", [])):
+                seeds.append(seed)
+        return seeds
 
     def _fetch_reference_pmids(self, pmids: List[str]) -> Dict[str, List[str]]:
-        """Fetch PubMed reference lists using multi-provider fallback.
-
-        Tries providers in order: OpenCitations → Europe PMC → NCBI PubMed
-
-        Args:
-            pmids: List of PMIDs to fetch references for
-
-        Returns:
-            Dict mapping PMID -> list of cited PMIDs
-        """
+        """Fetch PubMed reference lists for a set of PMIDs."""
         reference_map: Dict[str, List[str]] = {}
         if not pmids:
             return reference_map
 
-        # Try OpenCitations first (fastest, bulk queries)
-        logger.info(f"Trying OpenCitations for {len(pmids)} papers...")
-        reference_map = self._fetch_references_opencitations(pmids)
-        found_count = len(reference_map)
-        logger.info(f"OpenCitations found references for {found_count}/{len(pmids)} papers")
+        logger.info(f"Fetching reference PMIDs from NCBI PubMed for {len(pmids)} papers...")
 
-        # Find PMIDs that still need references
-        missing_pmids = [p for p in pmids if p not in reference_map]
+        batch_size = 200
+        batch_indices = range(0, len(pmids), batch_size)
 
-        if missing_pmids:
-            # Try Europe PMC for missing (faster than US PubMed)
-            logger.info(f"Trying Europe PMC for {len(missing_pmids)} remaining papers...")
-            europepmc_map = self._fetch_references_europepmc(missing_pmids[:100])  # Limit to avoid timeout
-            reference_map.update(europepmc_map)
-            logger.info(f"Europe PMC found references for {len(europepmc_map)} additional papers")
+        with tqdm(batch_indices, desc="Fetching PubMed references", unit="batch") as progress:
+            for i in progress:
+                batch = pmids[i:i + batch_size]
+                try:
+                    time.sleep(FETCH_DELAY_SECONDS)
+                    handle = Entrez.elink(
+                        dbfrom="pubmed",
+                        db="pubmed",
+                        id=batch,
+                        linkname="pubmed_pubmed_refs"
+                    )
+                    records = Entrez.read(handle)
+                    handle.close()
+                except Exception as e:
+                    logger.warning(
+                        f"Failed to fetch reference PMIDs for batch starting at index {i}: {e}"
+                    )
+                    continue
 
-            # Update missing list
-            missing_pmids = [p for p in pmids if p not in reference_map]
-
-        if missing_pmids:
-            # Final fallback: NCBI PubMed (slowest but most reliable)
-            logger.info(f"Using NCBI PubMed for {len(missing_pmids)} remaining papers...")
-            batch_size = 200  # PubMed elink limit
-            batch_indices = range(0, len(missing_pmids), batch_size)
-
-            with tqdm(batch_indices, desc="Fetching PubMed references", unit="batch") as progress:
-                for i in progress:
-                    batch = missing_pmids[i:i + batch_size]
-                    try:
-                        time.sleep(FETCH_DELAY_SECONDS)
-                        handle = Entrez.elink(
-                            dbfrom="pubmed",
-                            db="pubmed",
-                            id=batch,
-                            linkname="pubmed_pubmed_refs"
-                        )
-                        records = Entrez.read(handle)
-                        handle.close()
-                    except Exception as e:
-                        logger.warning(
-                            f"Failed to fetch reference PMIDs for batch starting at index {i}: {e}"
-                        )
+                for record in records:
+                    id_list = record.get("IdList", [])
+                    source_id = str(id_list[0]) if id_list else None
+                    if not source_id:
                         continue
 
-                    for record in records:
-                        id_list = record.get("IdList", [])
-                        source_id = str(id_list[0]) if id_list else None
-                        if not source_id:
-                            continue
+                    references: List[str] = []
+                    for linkset in record.get("LinkSetDb", []):
+                        if linkset.get("LinkName") == "pubmed_pubmed_refs":
+                            references = [
+                                str(link["Id"])
+                                for link in linkset.get("Link", [])
+                            ]
+                            break
 
-                        references: List[str] = []
-                        for linkset in record.get("LinkSetDb", []):
-                            if linkset.get("LinkName") == "pubmed_pubmed_refs":
-                                references = [
-                                    str(link["Id"])
-                                    for link in linkset.get("Link", [])
-                                ]
-                                break
-
-                        reference_map[source_id] = references
+                    reference_map[source_id] = references
 
         logger.info(f"Total: found references for {len(reference_map)}/{len(pmids)} papers")
         return reference_map
@@ -360,6 +234,122 @@ class CitationFetcher:
             all_citations.extend(pmid_data.get("citations", []))
 
         self._populate_reference_pmids(all_citations)
+
+    def refresh_specific_papers(self, paper_ids: Set[str], force: bool = False) -> Dict:
+        """Refresh metadata for specific citing papers (re-fetch from PubMed).
+
+        Args:
+            paper_ids: Set of citing paper PMIDs to refresh
+            force: If True, refetch even if metadata seems current
+
+        Returns:
+            Updated citations metadata
+        """
+        if not paper_ids:
+            return self.citations_data
+
+        logger.info(f"Refreshing metadata for {len(paper_ids)} specific paper(s)")
+
+        updated_count = 0
+
+        for paper_id in paper_ids:
+            # Find which seed(s) contain this paper
+            found = False
+
+            for seed, pmid_data in self.citations_data.get("papers", {}).items():
+                for i, citation in enumerate(pmid_data.get("citations", [])):
+                    if citation.get("paper_id") == paper_id:
+                        found = True
+
+                        # Fetch updated metadata for this ONE paper from PubMed
+                        try:
+                            time.sleep(FETCH_DELAY_SECONDS)
+                            handle = Entrez.efetch(
+                                db="pubmed",
+                                id=[paper_id],
+                                rettype="medline",
+                                retmode="xml"
+                            )
+                            records = Entrez.read(handle)
+                            handle.close()
+
+                            if records["PubmedArticle"]:
+                                article = records["PubmedArticle"][0]
+                                medline = article["MedlineCitation"]
+
+                                # Update PMC ID if it changed
+                                article_ids = article.get("PubmedData", {}).get("ArticleIdList", [])
+                                for aid in article_ids:
+                                    if aid.attributes.get("IdType") == "pmc":
+                                        new_pmc_id = str(aid)
+                                        if citation.get("pmc_id") != new_pmc_id:
+                                            logger.info(f"Updated PMC ID for {paper_id}: {citation.get('pmc_id')} → {new_pmc_id}")
+                                            citation["pmc_id"] = new_pmc_id
+
+                                # Update other fields as needed
+                                updated_count += 1
+                                logger.info(f"Refreshed metadata for {paper_id}")
+
+                        except Exception as e:
+                            logger.warning(f"Failed to refresh metadata for {paper_id}: {e}")
+
+                        break  # Found the paper, move to next
+
+            if not found:
+                logger.warning(f"Paper ID {paper_id} not found in existing metadata")
+
+        if updated_count > 0:
+            self._save_metadata()
+            logger.info(f"Successfully refreshed {updated_count} paper(s)")
+
+        return self.citations_data
+
+    def refresh_seed_only(self, force_refresh: bool = False) -> Dict:
+        """Refresh seed PMID citation counts without fetching full metadata.
+
+        This is a lightweight operation that just checks how many papers cite each seed.
+
+        Args:
+            force_refresh: Ignored (kept for API compatibility)
+
+        Returns:
+            Dictionary with updated citation counts
+        """
+        logger.info("Refreshing seed PMID citation counts...")
+
+        for pmid in CBIOPORTAL_PMIDS:
+            try:
+                time.sleep(FETCH_DELAY_SECONDS)
+                handle = Entrez.elink(
+                    dbfrom="pubmed",
+                    db="pubmed",
+                    id=pmid,
+                    linkname="pubmed_pubmed_citedin"
+                )
+                record = Entrez.read(handle)
+                handle.close()
+
+                if record and record[0].get("LinkSetDb"):
+                    # Get count of citing papers
+                    citing_pmids = [link["Id"] for link in record[0]["LinkSetDb"][0]["Link"]]
+                    new_count = len(citing_pmids)
+
+                    # Get current count
+                    current_count = len(self.citations_data.get("papers", {}).get(pmid, {}).get("citations", []))
+
+                    if new_count != current_count:
+                        logger.info(f"PMID {pmid}: citation count changed from {current_count} → {new_count}")
+                    else:
+                        logger.info(f"PMID {pmid}: {current_count} citations (unchanged)")
+
+                else:
+                    logger.warning(f"No citations found for PMID {pmid}")
+
+            except Exception as e:
+                logger.error(f"Error checking citations for PMID {pmid}: {e}")
+
+        logger.info("Seed refresh complete")
+        return self.citations_data
 
     def get_existing_paper_ids(self) -> Set[str]:
         """Get set of paper IDs we already have."""
@@ -566,6 +556,8 @@ class CitationFetcher:
                             "fetched_date": datetime.now().isoformat(),
                             "pdf_downloaded": False,
                             "pdf_path": None,
+                            "xml_downloaded": False,
+                            "xml_path": None,
                             "reference_pmids": [],
                             "reference_pmids_last_updated": None,
                         }
@@ -666,6 +658,67 @@ class PDFDownloader:
             logger.info(f"Found {synced} existing PDFs on disk, synced metadata")
 
         return synced
+
+    def _sync_existing_xmls(self, citations_data: Dict) -> int:
+        """Check for existing JATS XML files on disk and sync metadata."""
+        synced = 0
+
+        for pmid_data in citations_data["papers"].values():
+            for citation in pmid_data["citations"]:
+                xml_filename = f"{citation['paper_id']}.xml"
+                xml_path = XML_DIR / xml_filename
+
+                if xml_path.exists():
+                    if not citation.get("xml_downloaded"):
+                        citation["xml_downloaded"] = True
+                        citation["xml_path"] = str(xml_path)
+                        synced += 1
+                        logger.debug(f"Synced existing XML: {xml_filename}")
+
+                    citation["xml_open_access"] = True
+
+        if synced > 0:
+            logger.info(f"Found {synced} existing XML files on disk, synced metadata")
+
+        return synced
+
+    def download_jats_xml(self, citation: Dict, output_path: Path) -> bool:
+        """Download JATS XML from Europe PMC for papers with PMC IDs."""
+        pmc_id = citation.get("pmc_id") or ""
+        if not pmc_id:
+            return False
+
+        pmc_id_clean = pmc_id.replace("PMC", "")
+
+        try:
+            xml_url = f"https://www.ebi.ac.uk/europepmc/webservices/rest/PMC{pmc_id_clean}/fullTextXML"
+            response = self.session.get(xml_url, timeout=PDF_DOWNLOAD_TIMEOUT, allow_redirects=True)
+
+            if response.status_code == 200:
+                content_type = response.headers.get("Content-Type", "")
+                if "xml" in content_type or response.text.strip().startswith("<?xml"):
+                    output_path.write_text(response.text, encoding="utf-8")
+                    citation["xml_open_access"] = True
+                    logger.info(f"Downloaded JATS XML for PMC{pmc_id_clean}: {citation['title'][:50]}")
+                    return True
+                logger.warning(
+                    f"JATS XML download failed for PMC{pmc_id_clean}: Invalid content-type {content_type}"
+                )
+            else:
+                if response.status_code == 404:
+                    citation["xml_open_access"] = False
+                    logger.debug(
+                        f"JATS XML not available for PMC{pmc_id_clean}: Not in Open Access subset"
+                    )
+                else:
+                    logger.warning(
+                        f"JATS XML download failed for PMC{pmc_id_clean}: HTTP {response.status_code}"
+                    )
+
+        except Exception as e:
+            logger.warning(f"JATS XML download failed for PMC{pmc_id_clean}: {e}")
+
+        return False
 
     def _download_from_pmc_id(self, pmc_id: str, paper_data: Dict, output_path: Path) -> bool:
         """Download a PMC PDF given an ID (without PMC prefix) via Europe PMC."""
@@ -881,11 +934,12 @@ class PDFDownloader:
         logger.debug(f"All sources failed for: {paper_data['title'][:50]}")
         return False
 
-    def _download_single_paper(self, citation: Dict) -> Dict:
-        """Download PDF for a single paper (helper for parallel processing).
+    def _download_single_paper(self, citation: Dict, download_xml: bool = False) -> Dict:
+        """Download PDF (and optionally XML) for a single paper.
 
         Args:
             citation: Citation dictionary with paper metadata
+            download_xml: If True, also attempt to download JATS XML
 
         Returns:
             Result dictionary with success status and updated citation data
@@ -903,9 +957,21 @@ class PDFDownloader:
             citation["pdf_downloaded"] = True
             citation["pdf_path"] = str(pdf_path)
 
+        xml_success = False
+        if download_xml and citation.get("pmc_id") and not citation.get("xml_downloaded"):
+            xml_filename = f"{citation['paper_id']}.xml"
+            xml_path = XML_DIR / xml_filename
+
+            xml_success = self.download_jats_xml(citation, xml_path)
+
+            if xml_success:
+                citation["xml_downloaded"] = True
+                citation["xml_path"] = str(xml_path)
+
         return {
             "citation": citation,
             "success": success,
+            "xml_success": xml_success,
             "paper_id": citation["paper_id"]
         }
 
@@ -916,8 +982,9 @@ class PDFDownloader:
         checkpoint_frequency: int = 10,
         force_paper_ids: Optional[Set[str]] = None,
         retry_failed: bool = False,
+        download_xml: bool = False,
     ) -> int:
-        """Download PDFs for all citations that don't have them yet (parallel).
+        """Download PDFs (and optionally XML) for all citations that don't have them yet (parallel).
 
         Args:
             citations_data: Citations metadata dictionary
@@ -931,6 +998,8 @@ class PDFDownloader:
         """
         # First, sync existing PDFs on disk
         self._sync_existing_pdfs(citations_data)
+        if download_xml:
+            self._sync_existing_xmls(citations_data)
 
         force_paper_ids = set(force_paper_ids or [])
         if force_paper_ids:
@@ -959,6 +1028,10 @@ class PDFDownloader:
                 paper_id = citation.get("paper_id")
                 force_download = paper_id in force_paper_ids if paper_id else False
 
+                # If force_paper_ids is provided, ONLY download those papers
+                if force_paper_ids and not force_download:
+                    continue
+
                 if force_download:
                     # Reset flags so the download logic will retry
                     citation["pdf_downloaded"] = False
@@ -966,20 +1039,27 @@ class PDFDownloader:
                     citation["download_attempted"] = False
                     remaining_forced.discard(paper_id)
 
-                # Skip if already downloaded
-                if citation.get("pdf_downloaded") and not force_download:
+                needs_pdf = not citation.get("pdf_downloaded")
+                needs_xml = (
+                    download_xml
+                    and citation.get("pmc_id")
+                    and not citation.get("xml_downloaded")
+                )
+
+                if not force_download and not needs_pdf and not needs_xml:
                     continue
 
-                # Skip if previously attempted and failed (unless force retry)
                 if (
-                    citation.get("download_attempted")
+                    needs_pdf
+                    and citation.get("download_attempted")
                     and not citation.get("pdf_downloaded")
                     and not force_download
                 ):
                     continue
 
                 if (
-                    not max_downloads
+                    not needs_pdf
+                    or not max_downloads
                     or len(papers_to_download) < max_downloads
                     or force_download
                 ):
@@ -1009,41 +1089,54 @@ class PDFDownloader:
             )
 
         if not papers_to_download:
-            logger.info("No new PDFs to download")
+            if download_xml:
+                logger.info("No new PDFs or XML files to download")
+            else:
+                logger.info("No new PDFs to download")
             return 0
 
-        logger.info(f"Downloading {len(papers_to_download)} PDFs using {PDF_MAX_WORKERS} workers...")
+        if download_xml:
+            logger.info(f"Downloading {len(papers_to_download)} PDFs/XMLs using {PDF_MAX_WORKERS} workers...")
+        else:
+            logger.info(f"Downloading {len(papers_to_download)} PDFs using {PDF_MAX_WORKERS} workers...")
 
         downloaded = 0
+        xml_downloaded = 0
 
-        # Download PDFs in parallel
+        # Download PDFs (and optionally XML) in parallel
         with ThreadPoolExecutor(max_workers=PDF_MAX_WORKERS) as executor:
             future_to_paper = {
-                executor.submit(self._download_single_paper, paper): paper
+                executor.submit(self._download_single_paper, paper, download_xml): paper
                 for paper in papers_to_download
             }
 
-            for future in tqdm(as_completed(future_to_paper), total=len(papers_to_download), desc="Downloading PDFs"):
+            desc = "Downloading PDFs+XML" if download_xml else "Downloading PDFs"
+            for future in tqdm(as_completed(future_to_paper), total=len(papers_to_download), desc=desc):
                 try:
                     result = future.result()
 
                     if result["success"]:
                         downloaded += 1
 
-                        # Periodic checkpoint
                         if checkpoint_frequency and downloaded % checkpoint_frequency == 0:
                             if self.citation_fetcher:
                                 self.citation_fetcher._save_metadata()
                                 logger.info(f"Checkpoint: Saved metadata after {downloaded} downloads")
 
+                    if result.get("xml_success"):
+                        xml_downloaded += 1
+
                 except Exception as e:
-                    logger.error(f"Error downloading PDF: {e}")
+                    logger.error(f"Error downloading PDF/XML: {e}")
 
         # Final save
         if self.citation_fetcher:
             self.citation_fetcher._save_metadata()
 
         self._print_stats()
+        if download_xml and xml_downloaded:
+            logger.info(f"Downloaded {xml_downloaded} JATS XML files")
+
         return downloaded
 
     def _print_stats(self):

@@ -2,7 +2,7 @@
 import json
 import logging
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Set
 import time
 from datetime import datetime
 import asyncio
@@ -39,8 +39,17 @@ class PaperClassification(BaseModel):
     analysis_type: List[str] = Field(
         description="Types of analysis performed (e.g., mutation analysis, survival analysis)"
     )
-    cancer_type: List[str] = Field(
-        description="Cancer types studied in the paper"
+    oncotree_code: Optional[str] = Field(
+        default=None,
+        description="OncoTree tumor type code (e.g., STAD, BRCA, LUAD). Use 'PAN' for pan-cancer studies, None if not specified"
+    )
+    oncotree_name: Optional[str] = Field(
+        default=None,
+        description="OncoTree tumor type name (e.g., Stomach Adenocarcinoma, Breast Invasive Carcinoma). None if not specified"
+    )
+    cancer_type_category: Optional[str] = Field(
+        default=None,
+        description="Broader cancer category (e.g., Gastrointestinal, Breast, Lung, Hematologic, Pan-Cancer). None if not specified"
     )
     research_area: List[str] = Field(
         description="Research areas (e.g., biomarker discovery, drug response)"
@@ -69,6 +78,24 @@ class PaperClassification(BaseModel):
     analysis_location: str = Field(
         description="Where analysis was performed: cBioPortal platform, External, Mixed, or Unclear"
     )
+    cites_study_data_source_paper: bool = Field(
+        description="Whether the paper cites any underlying data source papers from cBioPortal studies (e.g., TCGA consortium papers, METABRIC papers)"
+    )
+    study_data_source_pmids_cited: List[str] = Field(
+        description="List of PMIDs of study data source papers cited (empty list if none). Only include PMIDs that are reference publications for cBioPortal studies."
+    )
+    study_data_source_papers_cited: List[str] = Field(
+        description="Names of study data sources cited (e.g., 'TCGA Pan-Cancer Atlas', 'METABRIC'). Empty list if none cited."
+    )
+    cites_cbioportal_platform_paper: bool = Field(
+        description="Whether the paper cites any of the 3 cBioPortal platform reference papers (Cerami 2012, Gao 2013, or de Bruijn 2023)"
+    )
+    cbioportal_platform_pmids_cited: List[str] = Field(
+        description="List of PMIDs of cBioPortal platform papers cited: 22588877 (Cerami 2012), 23550210 (Gao 2013), 37668528 (de Bruijn 2023). Empty list if none."
+    )
+    cbioportal_platform_papers_cited: List[str] = Field(
+        description="Names of cBioPortal platform papers cited (e.g., 'Cerami et al. 2012', 'Gao et al. 2013', 'de Bruijn et al. 2023'). Empty list if none cited."
+    )
     confidence: str = Field(
         description="Confidence level in the classification: high, medium, or low"
     )
@@ -89,12 +116,23 @@ class PaperClassifier:
         self.classifications = self._load_classifications()
         self.citation_sentences_file = METADATA_DIR / "citation_sentences.json"
         self.citation_sentences = self._load_citation_sentences()
+        self.data_source_papers_file = METADATA_DIR / "data_source_papers.json"
+        self.data_source_papers = self._load_data_source_papers()
 
     def _load_citation_sentences(self) -> Dict:
         """Load citation sentences from disk."""
         if self.citation_sentences_file.exists():
             with open(self.citation_sentences_file, "r") as f:
                 return json.load(f)
+        return {}
+
+    def _load_data_source_papers(self) -> Dict:
+        """Load data source papers mapping from disk."""
+        if self.data_source_papers_file.exists():
+            with open(self.data_source_papers_file, "r") as f:
+                return json.load(f)
+        logger.warning(f"Data source papers file not found: {self.data_source_papers_file}")
+        logger.warning("Run 'fetch-reference-data' to download data source paper metadata")
         return {}
 
     def _load_classifications(self) -> Dict:
@@ -162,21 +200,54 @@ class PaperClassifier:
             logger.error(f"Error extracting text from {pdf_path}: {e}")
             return ""
 
-    def build_classification_prompt(self, paper_data: Dict, paper_text: str) -> str:
+    def build_classification_prompt(self, paper_data: Dict, paper_text: str, text_source: str = "abstract", reference_pmids: List[str] = None) -> str:
         """Build the prompt for Claude to classify the paper.
 
         Args:
             paper_data: Paper metadata
             paper_text: Extracted text from paper
+            text_source: Source of the text ("pdf", "abstract", "sentences", "pdf+sentences")
+            reference_pmids: List of PMIDs this paper cites (bibliography)
 
         Returns:
             Formatted prompt for the LLM
         """
+        if reference_pmids is None:
+            reference_pmids = []
+
+        # Build data source information for the prompt
+        data_source_info = "None available (run 'fetch-reference-data' to load data source papers)"
+        if self.data_source_papers:
+            # Show a sample of important data source papers (limit to top 20 to avoid overwhelming the prompt)
+            data_source_lines = []
+            for pmid, info in list(self.data_source_papers.items())[:20]:
+                title = info.get('title', 'Unknown')[:80]
+                studies = info.get('studies', [])
+                study_names = ', '.join(studies[:3])  # Show first 3 studies
+                if len(studies) > 3:
+                    study_names += f' (+{len(studies)-3} more)'
+                data_source_lines.append(f"- PMID {pmid}: {title}... (Studies: {study_names})")
+            data_source_info = "\n".join(data_source_lines)
+            if len(self.data_source_papers) > 20:
+                data_source_info += f"\n... and {len(self.data_source_papers) - 20} more data source papers"
+
+        # Build category descriptions, excluding cancer_type (replaced by OncoTree)
         categories_desc = "\n\n".join([
             f"**{cat_name.replace('_', ' ').title()}**:\n" +
             ", ".join(f'"{opt}"' for opt in options)
             for cat_name, options in CLASSIFICATION_CATEGORIES.items()
+            if cat_name != "cancer_type"  # Skip cancer_type, we'll use OncoTree instead
         ])
+
+        # Adapt the text section label based on source
+        if text_source == "sentences":
+            text_label = "Citation Contexts (how cBioPortal was mentioned/used in this paper)"
+        elif text_source == "pdf+sentences":
+            text_label = "Paper Text and Citation Contexts"
+        elif text_source == "pdf":
+            text_label = "Paper Text (Abstract and Introduction)"
+        else:  # abstract
+            text_label = "Paper Abstract"
 
         prompt = f"""You are analyzing a scientific paper that cites cBioPortal, a cancer genomics data portal and analysis platform.
 
@@ -185,12 +256,28 @@ Authors: {paper_data.get('authors', 'N/A')}
 Year: {paper_data.get('year', 'N/A')}
 Venue: {paper_data.get('venue', 'N/A')}
 
-Paper Abstract and Introduction:
+{text_label}:
 {paper_text[:8000]}
 
 Please classify this paper according to the following categories. For each category, select the most appropriate option(s).
 
 {categories_desc}
+
+**Cancer Type** (OncoTree classification):
+Identify the specific cancer type studied using OncoTree codes. Common codes include:
+- Breast: BRCA (Breast Invasive Carcinoma), IDC (Breast Invasive Ductal Carcinoma)
+- Lung: LUAD (Lung Adenocarcinoma), LUSC (Lung Squamous Cell Carcinoma), NSCLC (Non-Small Cell Lung Cancer)
+- Colorectal: COADREAD (Colorectal Adenocarcinoma), COAD (Colon Adenocarcinoma), READ (Rectum Adenocarcinoma)
+- Prostate: PRAD (Prostate Adenocarcinoma)
+- Gastric: STAD (Stomach Adenocarcinoma), EGC (Esophagogastric Adenocarcinoma)
+- Brain: GBM (Glioblastoma), LGG (Lower Grade Glioma)
+- Ovarian: OV (Ovarian Serous Cystadenocarcinoma), HGSOC (High-Grade Serous Ovarian Cancer)
+- Hematologic: AML (Acute Myeloid Leukemia), ALL (Acute Lymphoblastic Leukemia), CLL (Chronic Lymphocytic Leukemia)
+- Melanoma: SKCM (Cutaneous Melanoma), MEL (Melanoma)
+- Pan-cancer: PAN (for pan-cancer studies across multiple cancer types)
+
+If the exact OncoTree code is unclear, provide the closest match or None if cancer type is not specified.
+Also provide a broader cancer category (e.g., "Gastrointestinal", "Breast", "Lung", "Hematologic", "Brain", "Pan-Cancer").
 
 Instructions:
 1. Read the paper content carefully
@@ -226,19 +313,46 @@ Instructions:
 
 **Specific Datasets**: Extract exact dataset names (e.g., TCGA-BRCA, MSK-IMPACT, GENIE-MSK)
 
+**Citation Tracking** (two separate types):
+
+Paper's reference list (PMIDs cited by this paper): {reference_pmids}
+
+1. **Study Data Source Papers** (TCGA, METABRIC, etc.):
+Check if this paper cites the underlying data source papers for datasets they used from cBioPortal.
+
+Known data source papers from cBioPortal studies:
+{data_source_info}
+
+- Set `cites_study_data_source_paper` to true if ANY references match known data source PMIDs
+- List matching PMIDs in `study_data_source_pmids_cited`
+- List study names in `study_data_source_papers_cited` (e.g., "TCGA Pan-Cancer Atlas", "METABRIC")
+- If no matches, set to false and leave lists empty
+
+2. **cBioPortal Platform Papers** (the tool itself):
+Check if this paper cites any of the 3 cBioPortal platform reference papers:
+- PMID 22588877: Cerami et al. 2012 (Cancer Discovery)
+- PMID 23550210: Gao et al. 2013 (Science Signaling)
+- PMID 37668528: de Bruijn et al. 2023 (Cancer Cell)
+
+- Set `cites_cbioportal_platform_paper` to true if ANY platform papers are cited
+- List matching PMIDs in `cbioportal_platform_pmids_cited`
+- List paper names in `cbioportal_platform_papers_cited` (e.g., "Cerami et al. 2012", "Gao et al. 2013")
+- If no matches, set to false and leave lists empty
+
 **Confidence**: Set to "high" if clear usage is described with specific details, "medium" if mentioned but details unclear, "low" if only cited in references
 
 Remember: Be specific and conservative. Only include information that is explicitly stated in the paper."""
 
         return prompt
 
-    def classify_paper(self, paper_data: Dict, paper_text: Optional[str] = None, text_source: str = "abstract") -> Dict:
+    def classify_paper(self, paper_data: Dict, paper_text: Optional[str] = None, text_source: str = "abstract", reference_pmids: List[str] = None) -> Dict:
         """Classify a single paper using Claude via Bedrock with instructor.
 
         Args:
             paper_data: Paper metadata dictionary
             paper_text: Optional pre-extracted text. If None, uses abstract from metadata
             text_source: Source of the text ("pdf", "abstract", or "none")
+            reference_pmids: List of PMIDs this paper cites (bibliography)
 
         Returns:
             Classification results dictionary
@@ -251,7 +365,10 @@ Remember: Be specific and conservative. Only include information that is explici
             logger.warning(f"No text available for paper: {paper_data.get('title', 'Unknown')}")
             return {"error": "No text available"}
 
-        prompt = self.build_classification_prompt(paper_data, paper_text)
+        if reference_pmids is None:
+            reference_pmids = paper_data.get("reference_pmids", [])
+
+        prompt = self.build_classification_prompt(paper_data, paper_text, text_source=text_source, reference_pmids=reference_pmids)
 
         try:
             # Use instructor for automatic structured output extraction
@@ -332,6 +449,10 @@ Remember: Be specific and conservative. Only include information that is explici
             paper: Paper metadata dictionary
             is_upgrade: Whether this is an upgrade classification
             source: Classification source - "auto", "pdf", "sentences", or "both"
+                - auto: sentences → PDF → abstract (prioritizes most focused source)
+                - pdf: PDF only
+                - sentences: citation sentences only
+                - both: PDF + sentences combined
 
         Returns:
             Result dictionary with classification or error info
@@ -341,31 +462,63 @@ Remember: Be specific and conservative. Only include information that is explici
         # Get paper text based on source parameter
         paper_text = None
         text_source = "none"
+        pdf_text = None
+        sentences_text = None
 
+        # Collect PDF text if needed
         if source in ("auto", "pdf", "both"):
-            # Try PDF first
             if paper.get("pdf_downloaded") and paper.get("pdf_path"):
                 pdf_path = Path(paper["pdf_path"])
                 if pdf_path.exists():
-                    paper_text = self.extract_text_from_pdf(pdf_path)
-                    if paper_text:
-                        text_source = "pdf"
+                    pdf_text = self.extract_text_from_pdf(pdf_path)
 
-            # If no PDF and auto mode, use abstract
-            if not paper_text and source == "auto":
+        # Collect citation sentences if needed
+        if source in ("auto", "sentences", "both"):
+            sentences_text = self.get_citation_sentences(paper_id)
+
+        # Determine what text to use based on source mode
+        if source == "auto":
+            # New priority: sentences → PDF → abstract
+            if sentences_text:
+                paper_text = sentences_text
+                text_source = "sentences"
+            elif pdf_text:
+                paper_text = pdf_text
+                text_source = "pdf"
+            else:
                 paper_text = paper.get("abstract", "")
                 if paper_text:
                     text_source = "abstract"
 
-        if source in ("sentences", "both") and not paper_text:
-            # Try citation sentences
-            sentences_text = self.get_citation_sentences(paper_id)
+        elif source == "pdf":
+            # PDF only
+            if pdf_text:
+                paper_text = pdf_text
+                text_source = "pdf"
+
+        elif source == "sentences":
+            # Citation sentences only
             if sentences_text:
                 paper_text = sentences_text
                 text_source = "sentences"
 
+        elif source == "both":
+            # Combine PDF and sentences
+            parts = []
+            if pdf_text:
+                parts.append("=== Paper Text (Abstract and Introduction) ===\n" + pdf_text[:4000])
+            if sentences_text:
+                parts.append("=== Citation Contexts ===\n" + sentences_text)
+
+            if parts:
+                paper_text = "\n\n".join(parts)
+                text_source = "pdf+sentences" if pdf_text and sentences_text else ("pdf" if pdf_text else "sentences")
+
+        # Get reference PMIDs for data source citation tracking
+        reference_pmids = paper.get("reference_pmids", [])
+
         # Classify
-        classification = self.classify_paper(paper, paper_text, text_source=text_source)
+        classification = self.classify_paper(paper, paper_text, text_source=text_source, reference_pmids=reference_pmids)
 
         # Add upgrade info to result
         classification["is_upgrade"] = is_upgrade
@@ -380,6 +533,7 @@ Remember: Be specific and conservative. Only include information that is explici
         self,
         citations_data: Dict,
         max_papers: Optional[int] = None,
+        paper_ids: Optional[Set[str]] = None,
         skip_existing: bool = True,
         source: str = "auto"
     ) -> pd.DataFrame:
@@ -387,6 +541,7 @@ Remember: Be specific and conservative. Only include information that is explici
 
         Args:
             citations_data: Citations metadata dictionary
+            paper_ids: If provided, only classify papers with these PMIDs
             max_papers: Maximum number of papers to classify (None for all)
             skip_existing: Skip papers that have already been classified
             source: Classification source - "auto" (default), "pdf", "sentences", or "both"
@@ -401,6 +556,11 @@ Remember: Be specific and conservative. Only include information that is explici
             for citation in pmid_data["citations"]:
                 citation["citing_pmid"] = pmid
                 all_papers.append(citation)
+
+        # Filter by paper_ids if provided
+        if paper_ids:
+            all_papers = [p for p in all_papers if p.get("paper_id") in paper_ids]
+            logger.info(f"Filtered to {len(all_papers)} papers matching specified PMIDs")
 
         logger.info(f"Found {len(all_papers)} total papers to potentially classify")
 

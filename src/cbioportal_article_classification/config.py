@@ -9,6 +9,7 @@ load_dotenv()
 PROJECT_ROOT = Path(__file__).parent.parent.parent
 DATA_DIR = PROJECT_ROOT / "data"
 PDF_DIR = DATA_DIR / "pdfs"
+XML_DIR = DATA_DIR / "xml"
 METADATA_DIR = DATA_DIR / "metadata"
 OUTPUT_DIR = PROJECT_ROOT / "output"
 REPORTS_DIR = OUTPUT_DIR / "reports"
@@ -16,6 +17,7 @@ PLOTS_DIR = OUTPUT_DIR / "plots"
 
 # Ensure directories exist
 PDF_DIR.mkdir(parents=True, exist_ok=True)
+XML_DIR.mkdir(parents=True, exist_ok=True)
 METADATA_DIR.mkdir(parents=True, exist_ok=True)
 REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 PLOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -42,7 +44,10 @@ S3_BUCKET_NAME = os.getenv("S3_BUCKET_NAME", "")
 #   v2: Added text_source field (pdf/abstract/none)
 #   v3: Improved data_source classification (not released)
 #   v4: Added detailed usage tracking (usage_mode, genes_queried, features_used, analysis_location)
-CLASSIFICATION_SCHEMA_VERSION = 4
+#   v5: Replaced generic cancer_type with OncoTree codes (oncotree_code, oncotree_name, cancer_type_category)
+#   v6: Added data source citation tracking (cites_data_source, data_source_pmids_cited, data_sources_cited)
+#   v7: Split citation tracking into study data sources vs cBioPortal platform papers (study_data_source_*, cbioportal_platform_*)
+CLASSIFICATION_SCHEMA_VERSION = 7
 
 # Classification categories
 CLASSIFICATION_CATEGORIES = {

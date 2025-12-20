@@ -32,50 +32,59 @@ def cli():
 @cli.command()
 @click.option('--force', is_flag=True, help='Force re-fetch of all citations')
 @click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
-@click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+@click.option('--pmid', multiple=True, help='Specify PMIDs: with citing-article-metadata refreshes metadata, with citing-article-files forces download (repeatable)')
+@click.option('--seed-only', is_flag=True, help='Refresh seed PMIDs list without fetching citation metadata')
 @click.option('--retry-failed', is_flag=True, help='Retry all previously failed PDF downloads')
 @click.option(
     '--mode',
-    type=click.Choice(['all', 'citations', 'pdfs'], case_sensitive=False),
+    type=click.Choice(['all', 'citing-article-metadata', 'citing-article-files'], case_sensitive=False),
     default='all',
-    help='Choose whether to fetch citations, PDFs, or both',
+    help='Choose what to fetch: citing-article-metadata (PubMed data), citing-article-files (PDFs/XMLs), or all',
 )
-def fetch(force, max_downloads, force_pmid, retry_failed, mode):
-    """Fetch citations and/or PDFs based on mode."""
+def fetch(force, max_downloads, pmid, seed_only, retry_failed, mode):
+    """Fetch citing article metadata and/or files (PDFs/XMLs) based on mode."""
     mode = mode.lower()
 
-    if mode in ('all', 'citations'):
+    if mode in ('all', 'citing-article-metadata'):
         logger.info("Starting citation fetch process...")
         fetcher = CitationFetcher()
-        citations_data = fetcher.fetch_all_citations(force_refresh=force)
+        if seed_only:
+            fetcher.refresh_seed_only(force_refresh=force)
+            citations_data = fetcher.citations_data
+        elif pmid:
+            citations_data = fetcher.refresh_specific_papers(set(pmid), force=force)
+        else:
+            citations_data = fetcher.fetch_all_citations(force_refresh=force)
         logger.info(f"Total citations: {citations_data['total_citations']}")
     else:
         fetcher = CitationFetcher()
         citations_data = fetcher.citations_data
 
-    if mode in ('all', 'pdfs'):
+    if mode in ('all', 'citing-article-files'):
         citations_file = METADATA_DIR / "citations.json"
         if not citations_file.exists():
-            click.echo(click.style("Error: No citations data found. Run 'fetch --mode citations' first.", fg='red'))
+            click.echo(click.style("Error: No citations data found. Run 'fetch --mode citing-article-metadata' first.", fg='red'))
             return
 
-        logger.info("Downloading PDFs...")
+        logger.info("Downloading PDFs and JATS XML files...")
+
         downloader = PDFDownloader(citation_fetcher=fetcher)
         downloaded = downloader.download_all_pdfs(
             citations_data,
             max_downloads=max_downloads,
-            force_paper_ids=set(force_pmid) if force_pmid else None,
-            retry_failed=retry_failed
+            force_paper_ids=set(pmid) if pmid else None,
+            retry_failed=retry_failed,
+            download_xml=True
         )
         logger.info(f"Downloaded {downloaded} PDFs")
 
 
 @cli.command(name='download-pdfs')
 @click.option('--max-downloads', type=int, help='Maximum number of PDFs to download')
-@click.option('--force-pmid', multiple=True, help='Force PDF re-download for specified PubMed IDs (repeatable)')
+@click.option('--pmid', multiple=True, help='Force download for specific PubMed IDs (repeatable)')
 @click.option('--retry-failed', is_flag=True, help='Retry all previously failed PDF downloads')
-def download_pdfs(max_downloads, force_pmid, retry_failed):
-    """Download PDFs using existing citation metadata."""
+def download_pdfs(max_downloads, pmid, retry_failed):
+    """Download PDFs and XML files using existing citation metadata."""
     citations_file = METADATA_DIR / "citations.json"
     if not citations_file.exists():
         click.echo(click.style("Error: No citations data found. Run 'fetch' first to build metadata.", fg='red'))
@@ -88,8 +97,9 @@ def download_pdfs(max_downloads, force_pmid, retry_failed):
     downloaded = downloader.download_all_pdfs(
         citations_data,
         max_downloads=max_downloads,
-        force_paper_ids=set(force_pmid) if force_pmid else None,
-        retry_failed=retry_failed
+        force_paper_ids=set(pmid) if pmid else None,
+        retry_failed=retry_failed,
+        download_xml=True
     )
 
     logger.info(f"Downloaded {downloaded} PDFs")
@@ -97,14 +107,15 @@ def download_pdfs(max_downloads, force_pmid, retry_failed):
 
 @cli.command()
 @click.option('--max-papers', type=int, help='Maximum number of papers to classify')
+@click.option('--pmid', multiple=True, help='Classify specific PMIDs only (repeatable)')
 @click.option('--reclassify', is_flag=True, help='Re-classify existing papers')
 @click.option(
     '--source',
     type=click.Choice(['auto', 'pdf', 'sentences', 'both'], case_sensitive=False),
     default='auto',
-    help='Text source for classification: auto (PDF→abstract), pdf (PDF only), sentences (citation sentences), or both (PDF+sentences)'
+    help='Text source: auto (sentences→PDF→abstract, prioritizes focused context), pdf (full PDF only), sentences (citation contexts only), both (PDF+sentences combined)'
 )
-def classify(max_papers, reclassify, source):
+def classify(max_papers, pmid, reclassify, source):
     """Classify papers using LLM via AWS Bedrock."""
     logger.info(f"Starting classification process (source: {source})...")
 
@@ -115,13 +126,16 @@ def classify(max_papers, reclassify, source):
         return
 
     # Check if citation sentences are needed
-    if source in ('sentences', 'both'):
+    if source in ('auto', 'sentences', 'both'):
         citation_sentences_file = METADATA_DIR / "citation_sentences.json"
         if not citation_sentences_file.exists():
-            click.echo(click.style(f"Warning: No citation sentences found. Run 'extract-citations' first!", fg='yellow'))
             if source == 'sentences':
-                click.echo(click.style("Cannot proceed with --source=sentences without citation data.", fg='red'))
+                click.echo(click.style("Error: No citation sentences found. Run 'extract-citations' first!", fg='red'))
                 return
+            elif source == 'auto':
+                click.echo(click.style("Warning: No citation sentences found. Will fall back to PDF/abstract. Run 'extract-citations' for better results.", fg='yellow'))
+            else:  # both
+                click.echo(click.style("Warning: No citation sentences found. Will use PDF only. Run 'extract-citations' to combine both sources.", fg='yellow'))
 
     with open(citations_file, "r") as f:
         citations_data = json.load(f)
@@ -131,6 +145,7 @@ def classify(max_papers, reclassify, source):
     df = classifier.classify_all_papers(
         citations_data,
         max_papers=max_papers,
+        paper_ids=set(pmid) if pmid else None,
         skip_existing=not reclassify,
         source=source
     )
@@ -183,6 +198,7 @@ def run_all(download_pdfs, max_downloads, max_papers, force_pmid):
     ctx.invoke(
         fetch,
         force=False,
+        pmid=(),
         download_pdfs=download_pdfs,
         max_downloads=max_downloads,
         force_pmid=force_pmid,
@@ -219,14 +235,46 @@ def status():
         last_updated = citations_data.get("last_updated", "Never")
 
         pdfs_downloaded = 0
+        xmls_downloaded = 0
+        pmc_papers = 0
+        oa_open = 0
+        oa_closed = 0
+        oa_unknown = 0
         for pmid_data in citations_data.get("papers", {}).values():
             for citation in pmid_data.get("citations", []):
                 if citation.get("pdf_downloaded"):
                     pdfs_downloaded += 1
+                if citation.get("xml_downloaded"):
+                    xmls_downloaded += 1
+                if citation.get("pmc_id"):
+                    pmc_papers += 1
+                    xml_oa_state = citation.get("xml_open_access")
+                    if xml_oa_state is True or (xml_oa_state is None and citation.get("xml_downloaded")):
+                        oa_open += 1
+                    elif xml_oa_state is False:
+                        oa_closed += 1
+                    else:
+                        oa_unknown += 1
 
         click.echo(click.style("Citations:", fg='cyan', bold=True))
         click.echo(f"  Total papers: {click.style(str(total_citations), fg='green')}")
         click.echo(f"  PDFs downloaded: {click.style(str(pdfs_downloaded), fg='green')} ({pdfs_downloaded/total_citations*100:.1f}%)" if total_citations > 0 else f"  PDFs downloaded: {click.style(str(pdfs_downloaded), fg='green')}")
+        click.echo(f"  XMLs downloaded: {click.style(str(xmls_downloaded), fg='green')} ({xmls_downloaded/total_citations*100:.1f}%)" if total_citations > 0 else f"  XMLs downloaded: {click.style(str(xmls_downloaded), fg='green')}")
+        pmc_pct = f" ({pmc_papers/total_citations*100:.1f}%)" if total_citations > 0 and pmc_papers > 0 else ""
+        click.echo(f"  Papers with PMC IDs: {click.style(str(pmc_papers), fg='green')}{pmc_pct}")
+        if pmc_papers > 0:
+            click.echo(
+                f"    Open Access: {click.style(str(oa_open), fg='green')} "
+                f"({oa_open/pmc_papers*100:.1f}% of PMC)"
+            )
+            click.echo(
+                f"    Not Open Access: {click.style(str(oa_closed), fg='yellow')} "
+                f"({oa_closed/pmc_papers*100:.1f}% of PMC)"
+            )
+            click.echo(
+                f"    Unknown: {click.style(str(oa_unknown), fg='yellow')} "
+                f"({oa_unknown/pmc_papers*100:.1f}% of PMC)"
+            )
         click.echo(f"  Last updated: {last_updated}")
 
         # Show breakdown by PMID
@@ -297,10 +345,170 @@ def status():
     click.echo()
 
 
+@cli.command(name='fetch-reference-data')
+@click.option('--force', is_flag=True, help='Force re-fetch of all reference data')
+def fetch_reference_data(force):
+    """Fetch cBioPortal studies and OncoTree tumor types (reference data for classification)."""
+    import requests
+    import time
+    from Bio import Entrez
+    from .config import NCBI_EMAIL, NCBI_API_KEY, FETCH_DELAY_SECONDS
+
+    # Configure Entrez
+    Entrez.email = NCBI_EMAIL or "user@example.com"
+    if NCBI_API_KEY:
+        Entrez.api_key = NCBI_API_KEY
+
+    click.echo(click.style("\n=== Fetching Reference Data ===\n", bold=True))
+
+    # 1. Fetch cBioPortal studies
+    logger.info("Fetching cBioPortal study metadata...")
+    fetcher = StudyFetcher()
+    studies_data = fetcher.fetch_all_studies(force_refresh=force)
+    stats = fetcher.get_summary_stats()
+
+    click.echo(click.style("cBioPortal Studies:", fg='cyan', bold=True))
+    click.echo(f"  Total studies: {click.style(str(stats.get('total_studies', 0)), fg='green')}")
+    click.echo(f"  Studies with PMID: {click.style(str(stats.get('studies_with_pmid', 0)), fg='green')}")
+    click.echo(f"  Unique data PMIDs: {click.style(str(stats.get('unique_data_pmids', 0)), fg='green')}")
+    click.echo()
+
+    # 2. Fetch OncoTree tumor types
+    logger.info("Fetching OncoTree tumor types...")
+    oncotree_file = METADATA_DIR / "oncotree_tumor_types.json"
+
+    try:
+        response = requests.get("https://oncotree.info/api/tumorTypes/tree", timeout=30)
+        response.raise_for_status()
+
+        oncotree_data = response.json()
+
+        # Count tumor types
+        def count_codes(node):
+            count = 1 if node.get('code') != 'TISSUE' else 0
+            for child in node.get('children', {}).values():
+                count += count_codes(child)
+            return count
+
+        total_codes = count_codes(oncotree_data.get('TISSUE', {}))
+
+        # Save
+        with open(oncotree_file, 'w') as f:
+            json.dump(oncotree_data, f, indent=2)
+
+        click.echo(click.style("OncoTree Tumor Types:", fg='cyan', bold=True))
+        click.echo(f"  Total tumor type codes: {click.style(str(total_codes), fg='green')}")
+        click.echo(f"  Saved to: {oncotree_file}")
+
+    except Exception as e:
+        click.echo(click.style(f"Error fetching OncoTree data: {e}", fg='red'))
+
+    click.echo()
+
+    # 3. Fetch metadata for data source papers (referenced by cBioPortal studies)
+    logger.info("Fetching metadata for data source papers...")
+    data_source_file = METADATA_DIR / "data_source_papers.json"
+
+    # Skip if already exists and not forcing
+    if data_source_file.exists() and not force:
+        click.echo(click.style("Data Source Papers:", fg='cyan', bold=True))
+        with open(data_source_file) as f:
+            existing_data = json.load(f)
+        click.echo(f"  Cached data source papers: {click.style(str(len(existing_data)), fg='green')}")
+        click.echo(f"  Use --force to re-fetch")
+    else:
+        try:
+            # Load pmid_to_studies mapping from studies data
+            pmid_to_studies = studies_data.get('pmid_to_studies', {})
+            data_source_pmids = list(pmid_to_studies.keys())
+
+            click.echo(click.style("Data Source Papers:", fg='cyan', bold=True))
+            click.echo(f"  Fetching metadata for {click.style(str(len(data_source_pmids)), fg='yellow')} data source papers...")
+
+            data_source_papers = {}
+            batch_size = 100  # PubMed allows up to 200, but 100 is safer
+
+            for i in range(0, len(data_source_pmids), batch_size):
+                batch = data_source_pmids[i:i+batch_size]
+
+                try:
+                    time.sleep(FETCH_DELAY_SECONDS)
+                    handle = Entrez.efetch(
+                        db="pubmed",
+                        id=batch,
+                        rettype="medline",
+                        retmode="xml"
+                    )
+                    records = Entrez.read(handle)
+                    handle.close()
+
+                    for article in records["PubmedArticle"]:
+                        try:
+                            medline = article["MedlineCitation"]
+                            pmid = str(medline["PMID"])
+                            article_data = medline["Article"]
+
+                            # Extract metadata
+                            title = str(article_data.get("ArticleTitle", ""))
+
+                            # Authors
+                            authors_list = article_data.get("AuthorList", [])
+                            authors = ", ".join([
+                                f"{a.get('LastName', '')} {a.get('Initials', '')}".strip()
+                                for a in authors_list if "LastName" in a
+                            ])
+
+                            # Year
+                            year = ""
+                            article_dates = article_data.get("ArticleDate", [])
+                            if article_dates and isinstance(article_dates, list) and len(article_dates) > 0:
+                                year = article_dates[0].get("Year", "")
+                            if not year:
+                                pub_date = article_data.get("Journal", {}).get("JournalIssue", {}).get("PubDate", {})
+                                year = pub_date.get("Year", "")
+                                if not year and "MedlineDate" in pub_date:
+                                    import re
+                                    year_match = re.search(r'\d{4}', str(pub_date["MedlineDate"]))
+                                    if year_match:
+                                        year = year_match.group()
+
+                            # Journal
+                            journal = str(article_data.get("Journal", {}).get("Title", ""))
+
+                            # Store with studies reference
+                            data_source_papers[pmid] = {
+                                "pmid": pmid,
+                                "title": title,
+                                "authors": authors,
+                                "year": year,
+                                "journal": journal,
+                                "studies": pmid_to_studies.get(pmid, [])
+                            }
+
+                        except Exception as e:
+                            logger.warning(f"Error processing article {pmid}: {e}")
+
+                except Exception as e:
+                    logger.warning(f"Error fetching batch {i//batch_size + 1}: {e}")
+
+            # Save
+            with open(data_source_file, 'w') as f:
+                json.dump(data_source_papers, f, indent=2)
+
+            click.echo(f"  Fetched metadata for {click.style(str(len(data_source_papers)), fg='green')} papers")
+            click.echo(f"  Saved to: {data_source_file}")
+
+        except Exception as e:
+            click.echo(click.style(f"Error fetching data source papers: {e}", fg='red'))
+
+    click.echo()
+    click.echo(click.style("Reference data fetch complete!", fg='green', bold=True))
+
+
 @cli.command(name='fetch-studies')
 @click.option('--force', is_flag=True, help='Force re-fetch of studies metadata')
 def fetch_studies(force):
-    """Fetch cBioPortal study metadata from API."""
+    """Fetch cBioPortal study metadata from API (legacy - use fetch-reference-data instead)."""
     logger.info("Fetching cBioPortal study metadata...")
 
     fetcher = StudyFetcher()
@@ -321,9 +529,10 @@ def fetch_studies(force):
 
 @cli.command(name='extract-citations')
 @click.option('--max-papers', type=int, help='Maximum number of papers to process')
+@click.option('--pmid', multiple=True, help='Extract citations for specific PMIDs only (repeatable)')
 @click.option('--force', is_flag=True, help='Force re-extraction even if data exists')
 @click.option('--workers', type=int, default=10, help='Number of parallel workers (default: 10)')
-def extract_citations(max_papers, force, workers):
+def extract_citations(max_papers, pmid, force, workers):
     """Extract citation sentences from PDFs."""
     logger.info("Starting citation extraction process...")
 
@@ -347,6 +556,7 @@ def extract_citations(max_papers, force, workers):
     stats = extractor.extract_all_citations(
         citations_data,
         max_papers=max_papers,
+        paper_ids=set(pmid) if pmid else None,
         force_reextract=force,
         max_workers=workers
     )
