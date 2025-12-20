@@ -1,6 +1,6 @@
 # cBioPortal Usage Analysis Report
 
-*Generated on 2025-12-20 13:24:47*
+*Generated on 2025-12-20 13:41:47*
 
 ---
 
@@ -12,7 +12,6 @@
 - **Classified from Abstract Only**: 7271 (52.3%)
 - **Most Common Analysis Type**: Gene expression analysis
 - **Most Common Cancer Type**: Other solid tumor
-- **Most Common Data Source**: TCGA
 
 ## Data Collection & Limitations
 
@@ -85,7 +84,7 @@ Papers classified from abstracts only don't have reference lists available.
 
 ![Usage Analysis](../plots/usage_analysis.png)
 
-*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*
+*Four-panel visualization showing analysis types, cancer types, and temporal trends.*
 
 ### Citation Attribution Patterns
 
@@ -126,19 +125,6 @@ Papers classified from abstracts only don't have reference lists available.
 8. Melanoma: 315 papers
 9. Leukemia/Lymphoma: 279 papers
 10. Not specified: 241 papers
-
-## Data Sources Used
-
-1. TCGA: 8993 papers
-2. Multiple sources: 5157 papers
-3. Custom/Private data: 2990 papers
-4. Not specified: 1745 papers
-5. METABRIC: 551 papers
-6. MSK-IMPACT: 303 papers
-7. GENIE: 178 papers
-8. ICGC: 172 papers
-9. GEO: 5 papers
-10. COSMIC: 4 papers
 
 ## How cBioPortal is Being Used
 

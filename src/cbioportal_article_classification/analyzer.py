@@ -1057,8 +1057,7 @@ class UsageAnalyzer:
                 report_lines.append(f"- **No Text Available**: {none_count}")
 
         report_lines.append(f"- **Most Common Analysis Type**: {stats.get('most_common_analysis_type', 'N/A')}")
-        report_lines.append(f"- **Most Common Cancer Type**: {stats.get('most_common_cancer_type', 'N/A')}")
-        report_lines.append(f"- **Most Common Data Source**: {stats.get('most_common_data_source', 'N/A')}\n")
+        report_lines.append(f"- **Most Common Cancer Type**: {stats.get('most_common_cancer_type', 'N/A')}\n")
 
         # Add Data Collection & Limitations section
         report_lines.append("## Data Collection & Limitations\n")
@@ -1159,7 +1158,7 @@ class UsageAnalyzer:
             if plot_filename:
                 report_lines.append("### Usage Analysis Overview\n")
                 report_lines.append(f"![Usage Analysis](../plots/usage_analysis.png)\n")
-                report_lines.append("*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*\n")
+                report_lines.append("*Four-panel visualization showing analysis types, cancer types, and temporal trends.*\n")
 
             if citation_plot_filename:
                 report_lines.append("### Citation Attribution Patterns\n")
@@ -1187,14 +1186,6 @@ class UsageAnalyzer:
             report_lines.append("## Top Cancer Types\n")
             for idx, row in cancer_df.head(10).iterrows():
                 report_lines.append(f"{idx+1}. {row['Cancer Type']}: {row['Count']} papers")
-            report_lines.append("")
-
-        # Data Sources
-        data_source_df = self.analyze_data_sources()
-        if not data_source_df.empty:
-            report_lines.append("## Data Sources Used\n")
-            for idx, row in data_source_df.head(10).iterrows():
-                report_lines.append(f"{idx+1}. {row['Data Source']}: {row['Count']} papers")
             report_lines.append("")
 
         # cBioPortal Usage Patterns (v4 schema fields)
