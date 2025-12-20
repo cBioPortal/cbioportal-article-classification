@@ -6,6 +6,7 @@ from typing import Dict, List, Optional, Set
 import time
 from datetime import datetime
 import asyncio
+import threading
 from concurrent.futures import ThreadPoolExecutor
 
 from anthropic import AnthropicBedrock
@@ -106,18 +107,29 @@ class PaperClassifier:
 
     def __init__(self):
         """Initialize the classifier with instructor-patched Bedrock client."""
-        base_client = AnthropicBedrock(
-            aws_region=AWS_REGION,
-            aws_profile=AWS_PROFILE,
-        )
-        # Patch the client with instructor for structured outputs
-        self.client = instructor.from_anthropic(base_client)
+        # Store configuration for creating thread-local clients
+        self.aws_region = AWS_REGION
+        self.aws_profile = AWS_PROFILE
+        # Thread-local storage for clients
+        self._thread_local = threading.local()
+
         self.classifications_file = METADATA_DIR / "classifications.json"
         self.classifications = self._load_classifications()
         self.citation_sentences_file = METADATA_DIR / "citation_sentences.json"
         self.citation_sentences = self._load_citation_sentences()
         self.data_source_papers_file = METADATA_DIR / "data_source_papers.json"
         self.data_source_papers = self._load_data_source_papers()
+
+    def _get_client(self):
+        """Get or create a thread-local instructor-patched Bedrock client."""
+        if not hasattr(self._thread_local, 'client'):
+            base_client = AnthropicBedrock(
+                aws_region=self.aws_region,
+                aws_profile=self.aws_profile,
+            )
+            # Patch the client with instructor for structured outputs
+            self._thread_local.client = instructor.from_anthropic(base_client)
+        return self._thread_local.client
 
     def _load_citation_sentences(self) -> Dict:
         """Load citation sentences from disk."""
@@ -372,7 +384,9 @@ Remember: Be specific and conservative. Only include information that is explici
 
         try:
             # Use instructor for automatic structured output extraction
-            classification_obj = self.client.messages.create(
+            # Get thread-local client for parallel processing
+            client = self._get_client()
+            classification_obj = client.messages.create(
                 model=BEDROCK_MODEL_ID,
                 max_tokens=2000,
                 temperature=0.1,

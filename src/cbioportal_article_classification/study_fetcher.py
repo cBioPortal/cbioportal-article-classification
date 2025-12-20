@@ -5,6 +5,7 @@ from pathlib import Path
 from typing import Dict, List, Optional
 from datetime import datetime
 import requests
+import time
 
 from .config import METADATA_DIR
 
@@ -137,6 +138,94 @@ class StudyFetcher:
             return []
 
         return list(self.studies_data.get("pmid_to_studies", {}).keys())
+
+    def fetch_citation_counts(self) -> Dict:
+        """Fetch PubMed citation counts for all studies with PMIDs.
+
+        Uses PubMed eutils API to get the number of papers citing each study.
+        Rate-limited to respect NCBI's usage guidelines (max 3 requests/second).
+
+        Returns:
+            Dictionary with citation count statistics
+        """
+        if not self.studies_data or "studies" not in self.studies_data:
+            logger.warning("No studies data loaded. Run fetch_all_studies() first.")
+            return {}
+
+        logger.info("Fetching citation counts from PubMed for studies with PMIDs...")
+
+        total_studies = 0
+        studies_with_citations = 0
+        failed_fetches = 0
+
+        for study_id, study in self.studies_data["studies"].items():
+            pmid_str = study.get("pmid", "")
+            if not pmid_str:
+                continue
+
+            # Handle comma-separated PMIDs - use the first one for citation count
+            pmids = [p.strip() for p in pmid_str.split(",") if p.strip()]
+            if not pmids:
+                continue
+
+            primary_pmid = pmids[0]
+            total_studies += 1
+
+            try:
+                # Fetch citations from PubMed
+                url = f"https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi"
+                params = {
+                    "dbfrom": "pubmed",
+                    "id": primary_pmid,
+                    "linkname": "pubmed_pubmed_citedin",
+                    "retmode": "json"
+                }
+
+                response = requests.get(url, params=params, timeout=10)
+                response.raise_for_status()
+                data = response.json()
+
+                # Extract citation count
+                citation_count = 0
+                if "linksets" in data and len(data["linksets"]) > 0:
+                    linkset = data["linksets"][0]
+                    if "linksetdbs" in linkset and len(linkset["linksetdbs"]) > 0:
+                        links = linkset["linksetdbs"][0].get("links", [])
+                        citation_count = len(links)
+
+                # Store in study metadata
+                study["total_pubmed_citations"] = citation_count
+                study["citations_last_updated"] = datetime.now().isoformat()
+
+                studies_with_citations += 1
+
+                if citation_count > 0:
+                    logger.info(f"  {study_id} (PMID {primary_pmid}): {citation_count:,} citations")
+
+                # Rate limiting: 3 requests per second max
+                time.sleep(0.34)
+
+            except Exception as e:
+                logger.warning(f"  Failed to fetch citations for {study_id} (PMID {primary_pmid}): {e}")
+                failed_fetches += 1
+                # Store error info
+                study["total_pubmed_citations"] = None
+                study["citations_fetch_error"] = str(e)
+
+        # Update last_updated timestamp
+        self.studies_data["citations_last_updated"] = datetime.now().isoformat()
+
+        # Save updated data
+        self._save_studies()
+
+        stats = {
+            "total_studies_with_pmid": total_studies,
+            "successfully_fetched": studies_with_citations,
+            "failed_fetches": failed_fetches
+        }
+
+        logger.info(f"Citation fetch complete: {studies_with_citations}/{total_studies} successful")
+        return stats
 
     def get_summary_stats(self) -> Dict:
         """Get summary statistics about studies.

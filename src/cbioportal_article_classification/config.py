@@ -146,5 +146,5 @@ PDF_MAX_WORKERS = 10  # Number of parallel PDF download workers
 PDF_PMC_DELAY = 0.34  # Delay only for PMC downloads (NCBI rate limit)
 
 # Classification settings
-CLASSIFICATION_MAX_WORKERS = 10  # Number of parallel classification workers
-CLASSIFICATION_RATE_LIMIT_DELAY = 0.1  # Delay between classifications (seconds)
+CLASSIFICATION_MAX_WORKERS = 15  # Number of parallel classification workers (balanced for AWS rate limits)
+CLASSIFICATION_RATE_LIMIT_DELAY = 0.05  # Delay between classifications (seconds) - small delay to avoid AWS throttling

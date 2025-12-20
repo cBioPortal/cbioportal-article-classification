@@ -11,7 +11,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 524,
+      "citations_last_updated": "2025-12-20T13:20:30.427705"
     },
     "stad_tcga": {
       "studyId": "stad_tcga",
@@ -33,7 +35,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 168,
+      "citations_last_updated": "2025-12-20T13:20:31.060853"
     },
     "heme_msk_impact_2022": {
       "studyId": "heme_msk_impact_2022",
@@ -55,7 +59,9 @@
       "cancerTypeId": "paad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1209,
+      "citations_last_updated": "2025-12-20T13:20:31.696064"
     },
     "egc_msk_tp53_ccr_2022": {
       "studyId": "egc_msk_tp53_ccr_2022",
@@ -66,7 +72,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 9,
+      "citations_last_updated": "2025-12-20T13:20:32.242678"
     },
     "cesc_tcga_pan_can_atlas_2018": {
       "studyId": "cesc_tcga_pan_can_atlas_2018",
@@ -77,7 +85,9 @@
       "cancerTypeId": "cesc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:20:32.860002"
     },
     "cll_iuopa_2015": {
       "studyId": "cll_iuopa_2015",
@@ -88,7 +98,9 @@
       "cancerTypeId": "cllsll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 513,
+      "citations_last_updated": "2025-12-20T13:20:33.630036"
     },
     "os_target_gdc": {
       "studyId": "os_target_gdc",
@@ -121,7 +133,9 @@
       "cancerTypeId": "lung",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 14,
+      "citations_last_updated": "2025-12-20T13:20:34.181226"
     },
     "sclc_clcgp": {
       "studyId": "sclc_clcgp",
@@ -132,7 +146,9 @@
       "cancerTypeId": "sclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 747,
+      "citations_last_updated": "2025-12-20T13:20:34.912119"
     },
     "wt_target_gdc": {
       "studyId": "wt_target_gdc",
@@ -165,7 +181,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1,
+      "citations_last_updated": "2025-12-20T13:20:35.480287"
     },
     "dlbc_tcga": {
       "studyId": "dlbc_tcga",
@@ -187,7 +205,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 8,
+      "citations_last_updated": "2025-12-20T13:20:36.192374"
     },
     "sarcoma_ucla_2024": {
       "studyId": "sarcoma_ucla_2024",
@@ -198,7 +218,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 23,
+      "citations_last_updated": "2025-12-20T13:20:37.103085"
     },
     "cesc_tcga": {
       "studyId": "cesc_tcga",
@@ -220,7 +242,9 @@
       "cancerTypeId": "acbc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 89,
+      "citations_last_updated": "2025-12-20T13:20:37.677368"
     },
     "prad_msk_stopsack_2021": {
       "studyId": "prad_msk_stopsack_2021",
@@ -231,7 +255,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 33,
+      "citations_last_updated": "2025-12-20T13:20:38.291615"
     },
     "brca_tcga": {
       "studyId": "brca_tcga",
@@ -264,7 +290,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 19,
+      "citations_last_updated": "2025-12-20T13:20:38.970700"
     },
     "soft_tissue_msk_2025": {
       "studyId": "soft_tissue_msk_2025",
@@ -297,7 +325,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 307,
+      "citations_last_updated": "2025-12-20T13:20:39.769329"
     },
     "hcc_inserm_fr_2015": {
       "studyId": "hcc_inserm_fr_2015",
@@ -308,7 +338,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 947,
+      "citations_last_updated": "2025-12-20T13:20:40.482664"
     },
     "brca_smc_2018": {
       "studyId": "brca_smc_2018",
@@ -319,7 +351,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 107,
+      "citations_last_updated": "2025-12-20T13:20:41.280535"
     },
     "cll_broad_2015": {
       "studyId": "cll_broad_2015",
@@ -330,7 +364,9 @@
       "cancerTypeId": "cllsll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 580,
+      "citations_last_updated": "2025-12-20T13:20:42.045628"
     },
     "lihc_amc_prv": {
       "studyId": "lihc_amc_prv",
@@ -341,7 +377,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 221,
+      "citations_last_updated": "2025-12-20T13:20:42.740187"
     },
     "sarc_tcga_pan_can_atlas_2018": {
       "studyId": "sarc_tcga_pan_can_atlas_2018",
@@ -352,7 +390,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:20:43.615656"
     },
     "es_iocurie_2014": {
       "studyId": "es_iocurie_2014",
@@ -363,7 +403,9 @@
       "cancerTypeId": "es",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 306,
+      "citations_last_updated": "2025-12-20T13:20:44.214017"
     },
     "crc_sysucc_2022": {
       "studyId": "crc_sysucc_2022",
@@ -374,7 +416,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 42,
+      "citations_last_updated": "2025-12-20T13:20:44.804042"
     },
     "brain_cptac_2020": {
       "studyId": "brain_cptac_2020",
@@ -385,7 +429,9 @@
       "cancerTypeId": "brain",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 188,
+      "citations_last_updated": "2025-12-20T13:20:45.474017"
     },
     "crc_orion_2024": {
       "studyId": "crc_orion_2024",
@@ -396,7 +442,9 @@
       "cancerTypeId": "bowel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 0,
+      "citations_last_updated": "2025-12-20T13:20:46.054324"
     },
     "mel_tsam_liang_2017": {
       "studyId": "mel_tsam_liang_2017",
@@ -407,7 +455,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 83,
+      "citations_last_updated": "2025-12-20T13:20:46.674323"
     },
     "nbl_broad_2013": {
       "studyId": "nbl_broad_2013",
@@ -418,7 +468,9 @@
       "cancerTypeId": "nbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 689,
+      "citations_last_updated": "2025-12-20T13:20:47.306233"
     },
     "aml_target_2018_pub": {
       "studyId": "aml_target_2018_pub",
@@ -440,7 +492,9 @@
       "cancerTypeId": "lusc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:20:47.989947"
     },
     "normal_skin_melanocytes_2024": {
       "studyId": "normal_skin_melanocytes_2024",
@@ -451,7 +505,9 @@
       "cancerTypeId": "skin",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 73,
+      "citations_last_updated": "2025-12-20T13:20:48.521263"
     },
     "blca_msk_2025": {
       "studyId": "blca_msk_2025",
@@ -462,7 +518,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 0,
+      "citations_last_updated": "2025-12-20T13:20:49.125433"
     },
     "lcll_broad_2013": {
       "studyId": "lcll_broad_2013",
@@ -473,7 +531,9 @@
       "cancerTypeId": "cllsll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 784,
+      "citations_last_updated": "2025-12-20T13:20:49.804906"
     },
     "skcm_tcga_pan_can_atlas_2018": {
       "studyId": "skcm_tcga_pan_can_atlas_2018",
@@ -484,7 +544,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:20:50.491536"
     },
     "luad_tsp": {
       "studyId": "luad_tsp",
@@ -495,7 +557,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1455,
+      "citations_last_updated": "2025-12-20T13:20:51.198440"
     },
     "pancreas_cptac_gdc": {
       "studyId": "pancreas_cptac_gdc",
@@ -517,7 +581,9 @@
       "cancerTypeId": "prostate",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 10,
+      "citations_last_updated": "2025-12-20T13:20:51.846785"
     },
     "ovarian_msk_2025": {
       "studyId": "ovarian_msk_2025",
@@ -539,7 +605,9 @@
       "cancerTypeId": "thpa",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1492,
+      "citations_last_updated": "2025-12-20T13:20:52.573583"
     },
     "prad_tcga": {
       "studyId": "prad_tcga",
@@ -561,7 +629,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1048,
+      "citations_last_updated": "2025-12-20T13:20:53.218831"
     },
     "blca_tcga_pub": {
       "studyId": "blca_tcga_pub",
@@ -572,7 +642,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1549,
+      "citations_last_updated": "2025-12-20T13:20:53.826521"
     },
     "luad_tcga_gdc": {
       "studyId": "luad_tcga_gdc",
@@ -605,7 +677,9 @@
       "cancerTypeId": "hgsoc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4348,
+      "citations_last_updated": "2025-12-20T13:20:54.452312"
     },
     "ucec_tcga": {
       "studyId": "ucec_tcga",
@@ -627,7 +701,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 5,
+      "citations_last_updated": "2025-12-20T13:20:55.144770"
     },
     "all_stjude_2013": {
       "studyId": "all_stjude_2013",
@@ -638,7 +714,9 @@
       "cancerTypeId": "myeloid",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 358,
+      "citations_last_updated": "2025-12-20T13:20:55.816752"
     },
     "mtnn_msk_2022": {
       "studyId": "mtnn_msk_2022",
@@ -649,7 +727,9 @@
       "cancerTypeId": "mtnn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 15,
+      "citations_last_updated": "2025-12-20T13:20:56.437254"
     },
     "mpnst_mskcc": {
       "studyId": "mpnst_mskcc",
@@ -660,7 +740,9 @@
       "cancerTypeId": "mpnst",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 341,
+      "citations_last_updated": "2025-12-20T13:20:57.103202"
     },
     "skcm_mskcc_2014": {
       "studyId": "skcm_mskcc_2014",
@@ -671,7 +753,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2453,
+      "citations_last_updated": "2025-12-20T13:20:57.929334"
     },
     "luad_mskcc_2023_met_organotropism": {
       "studyId": "luad_mskcc_2023_met_organotropism",
@@ -682,7 +766,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 44,
+      "citations_last_updated": "2025-12-20T13:20:58.854059"
     },
     "ov_tcga_pan_can_atlas_2018": {
       "studyId": "ov_tcga_pan_can_atlas_2018",
@@ -693,7 +779,9 @@
       "cancerTypeId": "hgsoc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:20:59.472644"
     },
     "hnsc_tcga_pan_can_atlas_2018": {
       "studyId": "hnsc_tcga_pan_can_atlas_2018",
@@ -704,7 +792,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:00.063961"
     },
     "acyc_jhu_2016": {
       "studyId": "acyc_jhu_2016",
@@ -715,7 +805,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 46,
+      "citations_last_updated": "2025-12-20T13:21:00.698600"
     },
     "cellline_ccle_broad": {
       "studyId": "cellline_ccle_broad",
@@ -726,7 +818,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4652,
+      "citations_last_updated": "2025-12-20T13:21:01.470759"
     },
     "prad_msk_2019": {
       "studyId": "prad_msk_2019",
@@ -737,7 +831,9 @@
       "cancerTypeId": "prostate",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 92,
+      "citations_last_updated": "2025-12-20T13:21:02.144175"
     },
     "thym_tcga_pan_can_atlas_2018": {
       "studyId": "thym_tcga_pan_can_atlas_2018",
@@ -748,7 +844,9 @@
       "cancerTypeId": "thym",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:02.728810"
     },
     "prad_broad_2013": {
       "studyId": "prad_broad_2013",
@@ -759,7 +857,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 738,
+      "citations_last_updated": "2025-12-20T13:21:03.706143"
     },
     "brca_iatlas_anders_2022": {
       "studyId": "brca_iatlas_anders_2022",
@@ -770,7 +870,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 14,
+      "citations_last_updated": "2025-12-20T13:21:04.428459"
     },
     "paad_tcga_pan_can_atlas_2018": {
       "studyId": "paad_tcga_pan_can_atlas_2018",
@@ -781,7 +883,9 @@
       "cancerTypeId": "paad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:05.076694"
     },
     "luad_mskimpact_2021": {
       "studyId": "luad_mskimpact_2021",
@@ -803,7 +907,9 @@
       "cancerTypeId": "rbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 28,
+      "citations_last_updated": "2025-12-20T13:21:05.610881"
     },
     "blca_mskcc_solit_2014": {
       "studyId": "blca_mskcc_solit_2014",
@@ -814,7 +920,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 84,
+      "citations_last_updated": "2025-12-20T13:21:06.145073"
     },
     "mixed_allen_2018": {
       "studyId": "mixed_allen_2018",
@@ -825,7 +933,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 362,
+      "citations_last_updated": "2025-12-20T13:21:06.845084"
     },
     "coadread_dfci_2016": {
       "studyId": "coadread_dfci_2016",
@@ -836,7 +946,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 474,
+      "citations_last_updated": "2025-12-20T13:21:07.694679"
     },
     "panet_jhu_2011": {
       "studyId": "panet_jhu_2011",
@@ -847,7 +959,9 @@
       "cancerTypeId": "panet",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 863,
+      "citations_last_updated": "2025-12-20T13:21:08.274975"
     },
     "blca_dfarber_mskcc_2014": {
       "studyId": "blca_dfarber_mskcc_2014",
@@ -858,7 +972,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 318,
+      "citations_last_updated": "2025-12-20T13:21:08.972090"
     },
     "panet_arcnet_2017": {
       "studyId": "panet_arcnet_2017",
@@ -869,7 +985,9 @@
       "cancerTypeId": "panet",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 465,
+      "citations_last_updated": "2025-12-20T13:21:09.645729"
     },
     "hcc_tcga_gdc": {
       "studyId": "hcc_tcga_gdc",
@@ -891,7 +1009,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 6,
+      "citations_last_updated": "2025-12-20T13:21:10.303850"
     },
     "skcm_dfci_2015": {
       "studyId": "skcm_dfci_2015",
@@ -902,7 +1022,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1705,
+      "citations_last_updated": "2025-12-20T13:21:10.983972"
     },
     "normal_skin_keratinocytes_2024": {
       "studyId": "normal_skin_keratinocytes_2024",
@@ -913,7 +1035,9 @@
       "cancerTypeId": "skin",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 0,
+      "citations_last_updated": "2025-12-20T13:21:11.561656"
     },
     "coadread_genentech": {
       "studyId": "coadread_genentech",
@@ -924,7 +1048,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 568,
+      "citations_last_updated": "2025-12-20T13:21:12.206466"
     },
     "ucec_cptac_2020": {
       "studyId": "ucec_cptac_2020",
@@ -935,7 +1061,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 263,
+      "citations_last_updated": "2025-12-20T13:21:12.849634"
     },
     "escc_icgc": {
       "studyId": "escc_icgc",
@@ -946,7 +1074,9 @@
       "cancerTypeId": "escc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 633,
+      "citations_last_updated": "2025-12-20T13:21:13.476392"
     },
     "brca_msk_2025": {
       "studyId": "brca_msk_2025",
@@ -968,7 +1098,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1024,
+      "citations_last_updated": "2025-12-20T13:21:14.183815"
     },
     "nsclc_unito_2016": {
       "studyId": "nsclc_unito_2016",
@@ -979,7 +1111,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 21,
+      "citations_last_updated": "2025-12-20T13:21:14.825402"
     },
     "ucs_tcga_pan_can_atlas_2018": {
       "studyId": "ucs_tcga_pan_can_atlas_2018",
@@ -990,7 +1124,9 @@
       "cancerTypeId": "ucs",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:15.605496"
     },
     "blca_bcan_hcrn_2022": {
       "studyId": "blca_bcan_hcrn_2022",
@@ -1001,7 +1137,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 31,
+      "citations_last_updated": "2025-12-20T13:21:16.337843"
     },
     "panet_msk_erc_2023": {
       "studyId": "panet_msk_erc_2023",
@@ -1023,7 +1161,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 79,
+      "citations_last_updated": "2025-12-20T13:21:16.915169"
     },
     "cscc_ranson_2022": {
       "studyId": "cscc_ranson_2022",
@@ -1034,7 +1174,9 @@
       "cancerTypeId": "cscc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 11,
+      "citations_last_updated": "2025-12-20T13:21:17.565636"
     },
     "mixed_kunga_msk_2022": {
       "studyId": "mixed_kunga_msk_2022",
@@ -1045,7 +1187,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 36,
+      "citations_last_updated": "2025-12-20T13:21:18.263528"
     },
     "mbl_dkfz_2017": {
       "studyId": "mbl_dkfz_2017",
@@ -1056,7 +1200,9 @@
       "cancerTypeId": "mbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 647,
+      "citations_last_updated": "2025-12-20T13:21:18.958861"
     },
     "chol_tcga_pan_can_atlas_2018": {
       "studyId": "chol_tcga_pan_can_atlas_2018",
@@ -1067,7 +1213,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:19.656855"
     },
     "gist_msk_2023": {
       "studyId": "gist_msk_2023",
@@ -1078,7 +1226,9 @@
       "cancerTypeId": "gist",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 12,
+      "citations_last_updated": "2025-12-20T13:21:20.248491"
     },
     "hnsc_mdanderson_2013": {
       "studyId": "hnsc_mdanderson_2013",
@@ -1089,7 +1239,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 313,
+      "citations_last_updated": "2025-12-20T13:21:20.840813"
     },
     "lung_smc_2016": {
       "studyId": "lung_smc_2016",
@@ -1100,7 +1252,9 @@
       "cancerTypeId": "lung",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 11,
+      "citations_last_updated": "2025-12-20T13:21:21.399702"
     },
     "nsclc_tcga_broad_2016": {
       "studyId": "nsclc_tcga_broad_2016",
@@ -1111,7 +1265,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 702,
+      "citations_last_updated": "2025-12-20T13:21:22.283088"
     },
     "egc_msk_2023": {
       "studyId": "egc_msk_2023",
@@ -1122,7 +1278,9 @@
       "cancerTypeId": "stomach",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 17,
+      "citations_last_updated": "2025-12-20T13:21:22.915037"
     },
     "luad_broad": {
       "studyId": "luad_broad",
@@ -1133,7 +1291,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1108,
+      "citations_last_updated": "2025-12-20T13:21:23.545238"
     },
     "hcc_msk_2024": {
       "studyId": "hcc_msk_2024",
@@ -1144,7 +1304,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4,
+      "citations_last_updated": "2025-12-20T13:21:24.192240"
     },
     "aml_ohsu_2022": {
       "studyId": "aml_ohsu_2022",
@@ -1155,7 +1317,9 @@
       "cancerTypeId": "aml",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 197,
+      "citations_last_updated": "2025-12-20T13:21:24.852278"
     },
     "prad_mcspc_mskcc_2020": {
       "studyId": "prad_mcspc_mskcc_2020",
@@ -1166,7 +1330,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 96,
+      "citations_last_updated": "2025-12-20T13:21:25.409776"
     },
     "stmyec_wcm_2022": {
       "studyId": "stmyec_wcm_2022",
@@ -1177,7 +1343,9 @@
       "cancerTypeId": "stmyec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1,
+      "citations_last_updated": "2025-12-20T13:21:26.019149"
     },
     "angs_painter_2025": {
       "studyId": "angs_painter_2025",
@@ -1199,7 +1367,9 @@
       "cancerTypeId": "testis",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 20,
+      "citations_last_updated": "2025-12-20T13:21:26.565844"
     },
     "ihch_ismms_2015": {
       "studyId": "ihch_ismms_2015",
@@ -1210,7 +1380,9 @@
       "cancerTypeId": "ihch",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 140,
+      "citations_last_updated": "2025-12-20T13:21:27.116886"
     },
     "npc_nusingapore": {
       "studyId": "npc_nusingapore",
@@ -1221,7 +1393,9 @@
       "cancerTypeId": "npc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 203,
+      "citations_last_updated": "2025-12-20T13:21:27.681163"
     },
     "thca_tcga_pan_can_atlas_2018": {
       "studyId": "thca_tcga_pan_can_atlas_2018",
@@ -1232,7 +1406,9 @@
       "cancerTypeId": "thpa",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:28.244646"
     },
     "gbm_cptac_2021": {
       "studyId": "gbm_cptac_2021",
@@ -1243,7 +1419,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 353,
+      "citations_last_updated": "2025-12-20T13:21:28.912862"
     },
     "sclc_ucologne_2015": {
       "studyId": "sclc_ucologne_2015",
@@ -1254,7 +1432,9 @@
       "cancerTypeId": "sclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1306,
+      "citations_last_updated": "2025-12-20T13:21:29.532013"
     },
     "cfdna_msk_2019": {
       "studyId": "cfdna_msk_2019",
@@ -1265,7 +1445,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 387,
+      "citations_last_updated": "2025-12-20T13:21:30.177064"
     },
     "esca_tcga_gdc": {
       "studyId": "esca_tcga_gdc",
@@ -1287,7 +1469,9 @@
       "cancerTypeId": "cllsll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 523,
+      "citations_last_updated": "2025-12-20T13:21:30.860831"
     },
     "mbn_msk_2024": {
       "studyId": "mbn_msk_2024",
@@ -1298,7 +1482,9 @@
       "cancerTypeId": "mbn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1,
+      "citations_last_updated": "2025-12-20T13:21:31.414934"
     },
     "paac_jhu_2014": {
       "studyId": "paac_jhu_2014",
@@ -1309,7 +1495,9 @@
       "cancerTypeId": "paac",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 91,
+      "citations_last_updated": "2025-12-20T13:21:32.047432"
     },
     "bll_target_gdc": {
       "studyId": "bll_target_gdc",
@@ -1331,7 +1519,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 326,
+      "citations_last_updated": "2025-12-20T13:21:32.583015"
     },
     "coad_caseccc_2015": {
       "studyId": "coad_caseccc_2015",
@@ -1342,7 +1532,9 @@
       "cancerTypeId": "coad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 83,
+      "citations_last_updated": "2025-12-20T13:21:33.162227"
     },
     "lung_pdx_msk_2021": {
       "studyId": "lung_pdx_msk_2021",
@@ -1353,7 +1545,9 @@
       "cancerTypeId": "lung",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 33,
+      "citations_last_updated": "2025-12-20T13:21:33.822633"
     },
     "rcc_cptac_gdc": {
       "studyId": "rcc_cptac_gdc",
@@ -1375,7 +1569,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 12,
+      "citations_last_updated": "2025-12-20T13:21:34.648581"
     },
     "ccle_broad_2019": {
       "studyId": "ccle_broad_2019",
@@ -1386,7 +1582,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1915,
+      "citations_last_updated": "2025-12-20T13:21:35.275024"
     },
     "plmeso_tcga_gdc": {
       "studyId": "plmeso_tcga_gdc",
@@ -1408,7 +1606,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 59,
+      "citations_last_updated": "2025-12-20T13:21:35.803537"
     },
     "ucec_tcga_pan_can_atlas_2018": {
       "studyId": "ucec_tcga_pan_can_atlas_2018",
@@ -1419,7 +1619,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:36.379543"
     },
     "mcl_idibips_2013": {
       "studyId": "mcl_idibips_2013",
@@ -1430,7 +1632,9 @@
       "cancerTypeId": "mcl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 278,
+      "citations_last_updated": "2025-12-20T13:21:36.970638"
     },
     "hcc_meric_2021": {
       "studyId": "hcc_meric_2021",
@@ -1441,7 +1645,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 78,
+      "citations_last_updated": "2025-12-20T13:21:37.595003"
     },
     "ccrcc_dfci_2019": {
       "studyId": "ccrcc_dfci_2019",
@@ -1452,7 +1658,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 708,
+      "citations_last_updated": "2025-12-20T13:21:38.184803"
     },
     "acc_2019": {
       "studyId": "acc_2019",
@@ -1463,7 +1671,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 110,
+      "citations_last_updated": "2025-12-20T13:21:38.775040"
     },
     "lgg_tcga_pan_can_atlas_2018": {
       "studyId": "lgg_tcga_pan_can_atlas_2018",
@@ -1474,7 +1684,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:21:39.445820"
     },
     "pediatric_dkfz_2017": {
       "studyId": "pediatric_dkfz_2017",
@@ -1485,7 +1697,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 813,
+      "citations_last_updated": "2025-12-20T13:21:40.118112"
     },
     "egc_trap_msk_2020": {
       "studyId": "egc_trap_msk_2020",
@@ -1496,7 +1710,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 198,
+      "citations_last_updated": "2025-12-20T13:21:40.754418"
     },
     "msk_met_2021": {
       "studyId": "msk_met_2021",
@@ -1507,7 +1723,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 349,
+      "citations_last_updated": "2025-12-20T13:21:41.304088"
     },
     "tmb_mskcc_2018": {
       "studyId": "tmb_mskcc_2018",
@@ -1518,7 +1736,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2356,
+      "citations_last_updated": "2025-12-20T13:21:41.999734"
     },
     "acyc_mskcc_2013": {
       "studyId": "acyc_mskcc_2013",
@@ -1529,7 +1749,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 241,
+      "citations_last_updated": "2025-12-20T13:21:42.528493"
     },
     "mbn_sfu_2023": {
       "studyId": "mbn_sfu_2023",
@@ -1540,7 +1762,9 @@
       "cancerTypeId": "mbn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 48,
+      "citations_last_updated": "2025-12-20T13:21:43.583133"
     },
     "utuc_pdx_msk_2019": {
       "studyId": "utuc_pdx_msk_2019",
@@ -1551,7 +1775,9 @@
       "cancerTypeId": "utuc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 30,
+      "citations_last_updated": "2025-12-20T13:21:44.108659"
     },
     "mrt_bcgsc_2016": {
       "studyId": "mrt_bcgsc_2016",
@@ -1562,7 +1788,9 @@
       "cancerTypeId": "mrt",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 85,
+      "citations_last_updated": "2025-12-20T13:21:44.624747"
     },
     "kirc_bgi": {
       "studyId": "kirc_bgi",
@@ -1573,7 +1801,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 189,
+      "citations_last_updated": "2025-12-20T13:21:45.162986"
     },
     "es_dfarber_broad_2014": {
       "studyId": "es_dfarber_broad_2014",
@@ -1584,7 +1814,9 @@
       "cancerTypeId": "es",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 311,
+      "citations_last_updated": "2025-12-20T13:21:45.959982"
     },
     "difg_msk_2023": {
       "studyId": "difg_msk_2023",
@@ -1595,7 +1827,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 10,
+      "citations_last_updated": "2025-12-20T13:21:46.603080"
     },
     "lung_msk_2017": {
       "studyId": "lung_msk_2017",
@@ -1606,7 +1840,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 358,
+      "citations_last_updated": "2025-12-20T13:21:47.476752"
     },
     "skcm_broad": {
       "studyId": "skcm_broad",
@@ -1617,7 +1853,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1426,
+      "citations_last_updated": "2025-12-20T13:21:48.097393"
     },
     "msk_ch_2020": {
       "studyId": "msk_ch_2020",
@@ -1628,7 +1866,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 402,
+      "citations_last_updated": "2025-12-20T13:21:48.664793"
     },
     "kich_tcga_pub": {
       "studyId": "kich_tcga_pub",
@@ -1639,7 +1879,9 @@
       "cancerTypeId": "chrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 432,
+      "citations_last_updated": "2025-12-20T13:21:49.286394"
     },
     "kirp_tcga": {
       "studyId": "kirp_tcga",
@@ -1661,7 +1903,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2,
+      "citations_last_updated": "2025-12-20T13:21:49.931641"
     },
     "brca_mskcc_2019": {
       "studyId": "brca_mskcc_2019",
@@ -1672,7 +1916,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 23,
+      "citations_last_updated": "2025-12-20T13:21:50.497135"
     },
     "thpa_tcga_gdc": {
       "studyId": "thpa_tcga_gdc",
@@ -1694,7 +1940,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 76,
+      "citations_last_updated": "2025-12-20T13:21:51.048224"
     },
     "esca_broad": {
       "studyId": "esca_broad",
@@ -1705,7 +1953,9 @@
       "cancerTypeId": "esca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 442,
+      "citations_last_updated": "2025-12-20T13:21:51.603104"
     },
     "ucec_msk_dacruzpaula_2025": {
       "studyId": "ucec_msk_dacruzpaula_2025",
@@ -1727,7 +1977,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 715,
+      "citations_last_updated": "2025-12-20T13:21:52.191799"
     },
     "mel_ucla_2016": {
       "studyId": "mel_ucla_2016",
@@ -1738,7 +1990,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1906,
+      "citations_last_updated": "2025-12-20T13:21:52.835800"
     },
     "summit_2018": {
       "studyId": "summit_2018",
@@ -1749,7 +2003,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 420,
+      "citations_last_updated": "2025-12-20T13:21:53.408351"
     },
     "coadread_tcga_pub": {
       "studyId": "coadread_tcga_pub",
@@ -1760,7 +2016,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4809,
+      "citations_last_updated": "2025-12-20T13:21:54.157564"
     },
     "ihch_smmu_2014": {
       "studyId": "ihch_smmu_2014",
@@ -1771,7 +2029,9 @@
       "cancerTypeId": "ihch",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 215,
+      "citations_last_updated": "2025-12-20T13:21:54.767679"
     },
     "uec_msk_2024": {
       "studyId": "uec_msk_2024",
@@ -1793,7 +2053,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1878,
+      "citations_last_updated": "2025-12-20T13:21:55.390064"
     },
     "blca_nmibc_2017": {
       "studyId": "blca_nmibc_2017",
@@ -1804,7 +2066,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 196,
+      "citations_last_updated": "2025-12-20T13:21:56.011610"
     },
     "skcm_vanderbilt_mskcc_2015": {
       "studyId": "skcm_vanderbilt_mskcc_2015",
@@ -1815,7 +2079,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 38,
+      "citations_last_updated": "2025-12-20T13:21:56.554433"
     },
     "ptad_msk_2024": {
       "studyId": "ptad_msk_2024",
@@ -1826,7 +2092,9 @@
       "cancerTypeId": "ptad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 9,
+      "citations_last_updated": "2025-12-20T13:21:57.148570"
     },
     "kirc_tcga_pub": {
       "studyId": "kirc_tcga_pub",
@@ -1837,7 +2105,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1963,
+      "citations_last_updated": "2025-12-20T13:21:57.796407"
     },
     "blca_msk_2024": {
       "studyId": "blca_msk_2024",
@@ -1848,7 +2118,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 3,
+      "citations_last_updated": "2025-12-20T13:21:58.404190"
     },
     "pcnsl_mayo_2015": {
       "studyId": "pcnsl_mayo_2015",
@@ -1859,7 +2131,9 @@
       "cancerTypeId": "pcnsl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 113,
+      "citations_last_updated": "2025-12-20T13:21:58.930252"
     },
     "normal_skin_fibroblast_2024": {
       "studyId": "normal_skin_fibroblast_2024",
@@ -1870,7 +2144,9 @@
       "cancerTypeId": "skin",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 0,
+      "citations_last_updated": "2025-12-20T13:21:59.507274"
     },
     "luad_mskcc_2015": {
       "studyId": "luad_mskcc_2015",
@@ -1881,7 +2157,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4630,
+      "citations_last_updated": "2025-12-20T13:22:00.214167"
     },
     "brca_dfci_2020": {
       "studyId": "brca_dfci_2020",
@@ -1892,7 +2170,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 215,
+      "citations_last_updated": "2025-12-20T13:22:00.888683"
     },
     "paad_tcga": {
       "studyId": "paad_tcga",
@@ -1914,7 +2194,9 @@
       "cancerTypeId": "dlbclnos",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 638,
+      "citations_last_updated": "2025-12-20T13:22:01.577675"
     },
     "hnsc_broad": {
       "studyId": "hnsc_broad",
@@ -1925,7 +2207,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1411,
+      "citations_last_updated": "2025-12-20T13:22:02.143804"
     },
     "acyc_sanger_2013": {
       "studyId": "acyc_sanger_2013",
@@ -1936,7 +2220,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 146,
+      "citations_last_updated": "2025-12-20T13:22:02.694173"
     },
     "dlbclnos_tcga_gdc": {
       "studyId": "dlbclnos_tcga_gdc",
@@ -1958,7 +2244,9 @@
       "cancerTypeId": "cervix",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 6,
+      "citations_last_updated": "2025-12-20T13:22:03.424814"
     },
     "paac_msk_jco_2023": {
       "studyId": "paac_msk_jco_2023",
@@ -1980,7 +2268,9 @@
       "cancerTypeId": "mbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 195,
+      "citations_last_updated": "2025-12-20T13:22:03.974296"
     },
     "difg_glass": {
       "studyId": "difg_glass",
@@ -1991,7 +2281,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 232,
+      "citations_last_updated": "2025-12-20T13:22:04.521784"
     },
     "utuc_msk_2019": {
       "studyId": "utuc_msk_2019",
@@ -2002,7 +2294,9 @@
       "cancerTypeId": "utuc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 30,
+      "citations_last_updated": "2025-12-20T13:22:05.220719"
     },
     "ucec_msk_2024": {
       "studyId": "ucec_msk_2024",
@@ -2013,7 +2307,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 12,
+      "citations_last_updated": "2025-12-20T13:22:05.878690"
     },
     "blca_tcga_pub_2017": {
       "studyId": "blca_tcga_pub_2017",
@@ -2024,7 +2320,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1195,
+      "citations_last_updated": "2025-12-20T13:22:06.504935"
     },
     "gbm_tcga_pan_can_atlas_2018": {
       "studyId": "gbm_tcga_pan_can_atlas_2018",
@@ -2035,7 +2333,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:07.184803"
     },
     "crc_apc_impact_2020": {
       "studyId": "crc_apc_impact_2020",
@@ -2046,7 +2346,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 31,
+      "citations_last_updated": "2025-12-20T13:22:07.743821"
     },
     "hgsoc_msk_2021": {
       "studyId": "hgsoc_msk_2021",
@@ -2057,7 +2359,9 @@
       "cancerTypeId": "hgsoc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 16,
+      "citations_last_updated": "2025-12-20T13:22:08.358745"
     },
     "brca_bccrc_xenograft_2014": {
       "studyId": "brca_bccrc_xenograft_2014",
@@ -2068,7 +2372,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 353,
+      "citations_last_updated": "2025-12-20T13:22:08.891790"
     },
     "dlbcl_dfci_2018": {
       "studyId": "dlbcl_dfci_2018",
@@ -2079,7 +2385,9 @@
       "cancerTypeId": "dlbclnos",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1025,
+      "citations_last_updated": "2025-12-20T13:22:09.489105"
     },
     "bladder_msk_2024": {
       "studyId": "bladder_msk_2024",
@@ -2090,7 +2398,9 @@
       "cancerTypeId": "bladder",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4,
+      "citations_last_updated": "2025-12-20T13:22:10.154341"
     },
     "uec_cptac_gdc": {
       "studyId": "uec_cptac_gdc",
@@ -2112,7 +2422,9 @@
       "cancerTypeId": "bladder",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 30,
+      "citations_last_updated": "2025-12-20T13:22:10.777982"
     },
     "blca_cornell_2016": {
       "studyId": "blca_cornell_2016",
@@ -2123,7 +2435,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 146,
+      "citations_last_updated": "2025-12-20T13:22:11.386742"
     },
     "egc_tmucih_2015": {
       "studyId": "egc_tmucih_2015",
@@ -2134,7 +2448,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 108,
+      "citations_last_updated": "2025-12-20T13:22:11.924416"
     },
     "cscc_hgsc_bcm_2014": {
       "studyId": "cscc_hgsc_bcm_2014",
@@ -2145,7 +2461,9 @@
       "cancerTypeId": "cscc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 319,
+      "citations_last_updated": "2025-12-20T13:22:12.448798"
     },
     "hgsoc_tcga_gdc": {
       "studyId": "hgsoc_tcga_gdc",
@@ -2167,7 +2485,9 @@
       "cancerTypeId": "plmeso",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 169,
+      "citations_last_updated": "2025-12-20T13:22:12.992791"
     },
     "acc_tcga_pan_can_atlas_2018": {
       "studyId": "acc_tcga_pan_can_atlas_2018",
@@ -2178,7 +2498,9 @@
       "cancerTypeId": "acc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:13.696806"
     },
     "skcm_broad_dfarber": {
       "studyId": "skcm_broad_dfarber",
@@ -2189,7 +2511,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 414,
+      "citations_last_updated": "2025-12-20T13:22:14.431161"
     },
     "sclc_jhu": {
       "studyId": "sclc_jhu",
@@ -2200,7 +2524,9 @@
       "cancerTypeId": "sclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 612,
+      "citations_last_updated": "2025-12-20T13:22:15.041572"
     },
     "coad_cptac_2019": {
       "studyId": "coad_cptac_2019",
@@ -2211,7 +2537,9 @@
       "cancerTypeId": "coad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 415,
+      "citations_last_updated": "2025-12-20T13:22:15.596518"
     },
     "chol_nccs_2013": {
       "studyId": "chol_nccs_2013",
@@ -2222,7 +2550,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 257,
+      "citations_last_updated": "2025-12-20T13:22:16.189765"
     },
     "egc_mskcc_2020": {
       "studyId": "egc_mskcc_2020",
@@ -2233,7 +2563,9 @@
       "cancerTypeId": "stomach",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 12,
+      "citations_last_updated": "2025-12-20T13:22:16.757575"
     },
     "gist_msk_2022": {
       "studyId": "gist_msk_2022",
@@ -2244,7 +2576,9 @@
       "cancerTypeId": "gist",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 10,
+      "citations_last_updated": "2025-12-20T13:22:17.336801"
     },
     "pcpg_tcga_pan_can_atlas_2018": {
       "studyId": "pcpg_tcga_pan_can_atlas_2018",
@@ -2255,7 +2589,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:18.005731"
     },
     "pcnsl_msk_2024": {
       "studyId": "pcnsl_msk_2024",
@@ -2266,7 +2602,9 @@
       "cancerTypeId": "pcnsl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 10,
+      "citations_last_updated": "2025-12-20T13:22:18.757428"
     },
     "ucs_tcga_gdc": {
       "studyId": "ucs_tcga_gdc",
@@ -2288,7 +2626,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 580,
+      "citations_last_updated": "2025-12-20T13:22:19.427170"
     },
     "pancreas_msk_2024": {
       "studyId": "pancreas_msk_2024",
@@ -2299,7 +2639,9 @@
       "cancerTypeId": "pancreas",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 22,
+      "citations_last_updated": "2025-12-20T13:22:20.174524"
     },
     "prostate_msk_2024": {
       "studyId": "prostate_msk_2024",
@@ -2310,7 +2652,9 @@
       "cancerTypeId": "prostate",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 16,
+      "citations_last_updated": "2025-12-20T13:22:20.798375"
     },
     "angs_painter_2020": {
       "studyId": "angs_painter_2020",
@@ -2332,7 +2676,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 22,
+      "citations_last_updated": "2025-12-20T13:22:21.371562"
     },
     "stad_uhongkong": {
       "studyId": "stad_uhongkong",
@@ -2343,7 +2689,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 429,
+      "citations_last_updated": "2025-12-20T13:22:22.051412"
     },
     "bm_nsclc_mskcc_2023": {
       "studyId": "bm_nsclc_mskcc_2023",
@@ -2354,7 +2702,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 29,
+      "citations_last_updated": "2025-12-20T13:22:22.686539"
     },
     "tet_nci_2014": {
       "studyId": "tet_nci_2014",
@@ -2365,7 +2715,9 @@
       "cancerTypeId": "tet",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 133,
+      "citations_last_updated": "2025-12-20T13:22:23.349499"
     },
     "chol_msk_2018": {
       "studyId": "chol_msk_2018",
@@ -2376,7 +2728,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 287,
+      "citations_last_updated": "2025-12-20T13:22:24.020155"
     },
     "nsclc_mskcc_2015": {
       "studyId": "nsclc_mskcc_2015",
@@ -2387,7 +2741,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4630,
+      "citations_last_updated": "2025-12-20T13:22:24.816814"
     },
     "pog570_bcgsc_2020": {
       "studyId": "pog570_bcgsc_2020",
@@ -2398,7 +2754,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 97,
+      "citations_last_updated": "2025-12-20T13:22:25.569104"
     },
     "lung_nci_2022": {
       "studyId": "lung_nci_2022",
@@ -2409,7 +2767,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 124,
+      "citations_last_updated": "2025-12-20T13:22:26.203745"
     },
     "ihch_mskcc_2020": {
       "studyId": "ihch_mskcc_2020",
@@ -2420,7 +2780,9 @@
       "cancerTypeId": "ihch",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 25,
+      "citations_last_updated": "2025-12-20T13:22:27.005678"
     },
     "sarc_tcga_pub": {
       "studyId": "sarc_tcga_pub",
@@ -2431,7 +2793,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 586,
+      "citations_last_updated": "2025-12-20T13:22:27.654319"
     },
     "acc_tcga_gdc": {
       "studyId": "acc_tcga_gdc",
@@ -2453,7 +2817,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1106,
+      "citations_last_updated": "2025-12-20T13:22:28.329032"
     },
     "gbm_mayo_pdx_sarkaria_2019": {
       "studyId": "gbm_mayo_pdx_sarkaria_2019",
@@ -2464,7 +2830,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 146,
+      "citations_last_updated": "2025-12-20T13:22:29.075912"
     },
     "gct_msk_2016": {
       "studyId": "gct_msk_2016",
@@ -2475,7 +2843,9 @@
       "cancerTypeId": "testis",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 94,
+      "citations_last_updated": "2025-12-20T13:22:29.652603"
     },
     "nsclc_pd1_msk_2018": {
       "studyId": "nsclc_pd1_msk_2018",
@@ -2486,7 +2856,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 829,
+      "citations_last_updated": "2025-12-20T13:22:30.443096"
     },
     "pptc_2019": {
       "studyId": "pptc_2019",
@@ -2497,7 +2869,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 112,
+      "citations_last_updated": "2025-12-20T13:22:31.038892"
     },
     "lipo_msk_2024": {
       "studyId": "lipo_msk_2024",
@@ -2530,7 +2904,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 36,
+      "citations_last_updated": "2025-12-20T13:22:31.708213"
     },
     "mpn_cimr_2013": {
       "studyId": "mpn_cimr_2013",
@@ -2541,7 +2917,9 @@
       "cancerTypeId": "mpn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 819,
+      "citations_last_updated": "2025-12-20T13:22:32.465858"
     },
     "ucec_msk_2018": {
       "studyId": "ucec_msk_2018",
@@ -2552,7 +2930,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 68,
+      "citations_last_updated": "2025-12-20T13:22:33.202824"
     },
     "brain_cptac_gdc": {
       "studyId": "brain_cptac_gdc",
@@ -2607,7 +2987,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 261,
+      "citations_last_updated": "2025-12-20T13:22:33.795986"
     },
     "chl_sccc_2023": {
       "studyId": "chl_sccc_2023",
@@ -2618,7 +3000,9 @@
       "cancerTypeId": "chl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 23,
+      "citations_last_updated": "2025-12-20T13:22:34.644320"
     },
     "um_qimr_2016": {
       "studyId": "um_qimr_2016",
@@ -2629,7 +3013,9 @@
       "cancerTypeId": "um",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 169,
+      "citations_last_updated": "2025-12-20T13:22:35.239426"
     },
     "crc_eo_2020": {
       "studyId": "crc_eo_2020",
@@ -2640,7 +3026,9 @@
       "cancerTypeId": "bowel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 92,
+      "citations_last_updated": "2025-12-20T13:22:35.900473"
     },
     "hcc_mskimpact_2018": {
       "studyId": "hcc_mskimpact_2018",
@@ -2651,7 +3039,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 350,
+      "citations_last_updated": "2025-12-20T13:22:37.523039"
     },
     "ihch_msk_2021": {
       "studyId": "ihch_msk_2021",
@@ -2662,7 +3052,9 @@
       "cancerTypeId": "ihch",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 81,
+      "citations_last_updated": "2025-12-20T13:22:38.415083"
     },
     "mixed_selpercatinib_2020": {
       "studyId": "mixed_selpercatinib_2020",
@@ -2673,7 +3065,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 54,
+      "citations_last_updated": "2025-12-20T13:22:39.035136"
     },
     "msk_access_2021": {
       "studyId": "msk_access_2021",
@@ -2684,7 +3078,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 97,
+      "citations_last_updated": "2025-12-20T13:22:39.787718"
     },
     "cll_broad_2022": {
       "studyId": "cll_broad_2022",
@@ -2695,7 +3091,9 @@
       "cancerTypeId": "cllsll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 71,
+      "citations_last_updated": "2025-12-20T13:22:40.681274"
     },
     "luad_cas_2020": {
       "studyId": "luad_cas_2020",
@@ -2706,7 +3104,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 307,
+      "citations_last_updated": "2025-12-20T13:22:41.390818"
     },
     "nsclc_tracerx_2017": {
       "studyId": "nsclc_tracerx_2017",
@@ -2717,7 +3117,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1249,
+      "citations_last_updated": "2025-12-20T13:22:42.135537"
     },
     "hdcn_msk_2025": {
       "studyId": "hdcn_msk_2025",
@@ -2739,7 +3141,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:42.995081"
     },
     "nhl_bcgsc_2011": {
       "studyId": "nhl_bcgsc_2011",
@@ -2750,7 +3154,9 @@
       "cancerTypeId": "nhl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 865,
+      "citations_last_updated": "2025-12-20T13:22:43.774144"
     },
     "skcm_tcga_pub_2015": {
       "studyId": "skcm_tcga_pub_2015",
@@ -2761,7 +3167,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1660,
+      "citations_last_updated": "2025-12-20T13:22:44.591091"
     },
     "mel_iatlas_hugo_ucla_2016": {
       "studyId": "mel_iatlas_hugo_ucla_2016",
@@ -2772,7 +3180,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 1906,
+      "citations_last_updated": "2025-12-20T13:22:45.414389"
     },
     "prad_mskcc": {
       "studyId": "prad_mskcc",
@@ -2783,7 +3193,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2297,
+      "citations_last_updated": "2025-12-20T13:22:46.515264"
     },
     "nst_nfosi_ntap": {
       "studyId": "nst_nfosi_ntap",
@@ -2794,7 +3206,9 @@
       "cancerTypeId": "nst",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 27,
+      "citations_last_updated": "2025-12-20T13:22:47.182086"
     },
     "msk_ctdna_vte_2024": {
       "studyId": "msk_ctdna_vte_2024",
@@ -2805,7 +3219,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 8,
+      "citations_last_updated": "2025-12-20T13:22:48.065075"
     },
     "ovary_cptac_gdc": {
       "studyId": "ovary_cptac_gdc",
@@ -2838,7 +3254,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 112,
+      "citations_last_updated": "2025-12-20T13:22:48.797327"
     },
     "thym_tcga_gdc": {
       "studyId": "thym_tcga_gdc",
@@ -2871,7 +3289,9 @@
       "cancerTypeId": "lung",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 152,
+      "citations_last_updated": "2025-12-20T13:22:49.381522"
     },
     "escc_ucla_2014": {
       "studyId": "escc_ucla_2014",
@@ -2882,7 +3302,9 @@
       "cancerTypeId": "escc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 368,
+      "citations_last_updated": "2025-12-20T13:22:50.098917"
     },
     "meso_tcga_pan_can_atlas_2018": {
       "studyId": "meso_tcga_pan_can_atlas_2018",
@@ -2893,7 +3315,9 @@
       "cancerTypeId": "plmeso",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:50.774221"
     },
     "gbm_tcga_gdc": {
       "studyId": "gbm_tcga_gdc",
@@ -2915,7 +3339,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2994,
+      "citations_last_updated": "2025-12-20T13:22:51.581676"
     },
     "blca_bgi": {
       "studyId": "blca_bgi",
@@ -2926,7 +3352,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 268,
+      "citations_last_updated": "2025-12-20T13:22:52.517926"
     },
     "soft_tissue_tcga_gdc": {
       "studyId": "soft_tissue_tcga_gdc",
@@ -2959,7 +3387,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 339,
+      "citations_last_updated": "2025-12-20T13:22:53.203500"
     },
     "all_stjude_2015": {
       "studyId": "all_stjude_2015",
@@ -2970,7 +3400,9 @@
       "cancerTypeId": "bll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 273,
+      "citations_last_updated": "2025-12-20T13:22:53.897141"
     },
     "rectal_msk_2019": {
       "studyId": "rectal_msk_2019",
@@ -2981,7 +3413,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 301,
+      "citations_last_updated": "2025-12-20T13:22:54.568185"
     },
     "skcm_tcga": {
       "studyId": "skcm_tcga",
@@ -3036,7 +3470,9 @@
       "cancerTypeId": "utuc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 107,
+      "citations_last_updated": "2025-12-20T13:22:55.383465"
     },
     "thyroid_mskcc_2016": {
       "studyId": "thyroid_mskcc_2016",
@@ -3047,7 +3483,9 @@
       "cancerTypeId": "thyroid",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 641,
+      "citations_last_updated": "2025-12-20T13:22:55.983131"
     },
     "stad_utokyo": {
       "studyId": "stad_utokyo",
@@ -3058,7 +3496,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 298,
+      "citations_last_updated": "2025-12-20T13:22:56.838327"
     },
     "kirc_tcga": {
       "studyId": "kirc_tcga",
@@ -3080,7 +3520,9 @@
       "cancerTypeId": "rms",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 9,
+      "citations_last_updated": "2025-12-20T13:22:57.719518"
     },
     "glioma_mskcc_2019": {
       "studyId": "glioma_mskcc_2019",
@@ -3091,7 +3533,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 103,
+      "citations_last_updated": "2025-12-20T13:22:58.549951"
     },
     "breast_msk_2018": {
       "studyId": "breast_msk_2018",
@@ -3102,7 +3546,9 @@
       "cancerTypeId": "breast",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 583,
+      "citations_last_updated": "2025-12-20T13:22:59.240303"
     },
     "brca_hta9_htan_2022": {
       "studyId": "brca_hta9_htan_2022",
@@ -3124,7 +3570,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:22:59.941528"
     },
     "nsclc_mskcc_2018": {
       "studyId": "nsclc_mskcc_2018",
@@ -3135,7 +3583,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 655,
+      "citations_last_updated": "2025-12-20T13:23:00.565785"
     },
     "mbc_msk_2021": {
       "studyId": "mbc_msk_2021",
@@ -3146,7 +3596,9 @@
       "cancerTypeId": "mbc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 18,
+      "citations_last_updated": "2025-12-20T13:23:01.345093"
     },
     "kirp_tcga_pan_can_atlas_2018": {
       "studyId": "kirp_tcga_pan_can_atlas_2018",
@@ -3157,7 +3609,9 @@
       "cancerTypeId": "prcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:02.167888"
     },
     "lihc_tcga": {
       "studyId": "lihc_tcga",
@@ -3179,7 +3633,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 171,
+      "citations_last_updated": "2025-12-20T13:23:02.773234"
     },
     "lymphoma_cellline_msk_2020": {
       "studyId": "lymphoma_cellline_msk_2020",
@@ -3190,7 +3646,9 @@
       "cancerTypeId": "lymph",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 20,
+      "citations_last_updated": "2025-12-20T13:23:03.481561"
     },
     "difg_tcga_gdc": {
       "studyId": "difg_tcga_gdc",
@@ -3212,7 +3670,9 @@
       "cancerTypeId": "esca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:04.059485"
     },
     "paad_tcga_gdc": {
       "studyId": "paad_tcga_gdc",
@@ -3245,7 +3705,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 6922,
+      "citations_last_updated": "2025-12-20T13:23:04.827482"
     },
     "prad_organoids_msk_2022": {
       "studyId": "prad_organoids_msk_2022",
@@ -3256,7 +3718,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 144,
+      "citations_last_updated": "2025-12-20T13:23:05.491463"
     },
     "chol_jhu_2013": {
       "studyId": "chol_jhu_2013",
@@ -3267,7 +3731,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 347,
+      "citations_last_updated": "2025-12-20T13:23:06.068703"
     },
     "ampca_bcm_2016": {
       "studyId": "ampca_bcm_2016",
@@ -3278,7 +3744,9 @@
       "cancerTypeId": "ampca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 77,
+      "citations_last_updated": "2025-12-20T13:23:06.709076"
     },
     "gist_msk_2025": {
       "studyId": "gist_msk_2025",
@@ -3311,7 +3779,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 3355,
+      "citations_last_updated": "2025-12-20T13:23:07.339855"
     },
     "ucs_jhu_2014": {
       "studyId": "ucs_jhu_2014",
@@ -3322,7 +3792,9 @@
       "cancerTypeId": "ucs",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 101,
+      "citations_last_updated": "2025-12-20T13:23:08.105989"
     },
     "hcc_clca_2024": {
       "studyId": "hcc_clca_2024",
@@ -3333,7 +3805,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 58,
+      "citations_last_updated": "2025-12-20T13:23:08.713201"
     },
     "ctcl_columbia_2015": {
       "studyId": "ctcl_columbia_2015",
@@ -3344,7 +3818,9 @@
       "cancerTypeId": "nhl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 201,
+      "citations_last_updated": "2025-12-20T13:23:09.459326"
     },
     "egc_msk_2017": {
       "studyId": "egc_msk_2017",
@@ -3355,7 +3831,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 218,
+      "citations_last_updated": "2025-12-20T13:23:10.152712"
     },
     "gbc_shanghai_2014": {
       "studyId": "gbc_shanghai_2014",
@@ -3366,7 +3844,9 @@
       "cancerTypeId": "gbc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 241,
+      "citations_last_updated": "2025-12-20T13:23:10.719683"
     },
     "prad_fhcrc": {
       "studyId": "prad_fhcrc",
@@ -3377,7 +3857,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 460,
+      "citations_last_updated": "2025-12-20T13:23:11.395200"
     },
     "hnsc_jhu": {
       "studyId": "hnsc_jhu",
@@ -3388,7 +3870,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 988,
+      "citations_last_updated": "2025-12-20T13:23:11.957562"
     },
     "biliary_tract_summit_2022": {
       "studyId": "biliary_tract_summit_2022",
@@ -3432,7 +3916,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 10,
+      "citations_last_updated": "2025-12-20T13:23:12.916600"
     },
     "luad_tcga": {
       "studyId": "luad_tcga",
@@ -3454,7 +3940,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 15,
+      "citations_last_updated": "2025-12-20T13:23:13.522270"
     },
     "prad_su2c_2019": {
       "studyId": "prad_su2c_2019",
@@ -3465,7 +3953,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 817,
+      "citations_last_updated": "2025-12-20T13:23:14.163395"
     },
     "stad_pfizer_uhongkong": {
       "studyId": "stad_pfizer_uhongkong",
@@ -3476,7 +3966,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 606,
+      "citations_last_updated": "2025-12-20T13:23:14.811928"
     },
     "chol_tcga_gdc": {
       "studyId": "chol_tcga_gdc",
@@ -3498,7 +3990,9 @@
       "cancerTypeId": "thyroid",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 23,
+      "citations_last_updated": "2025-12-20T13:23:15.404891"
     },
     "mel_iatlas_riaz_nivolumab_2017": {
       "studyId": "mel_iatlas_riaz_nivolumab_2017",
@@ -3509,7 +4003,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 1351,
+      "citations_last_updated": "2025-12-20T13:23:16.007841"
     },
     "kich_tcga": {
       "studyId": "kich_tcga",
@@ -3531,7 +4027,9 @@
       "cancerTypeId": "ovary",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 0,
+      "citations_last_updated": "2025-12-20T13:23:16.606142"
     },
     "stes_tcga_pub": {
       "studyId": "stes_tcga_pub",
@@ -3542,7 +4040,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 913,
+      "citations_last_updated": "2025-12-20T13:23:17.231299"
     },
     "msk_impact_2017": {
       "studyId": "msk_impact_2017",
@@ -3553,7 +4053,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1992,
+      "citations_last_updated": "2025-12-20T13:23:17.931842"
     },
     "sclc_cancercell_gardner_2017": {
       "studyId": "sclc_cancercell_gardner_2017",
@@ -3564,7 +4066,9 @@
       "cancerTypeId": "sclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 311,
+      "citations_last_updated": "2025-12-20T13:23:18.570029"
     },
     "stad_tcga_pan_can_atlas_2018": {
       "studyId": "stad_tcga_pan_can_atlas_2018",
@@ -3575,7 +4079,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:19.304221"
     },
     "hnsc_tcga": {
       "studyId": "hnsc_tcga",
@@ -3597,7 +4103,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 31,
+      "citations_last_updated": "2025-12-20T13:23:19.902934"
     },
     "gbc_msk_2018": {
       "studyId": "gbc_msk_2018",
@@ -3608,7 +4116,9 @@
       "cancerTypeId": "gbc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 28,
+      "citations_last_updated": "2025-12-20T13:23:20.535330"
     },
     "cellline_nci60": {
       "studyId": "cellline_nci60",
@@ -3619,7 +4129,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 576,
+      "citations_last_updated": "2025-12-20T13:23:21.185140"
     },
     "mixed_cfdna_msk_2020": {
       "studyId": "mixed_cfdna_msk_2020",
@@ -3630,7 +4142,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 30,
+      "citations_last_updated": "2025-12-20T13:23:21.779440"
     },
     "chol_tcga": {
       "studyId": "chol_tcga",
@@ -3652,7 +4166,9 @@
       "cancerTypeId": "bll",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 185,
+      "citations_last_updated": "2025-12-20T13:23:22.384638"
     },
     "lusc_cptac_gdc": {
       "studyId": "lusc_cptac_gdc",
@@ -3685,7 +4201,9 @@
       "cancerTypeId": "breast",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 91,
+      "citations_last_updated": "2025-12-20T13:23:22.964495"
     },
     "skcm_yale": {
       "studyId": "skcm_yale",
@@ -3696,7 +4214,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 666,
+      "citations_last_updated": "2025-12-20T13:23:23.594293"
     },
     "pact_jhu_2011": {
       "studyId": "pact_jhu_2011",
@@ -3707,7 +4227,9 @@
       "cancerTypeId": "pact",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 283,
+      "citations_last_updated": "2025-12-20T13:23:24.143866"
     },
     "luad_oncosg_2020": {
       "studyId": "luad_oncosg_2020",
@@ -3718,7 +4240,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 274,
+      "citations_last_updated": "2025-12-20T13:23:24.753956"
     },
     "lusc_tcga": {
       "studyId": "lusc_tcga",
@@ -3740,7 +4264,9 @@
       "cancerTypeId": "liad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 106,
+      "citations_last_updated": "2025-12-20T13:23:25.366367"
     },
     "laml_tcga": {
       "studyId": "laml_tcga",
@@ -3762,7 +4288,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:26.049569"
     },
     "wt_target_2018_pub": {
       "studyId": "wt_target_2018_pub",
@@ -3784,7 +4312,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 72,
+      "citations_last_updated": "2025-12-20T13:23:26.640481"
     },
     "appendiceal_msk_2022": {
       "studyId": "appendiceal_msk_2022",
@@ -3795,7 +4325,9 @@
       "cancerTypeId": "apad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 35,
+      "citations_last_updated": "2025-12-20T13:23:27.206342"
     },
     "hnc_mskcc_2016": {
       "studyId": "hnc_mskcc_2016",
@@ -3806,7 +4338,9 @@
       "cancerTypeId": "head_neck",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 135,
+      "citations_last_updated": "2025-12-20T13:23:27.738021"
     },
     "acc_tcga": {
       "studyId": "acc_tcga",
@@ -3828,7 +4362,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 6,
+      "citations_last_updated": "2025-12-20T13:23:28.338884"
     },
     "sft_sysucc_2023": {
       "studyId": "sft_sysucc_2023",
@@ -3839,7 +4375,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 14,
+      "citations_last_updated": "2025-12-20T13:23:28.881533"
     },
     "mbl_icgc": {
       "studyId": "mbl_icgc",
@@ -3850,7 +4388,9 @@
       "cancerTypeId": "mbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 501,
+      "citations_last_updated": "2025-12-20T13:23:29.556214"
     },
     "sarc_mskcc": {
       "studyId": "sarc_mskcc",
@@ -3861,7 +4401,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 415,
+      "citations_last_updated": "2025-12-20T13:23:30.151410"
     },
     "paad_qcmg_uq_2016": {
       "studyId": "paad_qcmg_uq_2016",
@@ -3872,7 +4414,9 @@
       "cancerTypeId": "paad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1979,
+      "citations_last_updated": "2025-12-20T13:23:30.865187"
     },
     "pcpg_tcga_pub": {
       "studyId": "pcpg_tcga_pub",
@@ -3883,7 +4427,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 399,
+      "citations_last_updated": "2025-12-20T13:23:31.476756"
     },
     "hnsc_tcga_pub": {
       "studyId": "hnsc_tcga_pub",
@@ -3894,7 +4440,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2235,
+      "citations_last_updated": "2025-12-20T13:23:32.107367"
     },
     "prad_tcga_gdc": {
       "studyId": "prad_tcga_gdc",
@@ -3916,7 +4464,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2,
+      "citations_last_updated": "2025-12-20T13:23:32.691633"
     },
     "panet_shanghai_2013": {
       "studyId": "panet_shanghai_2013",
@@ -3927,7 +4477,9 @@
       "cancerTypeId": "panet",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 81,
+      "citations_last_updated": "2025-12-20T13:23:33.262422"
     },
     "msk_ch_2023": {
       "studyId": "msk_ch_2023",
@@ -3938,7 +4490,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 6,
+      "citations_last_updated": "2025-12-20T13:23:33.819812"
     },
     "stad_oncosg_2018": {
       "studyId": "stad_oncosg_2018",
@@ -3949,7 +4503,9 @@
       "cancerTypeId": "stad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 92,
+      "citations_last_updated": "2025-12-20T13:23:34.394411"
     },
     "brca_pareja_msk_2020": {
       "studyId": "brca_pareja_msk_2020",
@@ -3960,7 +4516,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 47,
+      "citations_last_updated": "2025-12-20T13:23:34.942662"
     },
     "esca_tcga": {
       "studyId": "esca_tcga",
@@ -3982,7 +4540,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 86,
+      "citations_last_updated": "2025-12-20T13:23:35.574976"
     },
     "cscc_ucsf_2021": {
       "studyId": "cscc_ucsf_2021",
@@ -3993,7 +4553,9 @@
       "cancerTypeId": "cscc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 63,
+      "citations_last_updated": "2025-12-20T13:23:36.176208"
     },
     "breast_msk_2025": {
       "studyId": "breast_msk_2025",
@@ -4015,7 +4577,9 @@
       "cancerTypeId": "nbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 323,
+      "citations_last_updated": "2025-12-20T13:23:36.959864"
     },
     "bcc_unige_2016": {
       "studyId": "bcc_unige_2016",
@@ -4026,7 +4590,9 @@
       "cancerTypeId": "bcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 266,
+      "citations_last_updated": "2025-12-20T13:23:37.540818"
     },
     "luad_cptac_gdc": {
       "studyId": "luad_cptac_gdc",
@@ -4059,7 +4625,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 22,
+      "citations_last_updated": "2025-12-20T13:23:38.159069"
     },
     "pcpg_tcga": {
       "studyId": "pcpg_tcga",
@@ -4081,7 +4649,9 @@
       "cancerTypeId": "rms",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 3,
+      "citations_last_updated": "2025-12-20T13:23:38.773763"
     },
     "alal_target_gdc": {
       "studyId": "alal_target_gdc",
@@ -4103,7 +4673,9 @@
       "cancerTypeId": "hccihch",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 154,
+      "citations_last_updated": "2025-12-20T13:23:39.418776"
     },
     "uccc_nih_2017": {
       "studyId": "uccc_nih_2017",
@@ -4114,7 +4686,9 @@
       "cancerTypeId": "uccc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 39,
+      "citations_last_updated": "2025-12-20T13:23:39.939853"
     },
     "brca_fuscc_2020": {
       "studyId": "brca_fuscc_2020",
@@ -4125,7 +4699,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 159,
+      "citations_last_updated": "2025-12-20T13:23:40.469375"
     },
     "chrcc_tcga_gdc": {
       "studyId": "chrcc_tcga_gdc",
@@ -4147,7 +4723,9 @@
       "cancerTypeId": "utuc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 25,
+      "citations_last_updated": "2025-12-20T13:23:41.040147"
     },
     "laml_tcga_pan_can_atlas_2018": {
       "studyId": "laml_tcga_pan_can_atlas_2018",
@@ -4158,7 +4736,9 @@
       "cancerTypeId": "aml",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:41.634915"
     },
     "pdac_msk_2024": {
       "studyId": "pdac_msk_2024",
@@ -4169,7 +4749,9 @@
       "cancerTypeId": "pancreas",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 19,
+      "citations_last_updated": "2025-12-20T13:23:42.194774"
     },
     "blca_iatlas_imvigor210_2017": {
       "studyId": "blca_iatlas_imvigor210_2017",
@@ -4180,7 +4762,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 6,
+      "citations_last_updated": "2025-12-20T13:23:42.784352"
     },
     "bowel_colitis_msk_2022": {
       "studyId": "bowel_colitis_msk_2022",
@@ -4191,7 +4775,9 @@
       "cancerTypeId": "bowel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 28,
+      "citations_last_updated": "2025-12-20T13:23:43.344584"
     },
     "msk_spectrum_tme_2022": {
       "studyId": "msk_spectrum_tme_2022",
@@ -4202,7 +4788,9 @@
       "cancerTypeId": "ovary",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 146,
+      "citations_last_updated": "2025-12-20T13:23:43.948661"
     },
     "past_dkfz_heidelberg_2013": {
       "studyId": "past_dkfz_heidelberg_2013",
@@ -4213,7 +4801,9 @@
       "cancerTypeId": "past",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 431,
+      "citations_last_updated": "2025-12-20T13:23:44.598421"
     },
     "sarcoma_msk_2022": {
       "studyId": "sarcoma_msk_2022",
@@ -4224,7 +4814,9 @@
       "cancerTypeId": "soft_tissue",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 94,
+      "citations_last_updated": "2025-12-20T13:23:45.158360"
     },
     "bfn_duke_nus_2015": {
       "studyId": "bfn_duke_nus_2015",
@@ -4235,7 +4827,9 @@
       "cancerTypeId": "bfn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 102,
+      "citations_last_updated": "2025-12-20T13:23:45.782308"
     },
     "thca_tcga": {
       "studyId": "thca_tcga",
@@ -4257,7 +4851,9 @@
       "cancerTypeId": "mbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 511,
+      "citations_last_updated": "2025-12-20T13:23:46.359985"
     },
     "kich_tcga_pan_can_atlas_2018": {
       "studyId": "kich_tcga_pan_can_atlas_2018",
@@ -4268,7 +4864,9 @@
       "cancerTypeId": "chrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:47.026533"
     },
     "crc_hta11_htan_2021": {
       "studyId": "crc_hta11_htan_2021",
@@ -4279,7 +4877,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 173,
+      "citations_last_updated": "2025-12-20T13:23:47.694426"
     },
     "ucec_tcga_pub": {
       "studyId": "ucec_tcga_pub",
@@ -4290,7 +4890,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2723,
+      "citations_last_updated": "2025-12-20T13:23:48.449260"
     },
     "coadread_mskresistance_2022": {
       "studyId": "coadread_mskresistance_2022",
@@ -4301,7 +4903,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 67,
+      "citations_last_updated": "2025-12-20T13:23:49.062227"
     },
     "nsclc_ctdx_msk_2022": {
       "studyId": "nsclc_ctdx_msk_2022",
@@ -4312,7 +4916,9 @@
       "cancerTypeId": "nsclc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 85,
+      "citations_last_updated": "2025-12-20T13:23:49.670162"
     },
     "luad_tcga_pub": {
       "studyId": "luad_tcga_pub",
@@ -4323,7 +4929,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 3151,
+      "citations_last_updated": "2025-12-20T13:23:50.362942"
     },
     "tgct_tcga_pan_can_atlas_2018": {
       "studyId": "tgct_tcga_pan_can_atlas_2018",
@@ -4334,7 +4942,9 @@
       "cancerTypeId": "testis",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:51.015955"
     },
     "brca_tcga_pan_can_atlas_2018": {
       "studyId": "brca_tcga_pan_can_atlas_2018",
@@ -4345,7 +4955,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:51.627817"
     },
     "mel_mskimpact_2020": {
       "studyId": "mel_mskimpact_2020",
@@ -4356,7 +4968,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 26,
+      "citations_last_updated": "2025-12-20T13:23:52.279204"
     },
     "schw_ctf_synodos_2025": {
       "studyId": "schw_ctf_synodos_2025",
@@ -4367,7 +4981,9 @@
       "cancerTypeId": "schw",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 24,
+      "citations_last_updated": "2025-12-20T13:23:52.968926"
     },
     "breast_alpelisib_2020": {
       "studyId": "breast_alpelisib_2020",
@@ -4378,7 +4994,9 @@
       "cancerTypeId": "breast",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 106,
+      "citations_last_updated": "2025-12-20T13:23:53.542027"
     },
     "blca_pdx_msk_2025": {
       "studyId": "blca_pdx_msk_2025",
@@ -4400,7 +5018,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 484,
+      "citations_last_updated": "2025-12-20T13:23:54.072900"
     },
     "mbl_broad_2012": {
       "studyId": "mbl_broad_2012",
@@ -4411,7 +5031,9 @@
       "cancerTypeId": "mbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 441,
+      "citations_last_updated": "2025-12-20T13:23:54.666700"
     },
     "ucec_ccr_msk_2022": {
       "studyId": "ucec_ccr_msk_2022",
@@ -4422,7 +5044,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 32,
+      "citations_last_updated": "2025-12-20T13:23:55.343745"
     },
     "lihc_tcga_pan_can_atlas_2018": {
       "studyId": "lihc_tcga_pan_can_atlas_2018",
@@ -4433,7 +5057,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:23:56.083817"
     },
     "egc_trap_ccr_msk_2023": {
       "studyId": "egc_trap_ccr_msk_2023",
@@ -4444,7 +5070,9 @@
       "cancerTypeId": "egc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 14,
+      "citations_last_updated": "2025-12-20T13:23:56.692910"
     },
     "prad_mskcc_cheny1_organoids_2014": {
       "studyId": "prad_mskcc_cheny1_organoids_2014",
@@ -4455,7 +5083,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 872,
+      "citations_last_updated": "2025-12-20T13:23:57.254192"
     },
     "mds_mskcc_2020": {
       "studyId": "mds_mskcc_2020",
@@ -4466,7 +5096,9 @@
       "cancerTypeId": "mds",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2254,
+      "citations_last_updated": "2025-12-20T13:23:57.891111"
     },
     "paad_utsw_2015": {
       "studyId": "paad_utsw_2015",
@@ -4477,7 +5109,9 @@
       "cancerTypeId": "paad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 659,
+      "citations_last_updated": "2025-12-20T13:23:58.520805"
     },
     "skcm_tcga_gdc": {
       "studyId": "skcm_tcga_gdc",
@@ -4499,7 +5133,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 5,
+      "citations_last_updated": "2025-12-20T13:23:59.048298"
     },
     "nbl_amc_2012": {
       "studyId": "nbl_amc_2012",
@@ -4510,7 +5146,9 @@
       "cancerTypeId": "nbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 519,
+      "citations_last_updated": "2025-12-20T13:23:59.638393"
     },
     "lusc_cptac_2021": {
       "studyId": "lusc_cptac_2021",
@@ -4521,7 +5159,9 @@
       "cancerTypeId": "lusc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 197,
+      "citations_last_updated": "2025-12-20T13:24:00.234535"
     },
     "histiocytosis_cobi_msk_2019": {
       "studyId": "histiocytosis_cobi_msk_2019",
@@ -4532,7 +5172,9 @@
       "cancerTypeId": "hdcn",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 188,
+      "citations_last_updated": "2025-12-20T13:24:00.868400"
     },
     "nccrcc_genentech_2014": {
       "studyId": "nccrcc_genentech_2014",
@@ -4543,7 +5185,9 @@
       "cancerTypeId": "nccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 181,
+      "citations_last_updated": "2025-12-20T13:24:01.669735"
     },
     "desm_broad_2015": {
       "studyId": "desm_broad_2015",
@@ -4554,7 +5198,9 @@
       "cancerTypeId": "desm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 124,
+      "citations_last_updated": "2025-12-20T13:24:02.307895"
     },
     "uvm_tcga_pan_can_atlas_2018": {
       "studyId": "uvm_tcga_pan_can_atlas_2018",
@@ -4565,7 +5211,9 @@
       "cancerTypeId": "um",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:24:03.005224"
     },
     "brca_igr_2015": {
       "studyId": "brca_igr_2015",
@@ -4576,7 +5224,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 237,
+      "citations_last_updated": "2025-12-20T13:24:03.711878"
     },
     "gbm_columbia_2019": {
       "studyId": "gbm_columbia_2019",
@@ -4587,7 +5237,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 561,
+      "citations_last_updated": "2025-12-20T13:24:04.472829"
     },
     "ucec_ccr_cfdna_msk_2022": {
       "studyId": "ucec_ccr_cfdna_msk_2022",
@@ -4598,7 +5250,9 @@
       "cancerTypeId": "ucec",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 21,
+      "citations_last_updated": "2025-12-20T13:24:05.083157"
     },
     "kirc_tcga_pan_can_atlas_2018": {
       "studyId": "kirc_tcga_pan_can_atlas_2018",
@@ -4609,7 +5263,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:24:05.786547"
     },
     "lusc_tcga_pub": {
       "studyId": "lusc_tcga_pub",
@@ -4620,7 +5276,9 @@
       "cancerTypeId": "lusc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2255,
+      "citations_last_updated": "2025-12-20T13:24:06.492722"
     },
     "luad_mskcc_2020": {
       "studyId": "luad_mskcc_2020",
@@ -4631,7 +5289,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 86,
+      "citations_last_updated": "2025-12-20T13:24:07.208566"
     },
     "msk_chord_2024": {
       "studyId": "msk_chord_2024",
@@ -4642,7 +5302,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 35,
+      "citations_last_updated": "2025-12-20T13:24:07.888400"
     },
     "prad_tcga_pan_can_atlas_2018": {
       "studyId": "prad_tcga_pan_can_atlas_2018",
@@ -4653,7 +5315,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:24:08.503413"
     },
     "nhl_bcgsc_2013": {
       "studyId": "nhl_bcgsc_2013",
@@ -4664,7 +5328,9 @@
       "cancerTypeId": "nhl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 236,
+      "citations_last_updated": "2025-12-20T13:24:09.075624"
     },
     "plmeso_msk_2024": {
       "studyId": "plmeso_msk_2024",
@@ -4675,7 +5341,9 @@
       "cancerTypeId": "plmeso",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1,
+      "citations_last_updated": "2025-12-20T13:24:09.700292"
     },
     "rectal_radiation_msk_2024": {
       "studyId": "rectal_radiation_msk_2024",
@@ -4697,7 +5365,9 @@
       "cancerTypeId": "rms",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 439,
+      "citations_last_updated": "2025-12-20T13:24:10.423226"
     },
     "rcc_iatlas_immotion150_2018": {
       "studyId": "rcc_iatlas_immotion150_2018",
@@ -4708,7 +5378,9 @@
       "cancerTypeId": "rcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 667,
+      "citations_last_updated": "2025-12-20T13:24:11.022828"
     },
     "lgggbm_tcga_pub": {
       "studyId": "lgggbm_tcga_pub",
@@ -4719,7 +5391,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1291,
+      "citations_last_updated": "2025-12-20T13:24:11.746838"
     },
     "rbl_mskcc_2020": {
       "studyId": "rbl_mskcc_2020",
@@ -4730,7 +5404,9 @@
       "cancerTypeId": "rbl",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 27,
+      "citations_last_updated": "2025-12-20T13:24:12.502258"
     },
     "hnsc_a5consortium_2025": {
       "studyId": "hnsc_a5consortium_2025",
@@ -4741,7 +5417,9 @@
       "cancerTypeId": "hnsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 5,
+      "citations_last_updated": "2025-12-20T13:24:13.288040"
     },
     "ucs_tcga": {
       "studyId": "ucs_tcga",
@@ -4763,7 +5441,9 @@
       "cancerTypeId": "prostate",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 181,
+      "citations_last_updated": "2025-12-20T13:24:13.923606"
     },
     "all_phase2_target_2018_pub": {
       "studyId": "all_phase2_target_2018_pub",
@@ -4796,7 +5476,9 @@
       "cancerTypeId": "chol",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 479,
+      "citations_last_updated": "2025-12-20T13:24:14.575801"
     },
     "ucs_msk_2024": {
       "studyId": "ucs_msk_2024",
@@ -4818,7 +5500,9 @@
       "cancerTypeId": "prostate",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 15,
+      "citations_last_updated": "2025-12-20T13:24:15.495460"
     },
     "mng_utoronto_2021": {
       "studyId": "mng_utoronto_2021",
@@ -4829,7 +5513,9 @@
       "cancerTypeId": "mng",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 253,
+      "citations_last_updated": "2025-12-20T13:24:16.161374"
     },
     "pancan_ped_mai_msk_2025": {
       "studyId": "pancan_ped_mai_msk_2025",
@@ -4851,7 +5537,9 @@
       "cancerTypeId": "coad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 112,
+      "citations_last_updated": "2025-12-20T13:24:16.824457"
     },
     "ccrcc_utokyo_2013": {
       "studyId": "ccrcc_utokyo_2013",
@@ -4862,7 +5550,9 @@
       "cancerTypeId": "ccrcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 729,
+      "citations_last_updated": "2025-12-20T13:24:17.500797"
     },
     "coadread_mskcc": {
       "studyId": "coadread_mskcc",
@@ -4873,7 +5563,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 215,
+      "citations_last_updated": "2025-12-20T13:24:18.122013"
     },
     "urcc_mskcc_2016": {
       "studyId": "urcc_mskcc_2016",
@@ -4884,7 +5576,9 @@
       "cancerTypeId": "urcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 90,
+      "citations_last_updated": "2025-12-20T13:24:19.001883"
     },
     "brca_mbcproject_2022": {
       "studyId": "brca_mbcproject_2022",
@@ -4917,7 +5611,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2,
+      "citations_last_updated": "2025-12-20T13:24:19.860285"
     },
     "acyc_mda_2015": {
       "studyId": "acyc_mda_2015",
@@ -4928,7 +5624,9 @@
       "cancerTypeId": "acyc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 97,
+      "citations_last_updated": "2025-12-20T13:24:20.674692"
     },
     "lihc_riken": {
       "studyId": "lihc_riken",
@@ -4939,7 +5637,9 @@
       "cancerTypeId": "hcc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 522,
+      "citations_last_updated": "2025-12-20T13:24:21.518834"
     },
     "brca_broad": {
       "studyId": "brca_broad",
@@ -4950,7 +5650,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 672,
+      "citations_last_updated": "2025-12-20T13:24:22.243419"
     },
     "dlbc_tcga_pan_can_atlas_2018": {
       "studyId": "dlbc_tcga_pan_can_atlas_2018",
@@ -4961,7 +5663,9 @@
       "cancerTypeId": "dlbclnos",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1356,
+      "citations_last_updated": "2025-12-20T13:24:22.890708"
     },
     "brca_mapk_hp_msk_2021": {
       "studyId": "brca_mapk_hp_msk_2021",
@@ -4972,7 +5676,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 53,
+      "citations_last_updated": "2025-12-20T13:24:23.569273"
     },
     "bladder_msk_2023": {
       "studyId": "bladder_msk_2023",
@@ -4983,7 +5689,9 @@
       "cancerTypeId": "bladder",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 25,
+      "citations_last_updated": "2025-12-20T13:24:24.154796"
     },
     "laml_tcga_pub": {
       "studyId": "laml_tcga_pub",
@@ -4994,7 +5702,9 @@
       "cancerTypeId": "aml",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 2826,
+      "citations_last_updated": "2025-12-20T13:24:24.792898"
     },
     "brca_sanger": {
       "studyId": "brca_sanger",
@@ -5005,7 +5715,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 947,
+      "citations_last_updated": "2025-12-20T13:24:25.527981"
     },
     "skcm_broad_brafresist_2012": {
       "studyId": "skcm_broad_brafresist_2012",
@@ -5016,7 +5728,9 @@
       "cancerTypeId": "skcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 505,
+      "citations_last_updated": "2025-12-20T13:24:26.080245"
     },
     "aml_tcga_gdc": {
       "studyId": "aml_tcga_gdc",
@@ -5049,7 +5763,9 @@
       "cancerTypeId": "cscc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 141,
+      "citations_last_updated": "2025-12-20T13:24:26.662532"
     },
     "pancan_pcawg_2020": {
       "studyId": "pancan_pcawg_2020",
@@ -5060,7 +5776,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1493,
+      "citations_last_updated": "2025-12-20T13:24:27.402822"
     },
     "brca_tcga_pub2015": {
       "studyId": "brca_tcga_pub2015",
@@ -5071,7 +5789,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1106,
+      "citations_last_updated": "2025-12-20T13:24:28.086418"
     },
     "usarc_msk_2020": {
       "studyId": "usarc_msk_2020",
@@ -5082,7 +5802,9 @@
       "cancerTypeId": "usarc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 50,
+      "citations_last_updated": "2025-12-20T13:24:28.758954"
     },
     "ov_tcga": {
       "studyId": "ov_tcga",
@@ -5104,7 +5826,9 @@
       "cancerTypeId": "bladder",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 440,
+      "citations_last_updated": "2025-12-20T13:24:29.337664"
     },
     "prad_broad": {
       "studyId": "prad_broad",
@@ -5115,7 +5839,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 907,
+      "citations_last_updated": "2025-12-20T13:24:30.097851"
     },
     "scco_mskcc": {
       "studyId": "scco_mskcc",
@@ -5126,7 +5852,9 @@
       "cancerTypeId": "scco",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 171,
+      "citations_last_updated": "2025-12-20T13:24:30.782719"
     },
     "utuc_mskcc_2015": {
       "studyId": "utuc_mskcc_2015",
@@ -5137,7 +5865,9 @@
       "cancerTypeId": "utuc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 124,
+      "citations_last_updated": "2025-12-20T13:24:31.514531"
     },
     "lusc_tcga_gdc": {
       "studyId": "lusc_tcga_gdc",
@@ -5159,7 +5889,9 @@
       "cancerTypeId": "angs",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 146,
+      "citations_last_updated": "2025-12-20T13:24:32.131467"
     },
     "mel_iatlas_liu_2019": {
       "studyId": "mel_iatlas_liu_2019",
@@ -5170,7 +5902,9 @@
       "cancerTypeId": "mel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 580,
+      "citations_last_updated": "2025-12-20T13:24:32.860416"
     },
     "ccrcc_tcga_gdc": {
       "studyId": "ccrcc_tcga_gdc",
@@ -5203,7 +5937,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 290,
+      "citations_last_updated": "2025-12-20T13:24:33.611352"
     },
     "panet_msk_2018": {
       "studyId": "panet_msk_2018",
@@ -5214,7 +5950,9 @@
       "cancerTypeId": "panet",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 38,
+      "citations_last_updated": "2025-12-20T13:24:34.306971"
     },
     "ccle_genentech_2014": {
       "studyId": "ccle_genentech_2014",
@@ -5225,7 +5963,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 386,
+      "citations_last_updated": "2025-12-20T13:24:34.968202"
     },
     "brca_dldccc_2022": {
       "studyId": "brca_dldccc_2022",
@@ -5236,7 +5976,9 @@
       "cancerTypeId": "brca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 67,
+      "citations_last_updated": "2025-12-20T13:24:35.624363"
     },
     "uvm_tcga": {
       "studyId": "uvm_tcga",
@@ -5258,7 +6000,9 @@
       "cancerTypeId": "paad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 273,
+      "citations_last_updated": "2025-12-20T13:24:36.317800"
     },
     "crc_dd_2022": {
       "studyId": "crc_dd_2022",
@@ -5269,7 +6013,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 3,
+      "citations_last_updated": "2025-12-20T13:24:37.135396"
     },
     "prad_cpcg_2017": {
       "studyId": "prad_cpcg_2017",
@@ -5280,7 +6026,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 346,
+      "citations_last_updated": "2025-12-20T13:24:37.964085"
     },
     "ntrk_msk_2019": {
       "studyId": "ntrk_msk_2019",
@@ -5291,7 +6039,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 84,
+      "citations_last_updated": "2025-12-20T13:24:38.870460"
     },
     "luad_cptac_2020": {
       "studyId": "luad_cptac_2020",
@@ -5302,7 +6052,9 @@
       "cancerTypeId": "luad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 426,
+      "citations_last_updated": "2025-12-20T13:24:39.543812"
     },
     "crc_msk_2017": {
       "studyId": "crc_msk_2017",
@@ -5313,7 +6065,9 @@
       "cancerTypeId": "coadread",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 506,
+      "citations_last_updated": "2025-12-20T13:24:40.172922"
     },
     "mixed_pipseq_2017": {
       "studyId": "mixed_pipseq_2017",
@@ -5324,7 +6078,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 97,
+      "citations_last_updated": "2025-12-20T13:24:40.913620"
     },
     "gbc_mskcc_2022": {
       "studyId": "gbc_mskcc_2022",
@@ -5335,7 +6091,9 @@
       "cancerTypeId": "gbc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 29,
+      "citations_last_updated": "2025-12-20T13:24:41.491681"
     },
     "aml_target_gdc": {
       "studyId": "aml_target_gdc",
@@ -5357,7 +6115,9 @@
       "cancerTypeId": "lgsoc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 34,
+      "citations_last_updated": "2025-12-20T13:24:42.031830"
     },
     "brca_mbcproject_wagle_2017": {
       "studyId": "brca_mbcproject_wagle_2017",
@@ -5379,7 +6139,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 11,
+      "citations_last_updated": "2025-12-20T13:24:42.657351"
     },
     "ilc_msk_2023": {
       "studyId": "ilc_msk_2023",
@@ -5412,7 +6174,9 @@
       "cancerTypeId": "blca",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 153,
+      "citations_last_updated": "2025-12-20T13:24:43.255436"
     },
     "coadread_tcga": {
       "studyId": "coadread_tcga",
@@ -5445,7 +6209,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 57,
+      "citations_last_updated": "2025-12-20T13:24:43.860065"
     },
     "csf_msk_2024": {
       "studyId": "csf_msk_2024",
@@ -5456,7 +6222,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 8,
+      "citations_last_updated": "2025-12-20T13:24:44.659128"
     },
     "gbm_tcga_pub": {
       "studyId": "gbm_tcga_pub",
@@ -5467,7 +6235,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 4393,
+      "citations_last_updated": "2025-12-20T13:24:45.666823"
     },
     "vsc_cuk_2018": {
       "studyId": "vsc_cuk_2018",
@@ -5478,7 +6248,9 @@
       "cancerTypeId": "vsc",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 23,
+      "citations_last_updated": "2025-12-20T13:24:46.504728"
     },
     "nsgct_tcga_gdc": {
       "studyId": "nsgct_tcga_gdc",
@@ -5511,7 +6283,9 @@
       "cancerTypeId": "difg",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 798,
+      "citations_last_updated": "2025-12-20T13:24:47.198001"
     },
     "prad_eururol_2017": {
       "studyId": "prad_eururol_2017",
@@ -5522,7 +6296,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 117,
+      "citations_last_updated": "2025-12-20T13:24:47.958969"
     },
     "stad_tcga_gdc": {
       "studyId": "stad_tcga_gdc",
@@ -5544,7 +6320,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1540,
+      "citations_last_updated": "2025-12-20T13:24:48.743554"
     },
     "prad_tcga_pub": {
       "studyId": "prad_tcga_pub",
@@ -5555,7 +6333,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1759,
+      "citations_last_updated": "2025-12-20T13:24:49.496739"
     },
     "prad_mskcc_2014": {
       "studyId": "prad_mskcc_2014",
@@ -5566,7 +6346,9 @@
       "cancerTypeId": "prad",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 217,
+      "citations_last_updated": "2025-12-20T13:24:50.178383"
     },
     "ccle_broad_2025": {
       "studyId": "ccle_broad_2025",
@@ -5577,7 +6359,9 @@
       "cancerTypeId": "mixed",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg38"
+      "referenceGenome": "hg38",
+      "total_pubmed_citations": 52,
+      "citations_last_updated": "2025-12-20T13:24:50.741365"
     },
     "mm_broad": {
       "studyId": "mm_broad",
@@ -5588,7 +6372,9 @@
       "cancerTypeId": "pcm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 609,
+      "citations_last_updated": "2025-12-20T13:24:51.407612"
     },
     "aml_ohsu_2018": {
       "studyId": "aml_ohsu_2018",
@@ -5599,7 +6385,9 @@
       "cancerTypeId": "aml",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 781,
+      "citations_last_updated": "2025-12-20T13:24:52.497525"
     },
     "dlbc_broad_2012": {
       "studyId": "dlbc_broad_2012",
@@ -5610,7 +6398,9 @@
       "cancerTypeId": "dlbclnos",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 533,
+      "citations_last_updated": "2025-12-20T13:24:53.168705"
     },
     "rectal_msk_2022": {
       "studyId": "rectal_msk_2022",
@@ -5621,7 +6411,9 @@
       "cancerTypeId": "bowel",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 71,
+      "citations_last_updated": "2025-12-20T13:24:53.814439"
     },
     "mixed_impact_subset_2022": {
       "studyId": "mixed_impact_subset_2022",
@@ -5654,7 +6446,9 @@
       "cancerTypeId": "mds",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 1144,
+      "citations_last_updated": "2025-12-20T13:24:54.739995"
     },
     "mnm_washu_2016": {
       "studyId": "mnm_washu_2016",
@@ -5665,7 +6459,9 @@
       "cancerTypeId": "mnm",
       "allSampleCount": 1,
       "publicStudy": true,
-      "referenceGenome": "hg19"
+      "referenceGenome": "hg19",
+      "total_pubmed_citations": 431,
+      "citations_last_updated": "2025-12-20T13:24:55.273395"
     },
     "hnsc_tcga_gdc": {
       "studyId": "hnsc_tcga_gdc",
@@ -7187,5 +7983,6 @@
     "27959731": [
       "mnm_washu_2016"
     ]
-  }
+  },
+  "citations_last_updated": "2025-12-20T13:24:55.618508"
 }

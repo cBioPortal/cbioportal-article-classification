@@ -24,6 +24,30 @@ logger = logging.getLogger(__name__)
 sns.set_style("whitegrid")
 sns.set_palette("husl")
 
+# Common data source papers mapping (PMID -> Dataset/Study name)
+DATA_SOURCE_PAPERS = {
+    '23000897': 'TCGA Pan-Cancer Analysis',
+    '22460905': 'TCGA Endometrial Carcinoma',
+    '22522925': 'TCGA Lung Adenocarcinoma',
+    '22810696': 'TCGA Lung Squamous Cell Carcinoma',
+    '21720365': 'TCGA Glioblastoma',
+    '20579941': 'TCGA Ovarian Cancer',
+    '25079552': 'TCGA Kidney Renal Clear Cell Carcinoma',
+    '18772890': 'TCGA Glioblastoma (Original)',
+    '29625055': 'MSK-IMPACT Clinical Sequencing',
+    '26544944': 'TCGA Skin Cutaneous Melanoma',
+    '22955619': 'TCGA Colon Adenocarcinoma',
+    '22722843': 'TCGA Bladder Urothelial Carcinoma',
+    '23079654': 'TCGA Breast Invasive Carcinoma',
+    '23348506': 'TCGA Acute Myeloid Leukemia',
+    '22722202': 'TCGA Head and Neck Squamous Cell Carcinoma',
+    '22158988': 'TCGA Ovarian Serous Cystadenocarcinoma',
+    '22897849': 'METABRIC Breast Cancer',
+    '27322546': 'AACR GENIE Project',
+    '26091043': 'TCGA Thyroid Carcinoma',
+    '28481359': 'TCGA Stomach Adenocarcinoma',
+}
+
 
 class UsageAnalyzer:
     """Analyzes cBioPortal usage patterns from classified papers."""
@@ -234,6 +258,264 @@ class UsageAnalyzer:
         location_counts = self.df['analysis_location'].value_counts()
         return pd.DataFrame({'Location': location_counts.index, 'Count': location_counts.values})
 
+    def analyze_platform_citations(self) -> pd.DataFrame:
+        """Analyze v7 platform paper citation patterns.
+
+        Returns:
+            DataFrame with platform paper citation counts
+        """
+        if self.df.empty or 'cbioportal_platform_pmids_cited' not in self.df.columns:
+            return pd.DataFrame()
+
+        # Filter to v7 papers
+        v7_df = self.df[self.df.get('schema_version', 0) == 7].copy()
+        if v7_df.empty:
+            return pd.DataFrame()
+
+        platform_names = {
+            '22588877': 'Cerami et al. 2012 (Cancer Discovery)',
+            '23550210': 'Gao et al. 2013 (Science Signaling)',
+            '37668528': 'de Bruijn et al. 2023 (Cancer Cell)'
+        }
+
+        # Count citations to each platform paper
+        citation_counts = {}
+        for pmid, name in platform_names.items():
+            count = v7_df['cbioportal_platform_pmids_cited'].apply(
+                lambda x: pmid in (eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else []))
+            ).sum()
+            citation_counts[name] = int(count)
+
+        return pd.DataFrame({
+            'Platform Paper': list(citation_counts.keys()),
+            'Citations': list(citation_counts.values())
+        })
+
+    def analyze_citation_attribution(self) -> Dict:
+        """Analyze v7 citation attribution patterns (platform vs data source).
+
+        Returns:
+            Dictionary with attribution statistics
+        """
+        if self.df.empty:
+            return {}
+
+        # Filter to v7 papers
+        v7_df = self.df[self.df.get('schema_version', 0) == 7].copy()
+        if v7_df.empty:
+            return {}
+
+        total = len(v7_df)
+
+        # Check for required columns
+        has_platform_col = 'cites_cbioportal_platform_paper' in v7_df.columns
+        has_data_col = 'cites_study_data_source_paper' in v7_df.columns
+
+        if not (has_platform_col and has_data_col):
+            return {}
+
+        # Count attribution patterns
+        cite_platform = v7_df['cites_cbioportal_platform_paper'].sum()
+        cite_data = v7_df['cites_study_data_source_paper'].sum()
+
+        cite_both = (v7_df['cites_cbioportal_platform_paper'] &
+                     v7_df['cites_study_data_source_paper']).sum()
+        cite_platform_only = (v7_df['cites_cbioportal_platform_paper'] &
+                             ~v7_df['cites_study_data_source_paper']).sum()
+        cite_data_only = (~v7_df['cites_cbioportal_platform_paper'] &
+                         v7_df['cites_study_data_source_paper']).sum()
+        cite_neither = (~v7_df['cites_cbioportal_platform_paper'] &
+                       ~v7_df['cites_study_data_source_paper']).sum()
+
+        return {
+            'total_v7_papers': int(total),
+            'cite_platform': int(cite_platform),
+            'cite_data_source': int(cite_data),
+            'cite_both': int(cite_both),
+            'cite_platform_only': int(cite_platform_only),
+            'cite_data_only': int(cite_data_only),
+            'cite_neither': int(cite_neither),
+            'pct_cite_both': round(cite_both / total * 100, 1) if total > 0 else 0,
+            'pct_cite_platform_only': round(cite_platform_only / total * 100, 1) if total > 0 else 0
+        }
+
+    def analyze_specific_datasets(self, top_n: int = 30) -> pd.DataFrame:
+        """Analyze specific datasets from v7 schema.
+
+        Args:
+            top_n: Number of top datasets to return
+
+        Returns:
+            DataFrame with specific dataset counts
+        """
+        if self.df.empty or 'specific_datasets' not in self.df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.df.copy()
+        df_temp['specific_datasets'] = df_temp['specific_datasets'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        dataset_counts = df_temp.explode('specific_datasets')['specific_datasets'].value_counts()
+        # Filter out empty strings and None
+        dataset_counts = dataset_counts[dataset_counts.index.notna()]
+        dataset_counts = dataset_counts[dataset_counts.index != '']
+
+        return pd.DataFrame({
+            'Dataset': dataset_counts.head(top_n).index,
+            'Count': dataset_counts.head(top_n).values
+        })
+
+    def analyze_cbioportal_studies_cited(self, top_n: int = 30) -> pd.DataFrame:
+        """Analyze which cBioPortal studies are most frequently cited.
+
+        Shows total PubMed citations for each study (from fetch-studies).
+        Sorted by total citations to show the most influential cBioPortal datasets.
+
+        Args:
+            top_n: Number of top studies to return
+
+        Returns:
+            DataFrame with study names, PMIDs, and total citation counts
+        """
+        # Load cBioPortal studies metadata
+        studies_file = METADATA_DIR / "cbioportal_studies.json"
+        if not studies_file.exists():
+            logger.warning("No studies metadata found. Run fetch-studies first.")
+            return pd.DataFrame()
+
+        with open(studies_file, "r") as f:
+            studies_data = json.load(f)
+
+        studies = studies_data.get("studies", {})
+
+        # Collect studies with citation counts
+        study_stats = []
+        for study_id, study_info in studies.items():
+            total_citations = study_info.get('total_pubmed_citations')
+
+            # Skip studies without citation counts or with 0 citations
+            if total_citations is None or total_citations == 0:
+                continue
+
+            study_stats.append({
+                'Study_ID': study_id,
+                'Study_Name': study_info.get('name', study_id),
+                'Study_PMID': study_info.get('pmid', ''),
+                'Total_Citations': total_citations,
+                'Cancer_Type': study_info.get('cancerTypeId', ''),
+                'Sample_Count': study_info.get('allSampleCount', 0)
+            })
+
+        # Convert to DataFrame and sort by total citations
+        if not study_stats:
+            return pd.DataFrame()
+
+        studies_df = pd.DataFrame(study_stats)
+        studies_df = studies_df.sort_values('Total_Citations', ascending=False).head(top_n)
+
+        return studies_df
+
+    def analyze_genes_with_druggability(self, top_n: int = 50) -> pd.DataFrame:
+        """Analyze most commonly queried genes with druggability annotations.
+
+        Args:
+            top_n: Number of top genes to return
+
+        Returns:
+            DataFrame with gene counts and druggability status
+        """
+        # Get gene counts
+        genes_df = self.analyze_genes_queried(top_n=top_n)
+        if genes_df.empty:
+            return pd.DataFrame()
+
+        # FDA-approved druggable genes
+        druggable_genes = {
+            'EGFR': 'FDA-approved (erlotinib, osimertinib, etc.)',
+            'BRAF': 'FDA-approved (vemurafenib, dabrafenib)',
+            'ALK': 'FDA-approved (crizotinib, alectinib)',
+            'KRAS': 'FDA-approved (sotorasib, adagrasib - G12C)',
+            'ERBB2': 'FDA-approved (trastuzumab, pertuzumab)',
+            'HER2': 'FDA-approved (trastuzumab, pertuzumab)',
+            'PIK3CA': 'FDA-approved (alpelisib)',
+            'BRCA1': 'FDA-approved (PARP inhibitors)',
+            'BRCA2': 'FDA-approved (PARP inhibitors)',
+            'NTRK1': 'FDA-approved (larotrectinib, entrectinib)',
+            'NTRK2': 'FDA-approved (larotrectinib, entrectinib)',
+            'NTRK3': 'FDA-approved (larotrectinib, entrectinib)',
+            'RET': 'FDA-approved (selpercatinib, pralsetinib)',
+            'MET': 'FDA-approved (capmatinib, tepotinib)',
+            'ROS1': 'FDA-approved (crizotinib, entrectinib)',
+            'IDH1': 'FDA-approved (ivosidenib)',
+            'IDH2': 'FDA-approved (enasidenib)',
+            'FLT3': 'FDA-approved (midostaurin, gilteritinib)',
+            'KIT': 'FDA-approved (imatinib, sunitinib)',
+            'PDGFRA': 'FDA-approved (imatinib)',
+            'FGFR2': 'FDA-approved (pemigatinib)',
+            'FGFR3': 'FDA-approved (erdafitinib)',
+            'CDK4': 'FDA-approved (palbociclib, ribociclib)',
+            'CDK6': 'FDA-approved (palbociclib, ribociclib)',
+        }
+
+        # Add druggability annotation
+        genes_df['Druggability'] = genes_df['Gene'].apply(
+            lambda g: druggable_genes.get(g, 'Not directly druggable')
+        )
+        genes_df['Is_Druggable'] = genes_df['Gene'].apply(
+            lambda g: 'Yes' if g in druggable_genes else 'No'
+        )
+
+        return genes_df
+
+    def analyze_genes_by_cancer_type(self, top_genes: int = 30, top_cancers: int = 15) -> pd.DataFrame:
+        """Analyze gene usage by cancer type.
+
+        Args:
+            top_genes: Number of top genes to analyze
+            top_cancers: Number of top cancer types to include
+
+        Returns:
+            DataFrame with gene × cancer type matrix
+        """
+        if self.df.empty or 'specific_genes_queried' not in self.df.columns:
+            return pd.DataFrame()
+
+        # Get top genes
+        top_genes_list = self.analyze_genes_queried(top_n=top_genes)['Gene'].tolist()
+
+        # Get top cancer types (using oncotree_name for v7 papers)
+        cancer_col = 'oncotree_name' if 'oncotree_name' in self.df.columns else 'cancer_type'
+        if cancer_col not in self.df.columns:
+            return pd.DataFrame()
+
+        df_temp = self.df.copy()
+        df_temp['specific_genes_queried'] = df_temp['specific_genes_queried'].apply(
+            lambda x: eval(x) if isinstance(x, str) and x.startswith('[') else (x if isinstance(x, list) else [])
+        )
+
+        # Explode genes
+        df_exploded = df_temp.explode('specific_genes_queried')
+        df_exploded = df_exploded[df_exploded['specific_genes_queried'].notna()]
+        df_exploded = df_exploded[df_exploded['specific_genes_queried'] != '']
+
+        # Get top cancer types
+        top_cancers_list = df_exploded[cancer_col].value_counts().head(top_cancers).index.tolist()
+
+        # Filter to top genes and cancers
+        df_filtered = df_exploded[
+            df_exploded['specific_genes_queried'].isin(top_genes_list) &
+            df_exploded[cancer_col].isin(top_cancers_list)
+        ]
+
+        # Create cross-tabulation
+        crosstab = pd.crosstab(
+            df_filtered['specific_genes_queried'],
+            df_filtered[cancer_col]
+        )
+
+        return crosstab
+
     def analyze_author_countries(self, top_n: int = 20) -> pd.DataFrame:
         """Analyze geographic distribution of citing papers.
 
@@ -384,54 +666,72 @@ class UsageAnalyzer:
     def analyze_data_citation_overlap(self) -> Dict:
         """Analyze overlap between cBioPortal citations and underlying data citations.
 
+        Uses metadata from citations.json (reference_pmids) rather than text extraction.
+
         Returns:
             Dictionary with data citation overlap statistics
         """
-        citation_sentences_file = METADATA_DIR / "citation_sentences.json"
-        if not citation_sentences_file.exists():
-            logger.warning("No citation sentences data found. Run 'extract-citations' first.")
+        # Load data PMIDs from cBioPortal studies
+        studies_file = METADATA_DIR / "cbioportal_studies.json"
+        if not studies_file.exists():
+            logger.warning("No studies metadata found. Run fetch-studies first.")
             return {}
 
-        with open(citation_sentences_file, "r") as f:
-            citation_data = json.load(f)
+        with open(studies_file, "r") as f:
+            studies_data = json.load(f)
 
-        # Categorize papers
+        data_pmids = set(studies_data.get("pmid_to_studies", {}).keys())
+
+        # Load raw citations JSON
+        if not self.citations_file.exists():
+            logger.warning("No citations metadata found")
+            return {}
+
+        with open(self.citations_file, "r") as f:
+            citations_data = json.load(f)
+
+        # Categorize papers based on which PMIDs they cite
         cbioportal_only = 0
         data_only = 0
         both = 0
-        neither = 0
 
         # Track which data PMIDs are most commonly cited
         data_pmid_counts = {}
 
-        # Track cBioPortal paper citations vs platform mentions
-        papers_citing_cbioportal_papers = 0
-        papers_mentioning_platform = 0
+        # Iterate through papers grouped by which platform paper they cite
+        total_papers = 0
+        seen_papers = set()  # Deduplicate papers that cite multiple platform papers
 
-        for paper_id, data in citation_data.items():
-            # Check for any cBioPortal mention (paper citation OR platform mention)
-            has_cbioportal = (data.get("total_cbioportal_paper_citations", 0) > 0
-                            or data.get("total_cbioportal_platform_mentions", 0) > 0)
-            has_data = data.get("total_data_pmids_cited", 0) > 0
+        for platform_pmid, pmid_data in citations_data.get("papers", {}).items():
+            for paper in pmid_data.get("citations", []):
+                paper_id = paper.get('paper_id')
 
-            if has_cbioportal and has_data:
-                both += 1
-            elif has_cbioportal:
-                cbioportal_only += 1
-            elif has_data:
-                data_only += 1
-            else:
-                neither += 1
+                # Skip if we've already processed this paper
+                if paper_id in seen_papers:
+                    continue
+                seen_papers.add(paper_id)
 
-            # Track breakdown of cBioPortal mentions
-            if data.get("total_cbioportal_paper_citations", 0) > 0:
-                papers_citing_cbioportal_papers += 1
-            if data.get("total_cbioportal_platform_mentions", 0) > 0:
-                papers_mentioning_platform += 1
+                ref_pmids = set(paper.get('reference_pmids', []))
 
-            # Count data PMID occurrences
-            for pmid in data.get("data_publication_citations", {}).keys():
-                data_pmid_counts[pmid] = data_pmid_counts.get(pmid, 0) + 1
+                # Check if this paper cites platform papers (we know it does since that's how we got it)
+                has_cbioportal = bool(ref_pmids & set(CBIOPORTAL_PMIDS))
+
+                # Check if this paper cites data source papers
+                data_pmids_cited = ref_pmids & data_pmids
+                has_data = len(data_pmids_cited) > 0
+
+                if has_cbioportal and has_data:
+                    both += 1
+                elif has_cbioportal:
+                    cbioportal_only += 1
+                elif has_data:
+                    data_only += 1
+
+                # Count data PMID occurrences
+                for pmid in data_pmids_cited:
+                    data_pmid_counts[pmid] = data_pmid_counts.get(pmid, 0) + 1
+
+                total_papers += 1
 
         # Top cited data PMIDs
         top_data_pmids = sorted(
@@ -440,17 +740,12 @@ class UsageAnalyzer:
             reverse=True
         )[:20]
 
-        total_papers = len(citation_data)
-
         return {
             "total_papers_analyzed": total_papers,
             "cbioportal_only": cbioportal_only,
             "data_only": data_only,
             "both_cbioportal_and_data": both,
-            "neither": neither,
             "percentage_citing_both": round(both / total_papers * 100, 1) if total_papers > 0 else 0,
-            "papers_citing_cbioportal_papers": papers_citing_cbioportal_papers,
-            "papers_mentioning_platform": papers_mentioning_platform,
             "top_cited_data_pmids": top_data_pmids
         }
 
@@ -486,9 +781,16 @@ class UsageAnalyzer:
         df_temp = self.df.copy()
         df_temp['year'] = pd.to_numeric(df_temp['year'], errors='coerce')
 
+        # Prefer oncotree_name (v7) over cancer_type (older schemas)
+        if 'oncotree_name' in df_temp.columns:
+            # Use oncotree_name for v7 papers, fallback to cancer_type for older
+            df_temp['cancer_display'] = df_temp['oncotree_name'].fillna(df_temp.get('cancer_type', ''))
+        else:
+            df_temp['cancer_display'] = df_temp.get('cancer_type', '')
+
         # Sort by year and get top N
         recent = df_temp.nlargest(n, 'year')[
-            ['title', 'year', 'research_area', 'cancer_type', 'cbioportal_usage_summary']
+            ['title', 'year', 'research_area', 'cancer_display', 'cbioportal_usage_summary']
         ]
 
         return recent
@@ -584,6 +886,98 @@ class UsageAnalyzer:
 
         return filename
 
+    def create_citation_attribution_plot(self) -> Optional[str]:
+        """Create plot showing v7 citation attribution patterns.
+
+        Returns:
+            Filename of the generated plot (without directory path)
+        """
+        attribution_stats = self.analyze_citation_attribution()
+        if not attribution_stats:
+            return None
+
+        # Create stacked bar chart
+        fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 6))
+
+        # Left: Attribution patterns
+        categories = ['Both', 'Platform Only', 'Data Only', 'Neither']
+        values = [
+            attribution_stats.get('cite_both', 0),
+            attribution_stats.get('cite_platform_only', 0),
+            attribution_stats.get('cite_data_only', 0),
+            attribution_stats.get('cite_neither', 0)
+        ]
+        colors = ['#2ecc71', '#3498db', '#e74c3c', '#95a5a6']
+
+        ax1.bar(categories, values, color=colors, edgecolor='black', linewidth=1.5)
+        ax1.set_ylabel('Number of Papers', fontsize=12)
+        ax1.set_title('Citation Attribution Patterns (v7 Papers)', fontsize=14, fontweight='bold')
+        ax1.grid(True, alpha=0.3, axis='y')
+
+        # Add value labels on bars
+        for i, v in enumerate(values):
+            ax1.text(i, v + max(values) * 0.02, str(v), ha='center', fontweight='bold')
+
+        # Right: Platform paper citations
+        platform_df = self.analyze_platform_citations()
+        if not platform_df.empty:
+            ax2.barh(platform_df['Platform Paper'], platform_df['Citations'], color='steelblue', edgecolor='darkblue', linewidth=1.5)
+            ax2.set_xlabel('Number of Citations', fontsize=12)
+            ax2.set_title('cBioPortal Platform Paper Citations', fontsize=14, fontweight='bold')
+            ax2.invert_yaxis()
+            ax2.grid(True, alpha=0.3, axis='x')
+
+            # Add value labels
+            for i, (paper, count) in enumerate(zip(platform_df['Platform Paper'], platform_df['Citations'])):
+                ax2.text(count + max(platform_df['Citations']) * 0.02, i, str(count), va='center', fontweight='bold')
+
+        plt.tight_layout()
+        filename = "citation_attribution.png"
+        plot_path = PLOTS_DIR / filename
+        plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+        logger.info(f"Saved citation attribution plot to {plot_path}")
+        plt.close()
+
+        return filename
+
+    def create_gene_druggability_plot(self, top_n: int = 30) -> Optional[str]:
+        """Create plot showing top genes with druggability annotation.
+
+        Args:
+            top_n: Number of top genes to show
+
+        Returns:
+            Filename of the generated plot (without directory path)
+        """
+        genes_df = self.analyze_genes_with_druggability(top_n=top_n)
+        if genes_df.empty:
+            return None
+
+        plt.figure(figsize=(12, 10))
+
+        # Color code by druggability
+        colors = ['#2ecc71' if d == 'Yes' else '#95a5a6' for d in genes_df['Is_Druggable']]
+
+        plt.barh(range(len(genes_df)), genes_df['Count'], color=colors, edgecolor='black', linewidth=0.5)
+        plt.yticks(range(len(genes_df)), genes_df['Gene'])
+        plt.xlabel('Number of Papers Querying Gene', fontsize=12)
+        plt.title(f'Top {top_n} Most Queried Genes (Green = FDA-Approved Drug Available)', fontsize=14, fontweight='bold')
+        plt.gca().invert_yaxis()
+        plt.grid(True, alpha=0.3, axis='x')
+
+        # Add value labels
+        for i, count in enumerate(genes_df['Count']):
+            plt.text(count + max(genes_df['Count']) * 0.01, i, str(count), va='center', fontsize=9)
+
+        plt.tight_layout()
+        filename = "gene_druggability.png"
+        plot_path = PLOTS_DIR / filename
+        plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+        logger.info(f"Saved gene druggability plot to {plot_path}")
+        plt.close()
+
+        return filename
+
     def generate_summary_stats(self) -> Dict:
         """Generate summary statistics.
 
@@ -624,12 +1018,14 @@ class UsageAnalyzer:
 
         return stats
 
-    def generate_report(self, plot_filename: Optional[str] = None, research_plot_filename: Optional[str] = None) -> str:
+    def generate_report(self, plot_filename: Optional[str] = None, research_plot_filename: Optional[str] = None,
+                       citation_plot_filename: Optional[str] = None) -> str:
         """Generate a comprehensive markdown report.
 
         Args:
             plot_filename: Filename of main usage analysis plot
             research_plot_filename: Filename of research areas plot
+            citation_plot_filename: Filename of citation attribution plot
 
         Returns:
             Path to generated report
@@ -691,53 +1087,84 @@ class UsageAnalyzer:
         report_lines.append("This is a known limitation of the eutils citation indexing system. ")
         report_lines.append("Our analysis is based on the subset of citations available through the API.\n")
 
-        # Add detailed citation overlap section
-        overlap_stats = self.analyze_citation_overlap()
-        if overlap_stats:
-            report_lines.append("## Citation Overlap Analysis\n")
-            report_lines.append(f"- Papers citing only 1 cBioPortal publication: {overlap_stats['citing_one_paper']:,}")
-            report_lines.append(f"- Papers citing 2 cBioPortal publications: {overlap_stats['citing_two_papers']:,}")
-            report_lines.append(f"- Papers citing all 3 cBioPortal publications: {overlap_stats['citing_three_papers']:,}\n")
-
-        # Add data citation overlap section
+        # Add comprehensive citation analysis section
         data_overlap_stats = self.analyze_data_citation_overlap()
-        if data_overlap_stats:
-            report_lines.append("## Data Citation Analysis\n")
-            report_lines.append("*Analysis of papers that cite both cBioPortal and underlying data sources*\n")
+        overlap_stats = self.analyze_citation_overlap()
+
+        if data_overlap_stats or overlap_stats:
+            report_lines.append("## Citation Analysis\n")
+            report_lines.append("*Analysis of citation patterns based on reference PMID metadata from Europe PMC*\n")
+
             total = data_overlap_stats.get('total_papers_analyzed', 0)
-            both = data_overlap_stats.get('both_cbioportal_and_data', 0)
-            cbioportal_only = data_overlap_stats.get('cbioportal_only', 0)
-            data_only = data_overlap_stats.get('data_only', 0)
-            pct = data_overlap_stats.get('percentage_citing_both', 0)
+            report_lines.append(f"**Note**: This analysis covers {total:,} papers with available reference metadata (~49% of total papers). ")
+            report_lines.append("Papers classified from abstracts only don't have reference lists available.\n")
 
-            report_lines.append(f"- **Total papers with extracted citations**: {total:,}")
-            report_lines.append(f"- **Papers citing cBioPortal AND underlying data**: {both:,} ({pct}%)")
-            report_lines.append(f"- **Papers citing cBioPortal only**: {cbioportal_only:,}")
-            report_lines.append(f"- **Papers citing data PMIDs only**: {data_only:,}\n")
+            # Citation overlap subsection
+            if overlap_stats:
+                report_lines.append("### Platform Paper Citation Overlap\n")
+                report_lines.append(f"- Papers citing only 1 cBioPortal publication: {overlap_stats['citing_one_paper']:,}")
+                report_lines.append(f"- Papers citing 2 cBioPortal publications: {overlap_stats['citing_two_papers']:,}")
+                report_lines.append(f"- Papers citing all 3 cBioPortal publications: {overlap_stats['citing_three_papers']:,}\n")
 
-            # cBioPortal citation breakdown
-            paper_cites = data_overlap_stats.get('papers_citing_cbioportal_papers', 0)
-            platform_mentions = data_overlap_stats.get('papers_mentioning_platform', 0)
-            report_lines.append("### cBioPortal Citation Breakdown\n")
-            report_lines.append(f"- Papers citing cBioPortal papers (PMIDs): {paper_cites:,}")
-            report_lines.append(f"- Papers mentioning cBioPortal platform (without PMID): {platform_mentions:,}\n")
+            # Data source co-citation subsection
+            if data_overlap_stats:
+                both = data_overlap_stats.get('both_cbioportal_and_data', 0)
+                cbioportal_only = data_overlap_stats.get('cbioportal_only', 0)
+                data_only = data_overlap_stats.get('data_only', 0)
+                pct = data_overlap_stats.get('percentage_citing_both', 0)
+
+                report_lines.append("### Co-Citation with Data Source Papers\n")
+                report_lines.append(f"- **Papers citing cBioPortal platform AND underlying data sources**: {both:,} ({pct}%)")
+                report_lines.append(f"- **Papers citing cBioPortal platform only**: {cbioportal_only:,}")
+                report_lines.append(f"- **Papers citing data source papers only**: {data_only:,}\n")
 
             # Top cited data sources
             top_data = data_overlap_stats.get('top_cited_data_pmids', [])
             if top_data:
                 report_lines.append("### Most Frequently Co-Cited Data Sources\n")
                 for i, (pmid, count) in enumerate(top_data[:10], 1):
-                    report_lines.append(f"{i}. PMID {pmid}: {count:,} papers")
+                    dataset_name = DATA_SOURCE_PAPERS.get(pmid, f'PMID {pmid}')
+                    report_lines.append(f"{i}. **{dataset_name}** (PMID {pmid}): {count:,} papers")
+                report_lines.append("")
+
+        # Add v7 Citation Attribution Analysis
+        attribution_stats = self.analyze_citation_attribution()
+        if attribution_stats:
+            report_lines.append("## Citation Attribution Analysis (v7 Schema)\n")
+            report_lines.append("*Analysis of how papers cite cBioPortal platform vs. underlying data sources*\n")
+
+            total = attribution_stats.get('total_v7_papers', 0)
+            cite_both = attribution_stats.get('cite_both', 0)
+            cite_platform = attribution_stats.get('cite_platform', 0)
+            cite_data = attribution_stats.get('cite_data_source', 0)
+
+            report_lines.append(f"- **Total v7 papers analyzed**: {total:,}")
+            report_lines.append(f"- **Papers citing cBioPortal platform papers**: {cite_platform:,} ({cite_platform/total*100:.1f}%)")
+            report_lines.append(f"- **Papers citing underlying data source papers**: {cite_data:,} ({cite_data/total*100:.1f}%)")
+            report_lines.append(f"- **Papers citing BOTH platform and data sources**: {cite_both:,} ({attribution_stats.get('pct_cite_both', 0)}%)")
+            report_lines.append(f"- **Papers citing platform ONLY**: {attribution_stats.get('cite_platform_only', 0):,} ({attribution_stats.get('pct_cite_platform_only', 0)}%)\n")
+
+            # Platform paper breakdown
+            platform_df = self.analyze_platform_citations()
+            if not platform_df.empty:
+                report_lines.append("### Individual Platform Paper Citations\n")
+                for idx, row in platform_df.iterrows():
+                    report_lines.append(f"- {row['Platform Paper']}: {row['Citations']:,} citations")
                 report_lines.append("")
 
         # Add Visualizations section if plots exist
-        if plot_filename or research_plot_filename:
+        if plot_filename or research_plot_filename or citation_plot_filename:
             report_lines.append("## Visualizations\n")
 
             if plot_filename:
                 report_lines.append("### Usage Analysis Overview\n")
                 report_lines.append(f"![Usage Analysis](../plots/usage_analysis.png)\n")
                 report_lines.append("*Four-panel visualization showing analysis types, cancer types, data sources, and temporal trends.*\n")
+
+            if citation_plot_filename:
+                report_lines.append("### Citation Attribution Patterns\n")
+                report_lines.append(f"![Citation Attribution](../plots/citation_attribution.png)\n")
+                report_lines.append("*v7 schema: How papers cite cBioPortal platform vs. data sources, and breakdown by platform paper.*\n")
 
             if research_plot_filename:
                 report_lines.append("### Research Areas\n")
@@ -799,6 +1226,39 @@ class UsageAnalyzer:
                 report_lines.append(f"{idx+1}. {row['Gene']}: {row['Count']} papers")
             report_lines.append("")
 
+        # Enhanced gene analysis (top 50)
+        genes_extended_df = self.analyze_genes_queried(top_n=50)
+        if not genes_extended_df.empty:
+            report_lines.append("## Top 50 Most Frequently Queried Genes\n")
+            for idx, row in genes_extended_df.iterrows():
+                report_lines.append(f"{idx+1}. **{row['Gene']}**: {row['Count']} papers")
+            report_lines.append("")
+
+        # Specific datasets (v7 schema)
+        datasets_df = self.analyze_specific_datasets(top_n=30)
+        if not datasets_df.empty:
+            report_lines.append("## Specific Datasets Used (v7 Schema)\n")
+            report_lines.append("*Granular dataset names extracted from v7 classifications*\n")
+            for idx, row in datasets_df.head(20).iterrows():
+                report_lines.append(f"{idx+1}. {row['Dataset']}: {row['Count']} papers")
+            report_lines.append("")
+
+        # cBioPortal studies cited (total PubMed citations)
+        studies_df = self.analyze_cbioportal_studies_cited(top_n=30)
+        if not studies_df.empty:
+            report_lines.append("## Most Cited cBioPortal Studies (by Dataset Publication)\n")
+            report_lines.append("*Total PubMed citations for papers describing cBioPortal datasets*\n")
+            for i, (idx, row) in enumerate(studies_df.iterrows(), 1):
+                study_name = row['Study_Name']
+                citations = int(row['Total_Citations'])
+                pmid = row['Study_PMID']
+
+                if pmid:
+                    report_lines.append(f"{i}. **{study_name}**: {citations:,} total citations (PMID {pmid})")
+                else:
+                    report_lines.append(f"{i}. **{study_name}**: {citations:,} total citations")
+            report_lines.append("")
+
         # Bibliometric analyses
         report_lines.append("---\n")
         report_lines.append("# Bibliometric Analysis\n")
@@ -844,9 +1304,15 @@ class UsageAnalyzer:
         if not recent_df.empty:
             report_lines.append("## Recent Papers Using cBioPortal\n")
             for idx, row in recent_df.iterrows():
-                report_lines.append(f"### {row['title']} ({row['year']})\n")
+                # Format year as integer
+                year_str = str(int(row['year'])) if pd.notna(row['year']) else 'N/A'
+                report_lines.append(f"### {row['title']} ({year_str})\n")
                 report_lines.append(f"- **Research Area**: {row.get('research_area', 'N/A')}")
-                report_lines.append(f"- **Cancer Type**: {row.get('cancer_type', 'N/A')}")
+                # Use cancer_display which handles v7 oncotree_name
+                cancer_str = row.get('cancer_display', 'N/A')
+                if pd.isna(cancer_str) or cancer_str == '':
+                    cancer_str = 'N/A'
+                report_lines.append(f"- **Cancer Type**: {cancer_str}")
                 if pd.notna(row.get('cbioportal_usage_summary')):
                     report_lines.append(f"- **Usage**: {row['cbioportal_usage_summary']}")
                 report_lines.append("")
@@ -871,11 +1337,13 @@ def main():
     # Generate visualizations
     plot_filename = analyzer.create_visualizations()
     research_plot_filename = analyzer.create_research_area_plot()
+    citation_plot_filename = analyzer.create_citation_attribution_plot()
 
     # Generate report with plot references
     report_path = analyzer.generate_report(
         plot_filename=plot_filename,
-        research_plot_filename=research_plot_filename
+        research_plot_filename=research_plot_filename,
+        citation_plot_filename=citation_plot_filename
     )
 
     logger.info(f"Analysis complete! Report saved to: {report_path}")

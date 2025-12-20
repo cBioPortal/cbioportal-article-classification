@@ -164,14 +164,17 @@ def analyze(skip_plots):
     # Generate visualizations
     plot_filename = None
     research_plot_filename = None
+    citation_plot_filename = None
     if not skip_plots:
         plot_filename = analyzer.create_visualizations()
         research_plot_filename = analyzer.create_research_area_plot()
+        citation_plot_filename = analyzer.create_citation_attribution_plot()
 
     # Generate report with plot references
     report_path = analyzer.generate_report(
         plot_filename=plot_filename,
-        research_plot_filename=research_plot_filename
+        research_plot_filename=research_plot_filename,
+        citation_plot_filename=citation_plot_filename
     )
 
     click.echo(click.style("Analysis complete!", fg='green'))
@@ -294,9 +297,12 @@ def status():
 
         total = len(classifications)
 
-        # Count by schema version
+        # Count by schema version and text source
         version_counts = {}
-        text_source_counts = {"pdf": 0, "abstract": 0, "none": 0, "unknown": 0}
+        text_source_counts = {"pdf": 0, "abstract": 0, "sentences": 0, "none": 0, "unknown": 0}
+        # Track schema version per text source
+        outdated_by_source = {"pdf": 0, "abstract": 0, "sentences": 0, "none": 0, "unknown": 0}
+        current_by_source = {"pdf": 0, "abstract": 0, "sentences": 0, "none": 0, "unknown": 0}
 
         for paper_id, classification in classifications.items():
             version = classification.get("schema_version", 0)
@@ -305,8 +311,16 @@ def status():
             text_source = classification.get("text_source")
             if text_source in text_source_counts:
                 text_source_counts[text_source] += 1
+                if version < CLASSIFICATION_SCHEMA_VERSION:
+                    outdated_by_source[text_source] += 1
+                else:
+                    current_by_source[text_source] += 1
             elif text_source is None:
                 text_source_counts["unknown"] += 1
+                if version < CLASSIFICATION_SCHEMA_VERSION:
+                    outdated_by_source["unknown"] += 1
+                else:
+                    current_by_source["unknown"] += 1
 
         click.echo(click.style("Classifications:", fg='cyan', bold=True))
         click.echo(f"  Total classified: {click.style(str(total), fg='green')}")
@@ -314,18 +328,28 @@ def status():
 
         # Show version breakdown if there are outdated papers
         outdated = sum(count for version, count in version_counts.items() if version < CLASSIFICATION_SCHEMA_VERSION)
+        current_schema = version_counts.get(CLASSIFICATION_SCHEMA_VERSION, 0)
         if outdated > 0:
-            click.echo(f"  Outdated schema: {click.style(str(outdated), fg='yellow')} papers (will be re-classified on next run)")
+            click.echo(f"  Schema v{CLASSIFICATION_SCHEMA_VERSION}: {click.style(str(current_schema), fg='green')} papers")
+            click.echo(f"  Outdated schemas: {click.style(str(outdated), fg='yellow')} papers total")
 
-        # Show text source breakdown
-        if text_source_counts["pdf"] > 0 or text_source_counts["abstract"] > 0:
-            click.echo(f"\n  Text sources:")
-            if text_source_counts["pdf"] > 0:
-                click.echo(f"    From PDF: {click.style(str(text_source_counts['pdf']), fg='green')} ({text_source_counts['pdf']/total*100:.1f}%)")
-            if text_source_counts["abstract"] > 0:
-                click.echo(f"    From Abstract: {click.style(str(text_source_counts['abstract']), fg='green')} ({text_source_counts['abstract']/total*100:.1f}%)")
-            if text_source_counts["unknown"] > 0:
-                click.echo(f"    Unknown: {click.style(str(text_source_counts['unknown']), fg='yellow')} ({text_source_counts['unknown']/total*100:.1f}%)")
+        # Show text source breakdown with schema status
+        click.echo(f"\n  Text sources:")
+        for source in ["sentences", "pdf", "abstract", "unknown"]:
+            total_source = text_source_counts[source]
+            if total_source > 0:
+                current_count = current_by_source[source]
+                outdated_count = outdated_by_source[source]
+                source_display = source.capitalize() if source != "pdf" else "PDF"
+
+                pct = total_source/total*100
+                status_str = ""
+                if outdated_count > 0:
+                    status_str = f" ({click.style(str(current_count), fg='green')} current, {click.style(str(outdated_count), fg='yellow')} outdated)"
+                else:
+                    status_str = f" ({click.style('all current', fg='green')})"
+
+                click.echo(f"    {source_display}: {click.style(str(total_source), fg='green')} ({pct:.1f}%){status_str}")
     else:
         click.echo(click.style("Classifications:", fg='cyan', bold=True) + " No data (run 'classify' command)")
 
@@ -507,7 +531,8 @@ def fetch_reference_data(force):
 
 @cli.command(name='fetch-studies')
 @click.option('--force', is_flag=True, help='Force re-fetch of studies metadata')
-def fetch_studies(force):
+@click.option('--skip-citations', is_flag=True, help='Skip fetching PubMed citation counts')
+def fetch_studies(force, skip_citations):
     """Fetch cBioPortal study metadata from API (legacy - use fetch-reference-data instead)."""
     logger.info("Fetching cBioPortal study metadata...")
 
@@ -525,6 +550,18 @@ def fetch_studies(force):
     click.echo(f"\nTop cancer types:")
     for cancer_type, count in stats.get('top_cancer_types', [])[:5]:
         click.echo(f"  {cancer_type}: {click.style(str(count), fg='green')}")
+
+    # Fetch citation counts unless skipped
+    if not skip_citations:
+        click.echo(click.style("\n=== Fetching PubMed Citation Counts ===\n", bold=True))
+        citation_stats = fetcher.fetch_citation_counts()
+
+        if citation_stats:
+            click.echo(f"Successfully fetched: {click.style(str(citation_stats.get('successfully_fetched', 0)), fg='green')}/{citation_stats.get('total_studies_with_pmid', 0)} studies")
+            if citation_stats.get('failed_fetches', 0) > 0:
+                click.echo(f"Failed: {click.style(str(citation_stats.get('failed_fetches', 0)), fg='red')}")
+    else:
+        click.echo(click.style("\nSkipped citation count fetching (use without --skip-citations to fetch)", fg='yellow'))
 
 
 @cli.command(name='extract-citations')
